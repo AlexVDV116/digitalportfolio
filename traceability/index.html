@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Master Traceability Matrix</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__wrap">
+            <div>
+                <h1 class="topbar__title">Master Traceability Matrix</h1>
+                <p class="topbar__subtitle">
+                    Tabbladen tonen de traceability per onderdeel (project, PvA, OC→MVP, uitvoering).
+                </p>
+            </div>
+            <div class="topbar__actions">
+                <a class="btn" href="../">Terug</a>
+                <div class="nav" id="nav">
+                    <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                        aria-controls="navMenu" title="Menu">
+                        <span class="nav__icon" aria-hidden="true"></span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+
+                    <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                        <div class="nav__sectionTitle">Pagina’s</div>
+
+                        <a role="menuitem" class="nav__item" href="/" data-nav-close>
+                            Project overview
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/pva/" data-nav-close>
+                            Plan van aanpak
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/execution/" data-nav-close>
+                            Uitvoering
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/timeline/" data-nav-close>
+                            Planning
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/traceability/" data-nav-close>
+                            Master Traceability Matrix
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/theory/" data-nav-close>
+                            Theoretisch kader
+                        </a>
+
+                        <div class="nav__divider"></div>
+                        <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Projectstatusrapport ↗
+                        </a>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Wekelijkse zelfreflecties ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="canvas" aria-label="Traceability tabellen">
+            <div class="card">
+                <h2 class="card__heading">Weergave</h2>
+
+                <div class="tabs" role="tablist" aria-label="Traceability tabs">
+                    <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="project">
+                        Project
+                    </button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" data-tab="pva">
+                        PvA
+                    </button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" data-tab="mvpoc">
+                        MVP ↔ OC
+                    </button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" data-tab="uitvoering">
+                        Uitvoering
+                    </button>
+
+                    <div class="tabs__spacer"></div>
+
+                    <label class="tabs__search">
+                        <span>Zoek</span>
+                        <input id="q" type="search" placeholder="Filter in tabel..." />
+                    </label>
+                </div>
+
+                <div id="meta" class="tableMeta"></div>
+                <div id="tableWrap" class="tableWrap"></div>
+            </div>
+        </section>
+
+        <aside class="side" aria-label="Toelichting">
+            <div class="card">
+                <div class="card__title">Doel</div>
+                <div class="card__desc">
+                    Deze pagina maakt de traceability expliciet en navigeerbaar. Per tabblad wordt een matrix getoond
+                    die de
+                    relatie tussen input (bijv. probleem, DV’s, theorie) en output (bijv. OC’s, ontwerpbeslissingen,
+                    bewijs)
+                    inzichtelijk maakt.
+                </div>
+            </div>
+
+            <div class="card card--compact">
+                <h2 class="card__heading">Bronbestanden</h2>
+                <div class="card__desc">
+                    CSV-bestanden worden lokaal geladen vanuit <code>traceability/data/</code>. Als een tabel leeg
+                    blijft:
+                    controleer bestandsnamen en pad.
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>© 2026 Alex van der Velden<br />Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen?csf=1&web=1&e=CXkmTw"
+                    target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+
+                <a href="https://battlebuddy.atlassian.net/jira/software/projects/KAN/list" target="_blank"
+                    rel="noopener noreferrer" aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./scripts/traceability.js"></script>
+</body>
+
+</html>

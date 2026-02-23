@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digitaal Research Portfolio</title>
+
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+    <div class="page-wrap">
+        <header class="topbar">
+
+            <div class="topbar__wrap">
+                <div>
+                    <h1 class="topbar__title">Digitaal Research Portfolio — Ontwerpgericht Onderzoek</h1>
+                    <p class="topbar__subtitle">Integratie van een lokaal Large Language Model (LLM) in Visual Studio
+                        2022.
+                </div>
+
+                <div class="topbar__actions">
+                    <button id="btnResetView" class="btn" type="button">Reset view</button>
+                    <button id="btnClear" class="btn btn--ghost" type="button">Clear selectie</button>
+                    <div class="nav" id="nav">
+                        <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                            aria-controls="navMenu" title="Menu">
+                            <span class="nav__icon" aria-hidden="true"></span>
+                            <span class="sr-only">Open menu</span>
+                        </button>
+
+                        <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                            <div class="nav__sectionTitle">Pagina’s</div>
+
+                            <a role="menuitem" class="nav__item" href="/" data-nav-close>
+                                Project overview
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/pva/" data-nav-close>
+                                Plan van aanpak
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/execution/" data-nav-close>
+                                Uitvoering
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/timeline/" data-nav-close>
+                                Planning
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/traceability/" data-nav-close>
+                                Master Traceability Matrix
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/theory/" data-nav-close>
+                                Theoretisch kader
+                            </a>
+
+                            <div class="nav__divider"></div>
+                            <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                            <a role="menuitem" class="nav__item"
+                                href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                                target="_blank" rel="noopener noreferrer" data-nav-close>
+                                Projectstatusrapport ↗
+                            </a>
+
+                            <a role="menuitem" class="nav__item"
+                                href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                                target="_blank" rel="noopener noreferrer" data-nav-close>
+                                Wekelijkse zelfreflecties ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero" aria-label="Introductie">
+            <div class="hero__wrap">
+                <div class="card hero__card">
+
+                    <div class="hero__content">
+                        <h2 class="card__heading">Over dit digitale research portfolio</h2>
+
+                        <div class="card__desc">
+                            <p>Dit digitale research portfolio is ontwikkeld <b>ter ondersteuning van</b> het
+                                ontwerpgerichte afstudeeronderzoek binnen de opleiding Informatica Deeltijd. Het doel is
+                                het
+                                expliciet en transparant maken van de logische herleidbaarheid van het onderzoek: van
+                                probleemstelling en onderzoeksvragen, via theoretische onderbouwing en methodische
+                                keuzes, naar
+                                ontwerpbeslissingen, realisatie en evaluatie.</p>
+
+                            <p>Met traditionele documenten (zoals losse rapportages, PowerPointpresentaties en
+                                spreadsheets)
+                                raak je deze samenhang vaak kwijt. Omdat er geen geschikte online tool beschikbaar was
+                                om
+                                interactieve, herleidbare procesdiagrammen te presenteren, heb ik deze webomgeving
+                                ontworpen en
+                                gerealiseerd als integraal onderzoeksinstrument.</p>
+
+                            <p>Voor mij heeft dit portfolio gedurende het traject gefunctioneerd als een digitaal
+                                whiteboard en een dynamische mindmap. Het bood de mogelijkheid om uit te zoomen,
+                                verbanden
+                                zichtbaar te maken en het geheel van probleem, deelonderzoeken en beroepsproducten
+                                steeds
+                                opnieuw in samenhang te bekijken. Door structuur, fasering en deliverables visueel en
+                                interactief
+                                te modelleren, kon ik mijn denkproces expliciteren en toetsen of mijn keuzes logisch
+                                voortbouwden op eerdere stappen.</p>
+
+                            <p>Ik heb bewust gekozen voor een interactieve webomgeving, zodat dit instrument niet alleen
+                                voor mijzelf bruikbaar was, maar ook eenvoudig gedeeld kon worden met begeleiders en
+                                stakeholders. Tijdens de eindpresentatie en verdediging biedt deze omgeving een
+                                transparante en
+                                navigeerbare representatie van het volledige traject, waarin keuzes, deelonderzoeken en
+                                beroepsproducten direct in relatie tot elkaar kunnen worden toegelicht.</p>
+                        </div>
+
+                        <div class="card__meta">
+                            Methodische kern: probleem → vraag → methode → resultaat → conclusie → ontwerp
+                        </div>
+                    </div>
+
+                    <div class="hero__cover" aria-label="Cover onderzoek">
+                        <img src="assets/images/cover.png" alt="Cover van het ontwerpgerichte onderzoek" />
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagram + side details -->
+        <main class="layout">
+            <section id="canvas" class="canvas" aria-label="Diagram canvas">
+                <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+                <div id="mermaid" class="mermaid" aria-label="Mermaid diagram"></div>
+            </section>
+
+            <aside class="side" aria-label="Details">
+                <div class="card">
+                    <div id="sideTitle" class="card__title">Klik op een node</div>
+                    <div id="sideDesc" class="card__desc">
+                        Hover toont een tooltip. Klik toont details (of navigeert).
+                    </div>
+                </div>
+
+                <div class="card card--compact">
+                    <h2 class="card__heading">Legenda</h2>
+
+                    <div class="legend">
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--prep"></span>
+                            <span class="legend__text">Fase 1 — Voorbereiding</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--exec"></span>
+                            <span class="legend__text">Fase 2 — Uitvoering</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--fin"></span>
+                            <span class="legend__text">Fase 3 — Afronding</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--art"></span>
+                            <span class="legend__text">Artefact / deliverable (gestreepte rand)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--out"></span>
+                            <span class="legend__text">Activiteit / onderdeel</span>
+                        </div>
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--icon">↗</span>
+                            <span class="legend__text">Opent een link in een nieuw tabblad</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__copy">
+                    <p>© 2026 Alex van der Velden<br>
+                        Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+                </div>
+
+                <div class="footer__links">
+                    <a href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen?csf=1&web=1&e=CXkmTw"
+                        target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                        <img src="assets/icons/onedrive.svg" alt="OneDrive" />
+                    </a>
+
+                    <a href="https://battlebuddy.atlassian.net/jira/software/projects/KAN/list" target="_blank"
+                        rel="noopener noreferrer" aria-label="Jira">
+                        <img src="assets/icons/jira.svg" alt="Jira" />
+                    </a>
+
+                    <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <img src="assets/icons/github.svg" alt="GitHub" />
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="scripts/landing.js"></script>
+</body>
+
+</html>

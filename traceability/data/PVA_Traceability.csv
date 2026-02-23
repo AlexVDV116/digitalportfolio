@@ -1,0 +1,10 @@
+﻿Fase 1 – Probleemverkenning & vraagstelling (Voorbereiding);;; Fase 2 – Theoretisch kader & onderzoeksopzet (Voorbereiding);;Fase 4 – Ontwerp & MVP-beslissingen (Uitvoering);;Fase 5 – Evaluatie, conclusie & afronding (Afronding)
+Praktijkprobleem;Centrale onderzoeksvraag;Deelvraag;Theorie / Bronnen;Onderzoeksmethode & synthese;Ontwerpcriteria (OC);Ontwerpbeslissing (MVP);Evaluatie
+Geen veilige AI-ondersteuning in air-gapped Visual Studio 2022;Hoe kan een lokaal gehost LLM veilig en beheersbaar worden geïntegreerd in Visual Studio 2022 binnen een gesloten defensieomgeving, zodat ontwikkelaars AI-ondersteuning kunnen benutten zonder beveiligingskaders te schenden?;DV1 – Beveiligings- en architectuureisen;NCSC (2022), STRIDE (Shostack), OWASP LLM Top 10;Documentanalyse interne richtlijnen + externe security-standaarden → synthese van randvoorwaarden;OC-4, OC-5, OC-6;Lokale modelhosting, data-minimalisatie, scheiding IDE ↔ LLM;Architectuurinspectie + STRIDE-analyse
+Idem;Idem;DV2 – Functionele & niet-functionele eisen;Peng (2023), Weisz (2025), Amershi (2019), Barke (2023);Semigestructureerde interviews + eisenclustering → requirementsset;OC-1, OC-2, OC-9;Suggestiegedreven UX, expliciete contextselectie, transparante UI;Gebruikerstests + observaties
+Idem;Idem;DV3 – Analyse bestaande lokale LLM-oplossingen;IDE-architectuur, Continu, extensie-architectuur;Vergelijkende analyse o.b.v. analysecategorieën → ontwerpprincipes;OC-7, OC-8;MEF-conforme extensiestructuur, gecontroleerde communicatie;Technische validatie + code-inspectie
+Idem;Idem;DV4 – Ontwerp communicatiearchitectuur IDE ↔ LLM;Software-architectuur, security-by-design;Ontwerpend onderzoek + proof-of-concept → architectuursynthese;OC-4, OC-6, OC-8;Lokale service met gecontroleerde IPC, timeouts en foutafhandeling;Stabiliteitstest + foutscenario-simulaties
+Idem;Idem;DV5 – Evaluatie MVP;HCI-literatuur, security-evaluatie, STRIDE;Evaluatief onderzoek (usabilitytests + threat modeling) → vergelijking met OC’s;OC-1 t/m OC-9;Validatie van ontwerpkeuzes in praktijk;Conclusies + aanbevelingen + testrapport
+;;;;;;;
+;;;;;;;
+probleem → vraag → methode → resultaat → conclusie → ontwerp;;;;;;;

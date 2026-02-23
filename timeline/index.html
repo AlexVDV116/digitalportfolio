@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tijdlijn & planning</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+</head>
+
+<body>
+    <div class="page-wrap">
+        <header class="topbar">
+            <div class="topbar__wrap">
+                <div>
+                    <h1 class="topbar__title">Tijdlijn & planning</h1>
+                    <p class="topbar__subtitle">
+                        Leidraad voor 20 weken ontwerpgericht onderzoek (fasen, activiteiten, mijlpalen).
+                    </p>
+                </div>
+
+                <div class="topbar__actions">
+                    <button id="btnReset" class="btn" type="button">Reset filters</button>
+                    <div class="nav" id="nav">
+                        <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                            aria-controls="navMenu" title="Menu">
+                            <span class="nav__icon" aria-hidden="true"></span>
+                            <span class="sr-only">Open menu</span>
+                        </button>
+
+                        <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                            <div class="nav__sectionTitle">Pagina’s</div>
+
+                            <a role="menuitem" class="nav__item" href="/" data-nav-close>
+                                Project overview
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/pva/" data-nav-close>
+                                Plan van aanpak
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/execution/" data-nav-close>
+                                Uitvoering
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/timeline/" data-nav-close>
+                                Planning
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/traceability/" data-nav-close>
+                                Master Traceability Matrix
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/theory/" data-nav-close>
+                                Theoretisch kader
+                            </a>
+
+                            <div class="nav__divider"></div>
+                            <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                            <a role="menuitem" class="nav__item"
+                                href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                                target="_blank" rel="noopener noreferrer" data-nav-close>
+                                Projectstatusrapport ↗
+                            </a>
+
+                            <a role="menuitem" class="nav__item"
+                                href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                                target="_blank" rel="noopener noreferrer" data-nav-close>
+                                Wekelijkse zelfreflecties ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="layout">
+            <section class="canvas" aria-label="Planning">
+                <div class="card">
+                    <h2 class="card__heading">Context</h2>
+                    <div class="card__desc">
+                        Deze planning vormt de leidraad voor het afstudeertraject en is opgesteld in lijn met de
+                        methodische
+                        keuzes:
+                        ontwerpgericht onderzoek met iteratieve uitvoering, evaluatie en rapportage. De voortgang wordt
+                        bewaakt via
+                        voortgangsgesprekken, projectstatusrapportages en formele beslismomenten (o.a. GO/NO-GO PvA).
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="timeline-toolbar">
+                        <div class="timeline-toolbar__group">
+                            <span class="timeline-toolbar__label">Filter fase:</span>
+                            <button class="chip is-active" data-phase="ALL" type="button">Alle</button>
+                            <button class="chip" data-phase="Voorbereiding" type="button">Voorbereiding</button>
+                            <button class="chip" data-phase="Uitvoering" type="button">Uitvoering</button>
+                            <button class="chip" data-phase="Afronding" type="button">Afronding</button>
+                        </div>
+
+                        <div class="timeline-toolbar__group">
+                            <label class="timeline-toolbar__label">
+                                <input id="chkMilestones" type="checkbox" checked />
+                                Toon alleen mijlpalen
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="timeline-tableWrap">
+                        <table class="timeline-table" aria-label="Tijdlijn tabel">
+                            <thead>
+                                <tr>
+                                    <th>Week</th>
+                                    <th>Datum</th>
+                                    <th>Fase</th>
+                                    <th>Activiteiten</th>
+                                    <th>Mijlpaal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timelineBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="side" aria-label="Details">
+                <div class="card">
+                    <div class="card__title">Details</div>
+                    <div id="detail" class="card__desc">Klik op een rij om details te zien.</div>
+                </div>
+
+                <div class="card card--compact">
+                    <h2 class="card__heading">Legenda</h2>
+                    <div class="legend">
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--prep"></span>
+                            <span class="legend__text">Voorbereiding</span>
+                        </div>
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--exec"></span>
+                            <span class="legend__text">Uitvoering</span>
+                        </div>
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--fin"></span>
+                            <span class="legend__text">Afronding</span>
+                        </div>
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--milestone"></span>
+                            <span class="legend__text">Mijlpaal</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>© 2026 Alex van der Velden<br>
+                    Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen?csf=1&web=1&e=CXkmTw"
+                    target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+
+                <a href="https://battlebuddy.atlassian.net/jira/software/projects/KAN/list" target="_blank"
+                    rel="noopener noreferrer" aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./scripts/timeline.js"></script>
+</body>
+
+</html>

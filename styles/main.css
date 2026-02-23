@@ -1,0 +1,974 @@
+:root {
+    --bg: #ffffff;
+    --ink: #111827;
+    --muted: #4b5563;
+    --line: #e5e7eb;
+    --panel: #f9fafb;
+    --accent: #1f5fbf;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+        Arial, sans-serif;
+    line-height: 1.45;
+}
+
+.page-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-left: 1px solid var(--line);
+}
+
+/* Topbar */
+.topbar {
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+}
+.topbar__wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.topbar__title {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+.topbar__subtitle {
+    margin: 6px 0 0 0;
+    font-size: 13px;
+    color: var(--muted);
+}
+.topbar__actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Screenreader-only helper */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== Hamburger nav ===== */
+.nav {
+    position: relative;
+}
+
+.nav__btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    width: 38px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav__btn:hover {
+    border-color: #d1d5db;
+}
+
+.nav__icon {
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    background: linear-gradient(var(--muted), var(--muted)) 0 0 / 100% 2px
+            no-repeat,
+        linear-gradient(var(--muted), var(--muted)) 0 50% / 100% 2px no-repeat,
+        linear-gradient(var(--muted), var(--muted)) 0 100% / 100% 2px no-repeat;
+    opacity: 0.9;
+}
+
+.nav__menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 220px;
+    background: rgb(242, 227, 239);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    z-index: 200;
+
+    display: none;
+}
+
+.nav.is-open .nav__menu {
+    display: block;
+}
+
+.nav__sectionTitle {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--muted);
+    padding: 8px 8px 6px 8px;
+    letter-spacing: 0.2px;
+}
+
+.nav__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13px;
+}
+
+.nav__item:hover {
+    background: #f3f4f6;
+}
+
+.nav__divider {
+    height: 1px;
+    background: var(--line);
+    margin: 8px 0;
+}
+
+/* ===== Landing hero ===== */
+
+.hero {
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+}
+
+.hero__wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 22px;
+}
+
+.hero__card {
+    padding: 22px 26px;
+}
+
+.hero__card .card__heading {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.hero__card .card__desc {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 900px;
+}
+
+.hero__card {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 26px;
+    align-items: center;
+}
+
+/* Zorg dat de tekstkolom netjes blijft */
+.hero__content {
+    min-width: 0;
+}
+
+/* Cover rechts */
+.hero__cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero__cover img {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+}
+
+/* Buttons */
+.btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink);
+}
+.btn:hover {
+    border-color: #d1d5db;
+}
+.btn--ghost {
+    background: transparent;
+}
+
+/* Layout */
+.layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+}
+
+.canvas {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+    align-self: start;
+}
+
+.canvas--landing {
+    /* smaller diagram window */
+    height: 420px;
+    padding: 12px 12px 16px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* Make Mermaid fill the viewport */
+#mermaid {
+    height: 100%;
+}
+#mermaid > svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.side {
+    border-left: 1px solid var(--line);
+    background: var(--panel);
+    padding: 18px;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+}
+.card--compact {
+    box-shadow: none;
+    background: transparent;
+    border-style: dashed;
+}
+.card__heading {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+.card__title {
+    font-weight: 800;
+    margin-top: 4px;
+}
+.card__desc {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: normal;
+}
+
+.card__desc p {
+    margin: 0 0 14px 0;
+    text-align: justify;
+}
+
+.card--compact .card__desc p {
+    text-align: left;
+}
+.card__meta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* Mermaid sizing */
+.mermaid svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+}
+
+/* Mermaid: UML-ish polish */
+.mermaid .edgePath path {
+    stroke-width: 2px;
+}
+.mermaid .flowchart-link {
+    stroke-linecap: round;
+}
+.mermaid .label {
+    font-size: 13px;
+}
+
+/* Make the actual shapes hittable (SVG events depend on painted geometry) */
+.mermaid g.node text,
+.mermaid g.node tspan {
+    pointer-events: all;
+}
+.mermaid .node-hitbox {
+    fill: #000; /* must be a real fill */
+    fill-opacity: 0; /* invisible, but hittable */
+    stroke: none;
+    pointer-events: all;
+    cursor: pointer;
+}
+.mermaid g.node {
+    cursor: pointer;
+}
+.mermaid g.node rect,
+.mermaid g.node polygon,
+.mermaid g.node path {
+    pointer-events: all;
+}
+
+/* Nice hover */
+.mermaid g.node:hover {
+    filter: brightness(1.03);
+}
+
+/* Soft hover */
+.mermaid g.node:hover {
+    filter: brightness(1.03);
+}
+
+/* Active node outline */
+.mermaid g.node.is-active > rect,
+.mermaid g.node.is-active > polygon,
+.mermaid g.node.is-active > path {
+    stroke: var(--accent) !important;
+    stroke-width: 2.6px !important;
+}
+
+/* Tooltip overlay (reliable for SVG) */
+.tooltip {
+    position: absolute;
+    display: none;
+    max-width: 360px;
+
+    background: #ffffff;
+    color: var(--ink);
+
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--tooltip-accent, var(--accent));
+    border-radius: 10px;
+
+    padding: 10px 12px;
+
+    font-size: 12px;
+    line-height: 1.35;
+
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+
+    transform: translate(-12px, 12px);
+    pointer-events: none;
+}
+
+.tooltip__title {
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+}
+
+.tooltip__desc {
+    color: var(--muted);
+    opacity: 1;
+}
+.tooltip__title {
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+.tooltip__desc {
+    opacity: 0.92;
+}
+
+/* Legenda */
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend__swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    flex: 0 0 auto;
+}
+
+.legend__text {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* Match Mermaid classDef colors (fill + stroke hint) */
+.legend__swatch--ctx {
+    background: #e8f1ff;
+    border-color: #1f5fbf;
+}
+.legend__swatch--qst {
+    background: #eafff2;
+    border-color: #1b7f3a;
+}
+.legend__swatch--met {
+    background: #fff6e5;
+    border-color: #b86b00;
+}
+.legend__swatch--th {
+    background: #f3e8ff;
+    border-color: #6d28d9;
+}
+.legend__swatch--exec {
+    background: #ffe8ef;
+    border-color: #be123c;
+}
+.legend__swatch--ctrl {
+    background: #eef2f7;
+    border-color: #334155;
+}
+.legend__swatch--art {
+    background: #ffffff;
+    border-color: #6b7280;
+    border-style: dashed;
+}
+.legend__swatch--rule {
+    background: #f6f6f6;
+    border-color: #333333;
+}
+.legend__swatch--icon {
+    background: transparent;
+    border-style: solid;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--muted);
+}
+
+/* ===== Landing layout tweaks ===== */
+.layout--landing {
+    min-height: calc(100vh - 78px);
+}
+
+/* Left column now has intro + canvas */
+.landing {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 18px 26px 18px; /* match canvas padding feel */
+}
+
+/* Use your card styling but with landing-specific typography */
+.landing__intro {
+    box-shadow: var(--shadow);
+}
+
+.landing__heading {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.landing__text {
+    margin: 8px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.landing__howto {
+    margin-top: 10px;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+}
+
+.landing__howtoTitle {
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.landing__list {
+    margin: 0;
+    padding-left: 16px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* On mobile, keep it readable */
+@media (max-width: 980px) {
+    .landing {
+        padding: 14px;
+    }
+
+    .canvas--landing {
+        height: 360px;
+    }
+}
+/* ===== Landing phase colors ===== */
+
+.legend__swatch--prep {
+    background: #e8f1ff;
+    border-color: #1f5fbf;
+}
+
+.legend__swatch--exec {
+    background: #eafff2;
+    border-color: #1b7f3a;
+}
+
+.legend__swatch--fin {
+    background: #f3e8ff;
+    border-color: #6d28d9;
+}
+
+/* Artefact + supporting */
+.legend__swatch--art {
+    background: #ffffff;
+    border-color: #6b7280;
+    border-style: dashed;
+}
+
+.legend__swatch--out {
+    background: #f9fafb;
+    border-color: #6b7280;
+}
+
+/* ===== Timeline ===== */
+.timeline-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.timeline-toolbar__group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.timeline-toolbar__label {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.chip {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.chip.is-active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(31, 95, 191, 0.12);
+}
+
+.timeline-tableWrap {
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.timeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+    background: #fff;
+}
+.timeline-table th,
+.timeline-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    font-size: 13px;
+}
+.timeline-table thead th {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
+    text-align: left;
+    font-weight: 800;
+}
+
+.tr-phase--Voorbereiding td {
+    background: rgba(232, 241, 255, 0.35);
+}
+.tr-phase--Uitvoering td {
+    background: rgba(234, 255, 242, 0.35);
+}
+.tr-phase--Afronding td {
+    background: rgba(243, 232, 255, 0.35);
+}
+
+.tr-milestone td:last-child {
+    font-weight: 800;
+}
+
+.tr-row {
+    cursor: pointer;
+}
+.tr-row:hover td {
+    filter: brightness(0.99);
+}
+
+/* Legend swatch for milestone */
+.legend__swatch--milestone {
+    background: #fff6e5;
+    border-color: #b86b00;
+}
+
+/* Traceability highlight mode */
+.mermaid.is-trace-mode g.node:not(.is-trace) {
+    opacity: 0.22;
+}
+
+.mermaid.is-trace-mode g.edgePath:not(.is-trace) {
+    opacity: 0.18;
+}
+
+.mermaid g.node.is-trace > rect,
+.mermaid g.node.is-trace > polygon,
+.mermaid g.node.is-trace > path {
+    stroke: #111827 !important;
+    stroke-width: 3px !important;
+}
+
+.mermaid g.edgePath.is-trace path {
+    stroke: #111827 !important;
+    stroke-width: 3px !important;
+    opacity: 1 !important;
+}
+
+/* Hover highlight */
+.mermaid.is-hover-mode g.node:not(.is-hover-focus):not(.is-hover-related) {
+    opacity: 0.45;
+}
+
+.mermaid.is-hover-mode g.edgePath:not(.is-hover-related) {
+    opacity: 0.35;
+}
+
+.mermaid g.node.is-hover-focus > rect,
+.mermaid g.node.is-hover-focus > polygon,
+.mermaid g.node.is-hover-focus > path {
+    stroke-width: 3px !important;
+}
+
+.mermaid g.node.is-hover-related > rect,
+.mermaid g.node.is-hover-related > polygon,
+.mermaid g.node.is-hover-related > path {
+    stroke-width: 2.5px !important;
+}
+
+.mermaid g.edgePath.is-hover-related path {
+    stroke-width: 3px !important;
+    opacity: 1 !important;
+}
+
+/* Footer*/
+
+.footer__content {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer__copy {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    letter-spacing: 0.2px;
+}
+
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    align-items: center;
+}
+
+.footer__links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    opacity: 0.75;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.footer__links a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.footer__links img {
+    width: 22px;
+    height: 22px;
+}
+
+/* ===== Traceability tabs + table ===== */
+.tabs {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.tab {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 7px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink);
+}
+
+.tab.is-active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(31, 95, 191, 0.12);
+}
+
+.tabs__spacer {
+    flex: 1 1 auto;
+}
+
+.tabs__search {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.tabs__search input {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 7px 10px;
+    min-width: 240px;
+    font-size: 13px;
+}
+
+.tableMeta {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.tableWrap {
+    margin-top: 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: auto;
+    background: #fff;
+}
+
+.tableWrap__inner {
+    min-width: 900px;
+}
+
+.matrixTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.matrixTable th,
+.matrixTable td {
+    padding: 6px 10px;
+    font-size: 10px;
+    line-height: 1.35;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+
+.matrixTable thead th {
+    font-size: 12px;
+    font-weight: 700;
+    background: #f3f4f6;
+}
+
+.matrixTable thead th {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+    font-weight: 800;
+}
+
+.matrixTable tbody tr:nth-child(even) {
+    background: #f9fafb; /* lichtgrijs */
+}
+
+.matrixTable tbody tr:nth-child(even) {
+    background: #f3f4f6;
+}
+
+.matrixTable tbody tr:hover {
+    background: #e5e7eb;
+}
+
+/* ===== Theory page visuals ===== */
+.theoryGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+}
+
+.vizCard {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    background: #fff;
+    overflow: hidden;
+}
+
+.vizTitle {
+    font-size: 13px;
+    font-weight: 800;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+}
+
+.vizSvg {
+    width: 100%;
+    display: block;
+}
+
+#vennSvg {
+    height: 320px;
+}
+#vennSvg .overlays {
+    pointer-events: none;
+}
+#sankeySvg {
+    height: 520px;
+}
+
+/* hover/lock styles (duidelijk, kun je later subtieler maken) */
+.vizDim .node,
+.vizDim .link {
+    opacity: 0.22;
+}
+.node.isFocus,
+.node.isRelated {
+    opacity: 1 !important;
+}
+.link.isRelated {
+    opacity: 0.9 !important;
+}
+
+.node rect,
+.node circle {
+    stroke-width: 1px;
+}
+
+#vennSvg .circleNode.isFocus circle {
+    stroke: #111827;
+    stroke-width: 2px;
+}
+
+/* Sankey focus blijft gewoon via rect */
+#sankeySvg .node.isFocus rect {
+    stroke: #111827;
+    stroke-width: 2px;
+}
+
+/* small tags in side card */
+.tagRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+.tag {
+    font-size: 12px;
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    background: #fff;
+}
+
+/* Venn overlap overlays */
+.overlap,
+.overlapTriple {
+    pointer-events: none;
+}
+
+.overlap {
+    filter: saturate(1.1);
+}
+
+/* Mobile */
+@media (max-width: 980px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+    .side {
+        border-left: none;
+        border-top: 1px solid var(--line);
+    }
+
+    /* keep svg responsive (no forced whitespace) */
+    .mermaid svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .hero__grid {
+        grid-template-columns: 1fr;
+    }
+    .hero__cover {
+        justify-content: flex-start;
+    }
+}

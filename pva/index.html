@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PvA – Interactief procesdiagram</title>
+
+    <link rel="stylesheet" href="../styles/main.css" />
+</head>
+
+<body>
+    <div class="page-wrap">
+        <header class="topbar">
+            <div class="topbar__wrap">
+                <div>
+                    <h1 class="topbar__title">Plan van Aanpak – Proces & Traceability</h1>
+                    <p class="topbar__subtitle">Dit diagram visualiseert de opbouw van het PvA en traceability tussen
+                        hoofdstukken en outputs.
+                    </p>
+                </div>
+
+                <div class="topbar__actions">
+                    <button id="btnResetView" class="btn" type="button">Reset view</button>
+                    <button id="btnClear" class="btn btn--ghost" type="button">Clear selectie</button>
+                    <div class="nav" id="nav">
+                        <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                            aria-controls="navMenu" title="Menu">
+                            <span class="nav__icon" aria-hidden="true"></span>
+                            <span class="sr-only">Open menu</span>
+                        </button>
+
+                        <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                            <div class="nav__sectionTitle">Pagina’s</div>
+
+                            <a role="menuitem" class="nav__item" href="/" data-nav-close>
+                                Project overview
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/pva/" data-nav-close>
+                                Plan van aanpak
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/execution/" data-nav-close>
+                                Uitvoering
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/timeline/" data-nav-close>
+                                Planning
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/traceability/" data-nav-close>
+                                Master Traceability Matrix
+                            </a>
+                            <a role="menuitem" class="nav__item" href="/theory/" data-nav-close>
+                                Theoretisch kader
+                            </a>
+
+                            <div class="nav__divider"></div>
+                            <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                            <a role="menuitem" class="nav__item"
+                                href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                                target="_blank" rel="noopener noreferrer" data-nav-close>
+                                Projectstatusrapport ↗
+                            </a>
+
+                            <a role="menuitem" class="nav__item"
+                                href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                                target="_blank" rel="noopener noreferrer" data-nav-close>
+                                Wekelijkse zelfreflecties ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="layout">
+            <section id="canvas" class="canvas" aria-label="Diagram canvas">
+                <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+                <div id="mermaid" class="mermaid" aria-label="Mermaid diagram"></div>
+            </section>
+
+            <aside class="side" aria-label="Details">
+                <div class="card">
+                    <div id="sideTitle" class="card__title">Klik op een node</div>
+                    <div id="sideDesc" class="card__desc">Hover toont een tooltip. Klik toont details hier.</div>
+                </div>
+
+                <div class="card card--compact">
+                    <h2 class="card__heading">Legenda</h2>
+
+                    <div class="legend">
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--ctx"></span>
+                            <span class="legend__text">Context & probleemkader (H1–H4)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--qst"></span>
+                            <span class="legend__text">Doel & vraagstelling (H5–H7)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--met"></span>
+                            <span class="legend__text">Onderzoeksopzet / methode (H7.1–H8)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--th"></span>
+                            <span class="legend__text">Theoretisch kader → ontwerpcriteria (H9)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--exec"></span>
+                            <span class="legend__text">Technische uitvoering (H10)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--ctrl"></span>
+                            <span class="legend__text">Projectbeheersing (H11–H12)</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--art"></span>
+                            <span class="legend__text">Artefact / output</span>
+                        </div>
+
+                        <div class="legend__item">
+                            <span class="legend__swatch legend__swatch--rule"></span>
+                            <span class="legend__text">Traceability (conceptueel)</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__copy">
+                    <p>© 2026 Alex van der Velden<br>
+                        Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+                </div>
+
+                <div class="footer__links">
+                    <a href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen?csf=1&web=1&e=CXkmTw"
+                        target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                        <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                    </a>
+
+                    <a href="https://battlebuddy.atlassian.net/jira/software/projects/KAN/list" target="_blank"
+                        rel="noopener noreferrer" aria-label="Jira">
+                        <img src="../assets/icons/jira.svg" alt="Jira" />
+                    </a>
+
+                    <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <img src="../assets/icons/github.svg" alt="GitHub" />
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="scripts/pva.js"></script>
+</body>
+
+</html>

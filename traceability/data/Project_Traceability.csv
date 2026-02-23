@@ -1,0 +1,15 @@
+﻿ID;Fase;Van (input);Naar (output);Wat moet aantoonbaar herleidbaar zijn;Bewijs (artifact);Status;Checkpoints
+P1;Voorbereiding;Context/organisatie;Aanleiding;Waarom dit onderwerp hier/nu relevant is;Organisatiebeschrijving + aanleiding (PvA);Done;
+P2;Voorbereiding;Aanleiding;Probleemstelling;Wat er ontbreekt/misgaat (praktijkprobleem);Probleemstelling-sectie (PvA);Done;
+Q1;Voorbereiding;Probleemstelling;Doelstelling;Onderzoeksmatig + praktisch doel;Doelstelling-sectie (PvA);Done;
+Q2;Voorbereiding;Doelstelling;Centrale onderzoeksvraag;Centrale vraag dekt probleem;Centrale onderzoeksvraag (PvA);Done;
+Q3;Voorbereiding;Centrale vraag;Deelvragen;Deelvragen dekken samen centrale vraag;Deelvragen + rationale (PvA);Done;
+M1;Voorbereiding;Deelvragen;Methode per deelvraag;Methode + onderbouwing per deelvraag;Methodische verantwoording (PvA);Done;GO/NOGO PvA
+M2;Uitvoering;Methode;Dataverzameling;Welke data/bron, hoe, wanneer;Interviewleidraad, analyseprotocol, logboek;To do;
+R1;Uitvoering;Dataverzameling;Analyse;Data → bevindingen;Analyseverslagen, architectuurnotes;To do;
+R2;Uitvoering;Analyse;Resultaten per deelvraag;Antwoord per deelvraag + onderbouwing;Resultatenhoofdstuk (EV);To do;
+D2;Uitvoering;Resultaten;Evaluatiepunten;Vaststellen of ontwerp “werkt”;Testplan, evaluatieverslag, security assessment;To do;
+R3;Uitvoering;Evaluatie;Verbeteringen/iteraties;Wat is aangepast en waarom;Changelog, iteratieverslag, beslislog;To do;Projectstatusrapportage 2-wekelijks
+C1;Afronding;Resultaten;Conclusie centrale vraag;Centrale vraag beantwoord;Conclusiehoofdstuk (EV);To do;
+D1;Afronding;Conclusies;Ontwerp/advies;Ontwerpkeuzes volgen uit resultaten + criteria;Ontwerp/advies + argumentatie;To do;Concept-eindverslag
+C2;Afronding;Beperkingen/risico’s;Reflectie;Validiteit, beperkingen, leerpunten;Reflectie/zelfevaluatie (EV);To do;

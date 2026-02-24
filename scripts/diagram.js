@@ -42,7 +42,7 @@ flowchart LR
 
   EXEC --> BCOMP["Beoordeling bedrijfsbegeleider"]:::execArt
   EXEC --> DEMO["Presentatie + demo video (uitleg)"]:::execArt
-  EXEC --> CODE["Programmeercode (alleen op verzoek)"]:::execArt
+  EXEC --> CODE["Broncode MVP"]:::execArt
 
   %% ===== Afronding =====
   FIN --> REPORT["Eindverslag (concept + definitief)"]:::finArt

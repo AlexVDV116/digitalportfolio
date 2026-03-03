@@ -4,7 +4,7 @@ export const THEORY_MAP = {
         circles: [
             {
                 id: "A_LLM",
-                label: "LLM & Productiviteit",
+                label: "Modelgedrag en outputkwaliteit",
                 sources: [
                     "BROWN_2020",
                     "CHEN_2021",
@@ -16,12 +16,12 @@ export const THEORY_MAP = {
             },
             {
                 id: "B_SECURITY",
-                label: "Security & Air-gapped",
+                label: "Beveiligingsrisico’s en beheersmaatregelen",
                 sources: ["SHOSTACK_2014", "OWASP_LLM_TOP10"],
             },
             {
                 id: "C_IDE_HAI",
-                label: "IDE-Architectuur & Human-AI",
+                label: "Integratie en interactie in de IDE",
                 sources: ["MS_VS_EXT", "AMERSHI_2019", "BARKE_2023"],
             },
         ],
@@ -59,7 +59,7 @@ export const THEORY_MAP = {
                 title: "Menselijke regie over AI",
                 insight:
                     "AI werkt als suggestie; developer blijft eindverantwoordelijk. Over-reliance voorkomen.",
-                ocs: ["OC-1", "OC-9"], // OC-3 verwijderd
+                ocs: ["OC-1", "OC-9"],
                 dvs: ["DV5"],
             },
             {
@@ -68,7 +68,7 @@ export const THEORY_MAP = {
                 title: "Context als functionele én beveiligingsfactor",
                 insight:
                     "Beperk en selecteer context expliciet; voorkom ongecontroleerde contextoverdracht en logging.",
-                ocs: ["OC-2", "OC-5", "OC-6"], // OC-6 toegevoegd
+                ocs: ["OC-2", "OC-5", "OC-6"],
                 dvs: ["DV1", "DV2"],
             },
             {

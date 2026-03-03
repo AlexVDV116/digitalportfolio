@@ -119,7 +119,7 @@ function renderVenn() {
     const circles = [
         {
             id: "A_LLM",
-            label: "LLM & Productiviteit",
+            label: "Modelgedrag en outputkwaliteit",
             x: cxA,
             y: cyA,
             r,
@@ -128,7 +128,7 @@ function renderVenn() {
         },
         {
             id: "B_SECURITY",
-            label: "Security & Air-gapped",
+            label: "Beveiligingsrisico’s en beheersmaatregelen",
             x: cxB,
             y: cyB,
             r,
@@ -137,7 +137,7 @@ function renderVenn() {
         },
         {
             id: "C_IDE_HAI",
-            label: "IDE & Human-AI",
+            label: "Integratie en interactie in de IDE",
             x: cxC,
             y: cyC,
             r,
@@ -188,8 +188,13 @@ function renderVenn() {
         .attr("fill", (d) => d.fill)
         .attr("stroke", (d) => d.stroke);
 
+    node.append("text");
     node.append("text")
-        .attr("x", (d) => d.x)
+        .attr("x", (d) => {
+            if (d.id === "A_LLM") return d.x - 50; // iets naar links
+            if (d.id === "B_SECURITY") return d.x + 50; // iets naar rechts
+            return d.x; // C blijft gelijk
+        })
         .attr("y", (d) => {
             if (d.id === "C_IDE_HAI") {
                 return d.y - d.r - 10; // boven
@@ -198,7 +203,7 @@ function renderVenn() {
         })
         .attr("text-anchor", "middle")
         .attr("font-size", 12)
-        .attr("font-weight", 600)
+        .attr("font-weight", 500)
         .attr("fill", "#111827")
         .text((d) => d.label);
 

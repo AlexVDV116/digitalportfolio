@@ -950,6 +950,24 @@ body {
     filter: saturate(1.1);
 }
 
+/* Meta Cognition image */
+.metaImageWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 4px 0;
+}
+
+.metaImage {
+    width: 100%;
+    max-width: 920px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+}
+
 /* Mobile */
 @media (max-width: 980px) {
     .layout {

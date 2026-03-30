@@ -15,7 +15,7 @@ flowchart TD
   DV1["DV1 — Beveiligings- & architectuureisen"]:::analysis
   DV2["DV2 — Functionele & niet-functionele eisen"]:::analysis
   DV3["DV3 — Analyse bestaande LLM-integraties"]:::analysis
-  DV4["DV4 — Ontwerp communicatie IDE ↔ LLM"]:::design
+  DV4["DV4 — Communicatiearchitectuur"]:::design
   DV5["DV5 — Evaluatie & validatie"]:::validate
 
   START --> DV1 --> DV2 --> DV3 --> DV4 --> DV5
@@ -25,6 +25,7 @@ flowchart TD
   DV1 --> OC
   DV2 --> OC
   DV3 --> OC
+  DV4 --> ARCH
 
   %% ===== Architectuur & MVP =====
   ARCH["Architectuurontwerp + Trust Boundaries"]:::design

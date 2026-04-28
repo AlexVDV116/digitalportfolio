@@ -1,0 +1,23 @@
+﻿Master Traceability Matrix v3;
+Project LocalLLM — Visual Studio 2022 extensie met lokale LLM (Ollama) in air-gapped Defensie-omgeving;
+;
+Opdrachtgever;Ministerie van Defensie / JIVC SO&I
+Opdrachtnemer;Alex van der Velden (HBO Informatica, Avans Hogeschool)
+Begeleiders;Rutger Bos (bedrijfsbegeleider) & Patrick Ubags en Maurice van Haperen (Avans)
+Versie;v3.0
+Datum;27 april 2026
+;
+Tabbladen;
+OC Traceability;Koppeling OC-1 t/m OC-9 aan requirements, theoretische basis, normatieve basis, status en bewijs (v0.2-regelreferenties).
+FR Traceability;Functionele requirements FR-1 t/m FR-8: prioriteit, status, implementatielocatie, testresultaat. FR-8 is in v0.2 voor het eerst volledig gedekt.
+NFR Traceability;Niet-functionele requirements NFR-1 t/m NFR-5: prioriteit, status, testmethode. NFR-2 blijft praktijkmeting in DV5.
+Constraints;Harde constraints C-1 (lokaal) en C-2 (air-gapped) met beheersmaatregel en bewijs (incl. IPv6-fix).
+Beveiligingsnormen;D/300-serie, BIO, DBB en OWASP LLM Top 10 — relevantie en MVP-toetsing. LLM09 is in v0.2 verschoven naar Ja.
+Risicoregister;R1 t/m R9 uit DV1 met actueel niveau, beheersmaatregel en restrisico. R7 is in v0.2 verschoven naar Gemitigeerd.
+To do;Afgeronde aanbevelingen (A1, A2, B1, B2, B3, C4) en openstaande prioriteit-1 (P1–P2) en referentiearchitectuur-items (C1–C8).
+;
+Legenda;
+Ja / Voldoet / Gemitigeerd / Done;Criterium is volledig aangetoond in artefact en/of broncode.
+Gedeeltelijk / Open / To do;"Criterium deels afgedekt; aanbeveling of aanvullend bewijs vereist; moet nog gedaan worden."
+Nee;"Criterium niet gerealiseerd; verbeteractie noodzakelijk of bewust SHOULD-buiten-MVP-scope."
+n.v.t.;Niet van toepassing op de MVP-scope.

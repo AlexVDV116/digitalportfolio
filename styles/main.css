@@ -817,9 +817,11 @@ body {
     min-width: 900px;
 }
 
-.matrixTable {
-    width: 100%;
-    border-collapse: collapse;
+.matrixTable th {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
 }
 
 .matrixTable th,

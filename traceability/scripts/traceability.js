@@ -1,32 +1,37 @@
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
 
 const TAB_CONFIG = {
-    project: {
-        title: "Project traceability",
-        file: "./data/Project_Traceability.csv",
+    overzicht: {
+        title: "Overzicht",
+        file: "./data/Overzicht.csv",
     },
-    pva: {
-        title: "PvA traceability",
-        file: "./data/PVA_Traceability.csv",
-        // optioneel: mooiere headers i.p.v. "Unnamed: x"
-        headerOverride: [
-            "Fase 1 — Probleemverkenning & vraagstelling (Voorbereiding)",
-            "Centrale onderzoeksvraag",
-            "Deelvraag",
-            "Fase 2 — Theorie & onderzoeksopzet (Voorbereiding)",
-            "Onderzoeksmethode & synthese",
-            "Fase 4 — Ontwerp & MVP-beslissingen (Uitvoering)",
-            "Ontwerpbeslissing (MVP)",
-            "Fase 5 — Evaluatie & afronding (Afronding)",
-        ],
+    oc: {
+        title: "OC Traceability",
+        file: "./data/OC_Traceability.csv",
     },
-    mvpoc: {
-        title: "MVP ↔ OC traceability",
-        file: "./data/MVP_OC_Traceability.csv",
+    fr: {
+        title: "FR Traceability",
+        file: "./data/FR_Traceability.csv",
     },
-    uitvoering: {
-        title: "Uitvoering traceability",
-        file: "./data/Uitvoering_Traceability.csv",
+    nfr: {
+        title: "NFR Traceability",
+        file: "./data/NFR_Traceability.csv",
+    },
+    constraints: {
+        title: "Constraints",
+        file: "./data/Constraints.csv",
+    },
+    normen: {
+        title: "Beveiligingsnormen",
+        file: "./data/Beveiligingsnormen.csv",
+    },
+    risico: {
+        title: "Risicoregister",
+        file: "./data/Risicoregister.csv",
+    },
+    todo: {
+        title: "To-do",
+        file: "./data/Todo.csv",
     },
 };
 
@@ -35,7 +40,7 @@ const elMeta = document.getElementById("meta");
 const elQ = document.getElementById("q");
 const tabButtons = [...document.querySelectorAll(".tab")];
 
-let currentTabKey = "project";
+let currentTabKey = "overzicht";
 let currentRows = [];
 let currentHeaders = [];
 
@@ -118,7 +123,11 @@ function buildTableHtml(headers, rows) {
       </tbody>
     `;
 
-    return `<div class="tableWrap__inner"><table class="matrixTable">${thead}${tbody}</table></div>`;
+    return `<div class="tableWrap__inner" style="overflow:auto">
+    <table class="matrixTable">
+        ${thead}${tbody}
+    </table>
+</div>`;
 }
 
 async function fetchText(url) {

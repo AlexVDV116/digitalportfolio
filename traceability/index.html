@@ -14,11 +14,12 @@
             <div>
                 <h1 class="topbar__title">Master Traceability Matrix</h1>
                 <p class="topbar__subtitle">
-                    Tabbladen tonen de traceability per onderdeel (project, PvA, OC→MVP, uitvoering).
+                    Interactieve graph + heatmap + tabellen. Klik nodes, filter per type, sla focus op via de URL.
                 </p>
             </div>
             <div class="topbar__actions">
                 <a class="btn" href="../">Terug</a>
+                <button id="btnPresent" class="btn btn--present" type="button" title="Presentatie-modus (P)">▶ Presentatie</button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
                         aria-controls="navMenu" title="Menu">
@@ -47,7 +48,7 @@
                         <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
                             Theoretisch kader
                         </a>
-                        <a role="menuitem" class="nav__item" href="/metacognition/" data-nav-close>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
                             Metacognitieve cyclus
                         </a>
 
@@ -72,12 +73,18 @@
     </header>
 
     <main class="layout">
-        <section class="canvas" aria-label="Traceability tabellen">
+        <section class="canvas" aria-label="Traceability visualisaties">
             <div class="card">
                 <h2 class="card__heading">Weergave</h2>
 
                 <div class="tabs" role="tablist" aria-label="Traceability tabs">
-                    <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="overzicht">
+                    <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="graph">
+                        Graph
+                    </button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" data-tab="heatmap">
+                        Heatmap
+                    </button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" data-tab="overzicht">
                         Overzicht
                     </button>
                     <button class="tab" type="button" role="tab" aria-selected="false" data-tab="oc">
@@ -104,35 +111,37 @@
 
                     <div class="tabs__spacer"></div>
 
-                    <label class="tabs__search">
+                    <label class="tabs__search" id="tableSearchWrap">
                         <span>Zoek</span>
                         <input id="q" type="search" placeholder="Filter in tabel..." />
                     </label>
                 </div>
 
                 <div id="meta" class="tableMeta"></div>
-                <div id="tableWrap" class="tableWrap"></div>
+
+                <!-- Graph host (default) -->
+                <div id="graphHost" class="viewHost"></div>
+
+                <!-- Heatmap host -->
+                <div id="heatmapHost" class="viewHost" hidden></div>
+
+                <!-- Table host (for legacy CSV tabs) -->
+                <div id="tableWrap" class="tableWrap" hidden></div>
             </div>
         </section>
 
-        <aside class="side" aria-label="Toelichting">
+        <aside class="side presentSide" aria-label="Toelichting" id="sideEl">
             <div class="card">
-                <div class="card__title">Doel</div>
+                <div class="card__title">Traceability graph</div>
                 <div class="card__desc">
-                    Deze pagina maakt de traceability expliciet en navigeerbaar. Per tabblad wordt een matrix getoond
-                    die de
-                    relatie tussen input (bijv. probleem, DV’s, theorie) en output (bijv. OC’s, ontwerpbeslissingen,
-                    bewijs)
-                    inzichtelijk maakt.
-                </div>
-            </div>
-
-            <div class="card card--compact">
-                <h2 class="card__heading">Bronbestanden</h2>
-                <div class="card__desc">
-                    CSV-bestanden worden lokaal geladen vanuit <code>traceability/data/</code>. Als een tabel leeg
-                    blijft:
-                    controleer bestandsnamen en pad.
+                    <p>Welkom — dit is de centrale visualisatie waarin alle entiteiten van het onderzoek (deelvragen,
+                        ontwerpcriteria, requirements, constraints, risico's, normen en MVP-modules) als netwerk worden
+                        getoond.</p>
+                    <p style="margin-top:8px;color:var(--muted)">
+                        <b>Hover</b> = buren highlighten •
+                        <b>Klik</b> = vastzetten •
+                        <b>Sleep</b> = verplaatsen •
+                        <b>Dubbelklik</b> = loslaten.</p>
                 </div>
             </div>
         </aside>

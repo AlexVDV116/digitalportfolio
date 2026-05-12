@@ -86,7 +86,9 @@ export function mountHeatmap({ host, sideEl, onSelect }) {
                 : `${dv.label} → ${oc.label}: geen pad`;
             if (v > 0) {
                 const alpha = 0.18 + 0.82 * (v / maxVal);
-                cell.style.background = `rgba(109, 40, 217, ${alpha.toFixed(2)})`;
+                cell.style.background = `rgba(109, 40, 217, ${alpha.toFixed(
+                    2
+                )})`;
                 cell.style.cursor = "pointer";
                 cell.addEventListener("click", () => {
                     onSelect?.(dv.id, oc.id);
@@ -132,16 +134,22 @@ export function mountHeatmap({ host, sideEl, onSelect }) {
         sideEl.innerHTML = `
             <div class="card">
                 <div class="card__title">
-                    <span class="badge badge--id" style="color:var(--c-dv);border-color:var(--c-dv)">${dv.label}</span>
+                    <span class="badge badge--id" style="color:var(--c-dv);border-color:var(--c-dv)">${
+                        dv.label
+                    }</span>
                     <span style="margin:0 6px;color:var(--muted)">→</span>
-                    <span class="badge badge--id" style="color:var(--c-oc);border-color:var(--c-oc)">${oc.label}</span>
+                    <span class="badge badge--id" style="color:var(--c-oc);border-color:var(--c-oc)">${
+                        oc.label
+                    }</span>
                 </div>
                 <div class="card__desc">
                     <p><b>${dv.name}</b></p>
                     <p><b>${oc.name}</b></p>
                     ${
                         v
-                            ? `<p style="color:var(--c-oc);font-weight:700">${v} afleidingspad${v === 1 ? "" : "en"}</p>`
+                            ? `<p style="color:var(--c-oc);font-weight:700">${v} afleidingspad${
+                                  v === 1 ? "" : "en"
+                              }</p>`
                             : `<p style="color:var(--muted)">Geen directe of indirecte afleiding tussen deze DV en OC.</p>`
                     }
                     ${oc.desc ? `<p>${escape(oc.desc)}</p>` : ""}
@@ -161,7 +169,7 @@ export function mountHeatmap({ host, sideEl, onSelect }) {
                     ">": "&gt;",
                     '"': "&quot;",
                     "'": "&#039;",
-                })[m]
+                }[m])
         );
     }
 
@@ -178,7 +186,7 @@ export function mountHeatmap({ host, sideEl, onSelect }) {
             </div>
         </div>
         <div class="card card--compact">
-            <h2 class="card__heading">Tip voor verdediging</h2>
+            <h2 class="card__heading">Tip!</h2>
             <div class="card__desc">
                 Gebruik deze heatmap als opening: <em>"elk ontwerpcriterium is herleidbaar
                 naar tenminste één deelvraag, en de zwaarst gedekte criteria (OC-2, OC-4)

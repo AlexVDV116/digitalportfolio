@@ -1,4 +1,5 @@
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
+import { initStoryMode } from "../../scripts/shared/storyMode.js";
 
 const elBody = document.getElementById("timelineBody");
 const elDetail = document.getElementById("detail");
@@ -240,3 +241,4 @@ function escapeHtml(str) {
 render();
 
 initHamburgerNav();
+initStoryMode();

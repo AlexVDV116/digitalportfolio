@@ -16,36 +16,41 @@ export const NODE_INFO = {
 
     DV1: {
         title: "DV1 — Beveiligings- & architectuureisen",
-        tooltip: "Randvoorwaarden vanuit security en architectuur.",
-        desc: `Inventarisatie en analyse van security- en architectuureisen die bepalend zijn voor een veilige LLM-integratie binnen de context (o.a. trust boundaries, datastromen, isolation, logging, policy). 
+        tooltip: "Open DV1 in de traceability graph ↗",
+        desc: `Inventarisatie en analyse van security- en architectuureisen die bepalend zijn voor een veilige LLM-integratie binnen de context (o.a. trust boundaries, datastromen, isolation, logging, policy).
   Output wordt verwerkt in ontwerpcriteria en architectuurkeuzes.`,
+        route: "../traceability/?focus=DV1",
     },
 
     DV2: {
         title: "DV2 — Functionele & niet-functionele eisen",
-        tooltip: "Eisen voor bruikbaarheid, performance en beheerbaarheid.",
-        desc: `Uitwerking van functionele requirements en niet-functionele eisen (bijv. latency, betrouwbaarheid, onderhoudbaarheid, auditing, UX). 
+        tooltip: "Open DV2 in de traceability graph ↗",
+        desc: `Uitwerking van functionele requirements en niet-functionele eisen (bijv. latency, betrouwbaarheid, onderhoudbaarheid, auditing, UX).
   Deze eisen vormen samen met DV1 input voor toetsbare ontwerpcriteria en acceptatievoorwaarden.`,
+        route: "../traceability/?focus=DV2",
     },
 
     DV3: {
         title: "DV3 — Analyse bestaande LLM-integraties",
-        tooltip: "Vergelijking van patronen en best practices.",
+        tooltip: "Open DV3 in de traceability graph ↗",
         desc: `Analyse van bestaande integraties (IDE-assistents, plug-in architecturen, lokale LLM’s) om design patterns, risico’s en effectieve interactiemechanismen te identificeren.
   Doel: herbruikbare ontwerpprincipes onderbouwen en valkuilen expliciet maken.`,
+        route: "../traceability/?focus=DV3",
     },
 
     DV4: {
         title: "DV4 — Ontwerp communicatie IDE ↔ LLM",
-        tooltip: "Interface- en communicatieontwerp.",
+        tooltip: "Open DV4 in de traceability graph ↗",
         desc: `Concretisering van de communicatieketen tussen IDE en LLM: API-contracten, contextopbouw, prompts, tool-calling (indien van toepassing), en beveiligingsmaatregelen rondom data-minimalisatie en policy enforcement.`,
+        route: "../traceability/?focus=DV4",
     },
 
     DV5: {
         title: "DV5 — Evaluatie & validatie",
-        tooltip: "Toetsing van artefact en criteria.",
-        desc: `Uitvoering van evaluaties om aan te tonen dat het ontwerp (en de MVP) voldoet aan de ontwerpcriteria. 
+        tooltip: "Open DV5 in de traceability graph ↗",
+        desc: `Uitvoering van evaluaties om aan te tonen dat het ontwerp (en de MVP) voldoet aan de ontwerpcriteria.
   De evaluatie resulteert in evidence per criterium en vormt de empirische basis voor beantwoording van de centrale onderzoeksvraag.`,
+        route: "../traceability/?focus=DV5",
     },
 
     /* =========================
@@ -54,9 +59,10 @@ export const NODE_INFO = {
 
     OC: {
         title: "Ontwerpcriteria (OC-1 t/m OC-9)",
-        tooltip: "Toetsbare criteria afgeleid uit analyse en theorie.",
-        desc: `De ontwerpcriteria vormen de brug tussen analyse/theorie en realisatie. 
+        tooltip: "Open de bewijs-keten per OC ↗",
+        desc: `De ontwerpcriteria vormen de brug tussen analyse/theorie en realisatie.
   Ze zijn expliciet en toetsbaar geformuleerd zodat evaluatie-uitkomsten direct herleidbaar zijn naar de gemaakte ontwerpkeuzes.`,
+        route: "../oc/",
     },
 
     ARCH: {
@@ -137,9 +143,10 @@ export const NODE_INFO = {
 
     EVID: {
         title: "OC-validatiematrix",
-        tooltip: "Bewijs per criterium (tests + evaluatie + inspectie).",
+        tooltip: "Open de heatmap met OC × DV-dekking ↗",
         desc: `Geconsolideerde evidence per ontwerpcriterium, inclusief verwijzingen naar testresultaten, user study bevindingen en security-inspectie.
   Dit vormt de kern voor traceerbare conclusies.`,
+        route: "../traceability/?tab=heatmap",
     },
 
     ANSWER: {

@@ -71,20 +71,23 @@ export const NODE_INFO = {
 
     H9: {
         title: "Hoofdstuk 9 Theoretisch kader",
-        tooltip: "Literatuursynthese als basis voor ontwerpcriteria.",
+        tooltip: "Literatuursynthese als basis voor ontwerpcriteria. ↗",
         desc: "Het theoretisch kader analyseert en synthetiseert literatuur over LLM-eigenschappen, informatiebeveiliging, extensiearchitectuur en mens–AI-interactie. Deze inzichten worden vertaald naar expliciete en toetsbare ontwerpcriteria.",
+        route: "../theory/",
     },
 
     OC: {
         title: "Output Ontwerpcriteria (OC-1 t/m OC-9)",
-        tooltip: "Toetsbare ontwerpregels afgeleid uit theorie.",
+        tooltip: "Open de bewijs-keten per OC ↗",
         desc: "De ontwerpcriteria vormen de brug tussen theorie en praktijk. Zij operationaliseren literatuur in concrete richtlijnen voor architectuur, interactie en beveiliging en fungeren tevens als evaluatiekader.",
+        route: "../oc/",
     },
 
     TM: {
         title: "Output Traceability matrix",
-        tooltip: "Koppeling literatuur, criteria en evaluatie.",
+        tooltip: "Open de interactieve traceability graph ↗",
         desc: "De traceability matrix legt de relatie vast tussen literatuur, ontwerpcriteria, implementatie en evaluatie. Hiermee wordt de methodische samenhang en herleidbaarheid van het onderzoek aantoonbaar gemaakt.",
+        route: "../traceability/",
     },
 
     H10: {
@@ -126,7 +129,7 @@ export const NODE_INFO = {
 
     R0: {
         title: "Traceability",
-        tooltip: "Logische keten van probleem tot uitvoering.",
+        tooltip: "Open de interactieve traceability graph ↗",
         desc: "De traceability-structuur borgt de logische samenhang tussen probleemstelling, doelstelling, onderzoeksvragen, methode, ontwerpcriteria en uitvoering.",
         route: "../traceability/",
     },

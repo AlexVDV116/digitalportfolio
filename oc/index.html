@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Theoretisch kader – Literatuur & Synthese</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OC Explorer — Bewijs-keten per ontwerpcriterium</title>
     <link rel="stylesheet" href="../styles/main.css" />
 </head>
 
@@ -12,10 +12,14 @@
     <header class="topbar">
         <div class="topbar__wrap">
             <div>
-                <h1 class="topbar__title">Theoretisch kader — Literatuur → Synthese → Ontwerpcriteria</h1>
-                <p class="topbar__subtitle">Venn: waar ontstaan inzichten • Conceptmap: hoe vertalen ze naar OC’s</p>
+                <h1 class="topbar__title">OC Explorer — Bewijs-keten per ontwerpcriterium</h1>
+                <p class="topbar__subtitle">
+                    Eén ontwerpcriterium tegelijk: van theorie via requirements en implementatie naar validatie.
+                </p>
             </div>
             <div class="topbar__actions">
+                <a class="btn" href="../traceability/">Open graph</a>
+                <button id="btnPresent" class="btn btn--present" type="button" title="Presentatie-modus (P)">▶ Presentatie</button>
                 <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓 Tour</button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
@@ -25,7 +29,7 @@
                     </button>
 
                     <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
-                        <div class="nav__sectionTitle">Pagina’s</div>
+                        <div class="nav__sectionTitle">Pagina's</div>
 
                         <a role="menuitem" class="nav__item" href="/digitalportfolio" data-nav-close>
                             Project overview
@@ -39,11 +43,11 @@
                         <a role="menuitem" class="nav__item" href="/digitalportfolio/timeline/" data-nav-close>
                             Planning
                         </a>
-                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
-                            Master Traceability Matrix
-                        </a>
                         <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
                             Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
+                            Traceability graph
                         </a>
                         <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
                             OC Explorer
@@ -72,65 +76,28 @@
         </div>
     </header>
 
-    <main class="layout">
-        <section class="canvas" aria-label="Theoretisch kader visualisaties">
-            <div class="theoryGrid">
-                <div class="vizCard">
-                    <div class="vizTitle">A) Waar ontstaan de inzichten? (Venn)</div>
-                    <svg id="vennSvg" class="vizSvg" role="img" aria-label="Venn diagram"></svg>
-                </div>
-
-                <div class="vizCard vizCard--wide">
-                    <div class="vizTitle">B) Van literatuur naar ontwerpcriteria (Conceptmap)</div>
-                    <svg id="sankeySvg" class="vizSvg" role="img" aria-label="Conceptmap (Sankey)"></svg>
-                </div>
-            </div>
-        </section>
-
-        <aside class="side" aria-label="Details">
-            <div class="card">
-                <div id="sideTitle" class="card__title">Selecteer een element</div>
-                <div id="sideDesc" class="card__desc">
-                    Hover toont highlight. Klik “lockt” de selectie zodat je erover kunt toelichten.
-                </div>
-            </div>
-
-            <div class="card card--compact">
-                <h2 class="card__heading">Legenda</h2>
-                <div class="card__desc">
-                    <p><b>Venn</b>: overlap = gedeelde inzichten/spanningsvelden.</p>
-                    <p><b>Conceptmap</b>: bron → cluster → inzicht → OC.</p>
-                </div>
-            </div>
-
-            <div class="card card--compact">
-                <h2 class="card__heading">Aanvullende views</h2>
-                <div class="card__desc">
-                    <p>De Venn toont <b>waar</b> inzichten ontstaan; de Sankey toont
-                        <b>hoe</b> ze worden vertaald in ontwerpcriteria.</p>
-                    <p style="margin-top:8px">
-                        Voor de volledige traceability inclusief requirements, MVP-modules,
-                        risico's en normen:
-                        <a href="../traceability/">→ traceability graph</a> ·
-                        <a href="../oc/">→ OC Explorer</a>.
-                    </p>
-                </div>
+    <main class="ocPage">
+        <aside class="ocRail" aria-label="Lijst van ontwerpcriteria">
+            <div class="ocRail__title">9 Ontwerpcriteria</div>
+            <ol id="ocList" class="ocList" role="list"></ol>
+            <div class="ocRail__hint">
+                <kbd>←</kbd> <kbd>→</kbd> bladeren
             </div>
         </aside>
+
+        <article id="ocMain" class="ocMain" aria-live="polite"></article>
     </main>
 
     <footer class="footer">
         <div class="footer__content">
             <div class="footer__copy">
-                <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+                <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek — Avans Hogeschool</p>
             </div>
             <div class="footer__links">
-                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
-                    aria-label="OneDrive">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
                     <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
                 </a>
-                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
-                    aria-label="Jira">
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer" aria-label="Jira">
                     <img src="../assets/icons/jira.svg" alt="Jira" />
                 </a>
                 <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -140,7 +107,7 @@
         </div>
     </footer>
 
-    <script type="module" src="scripts/theory.js"></script>
+    <script type="module" src="scripts/oc.js"></script>
 </body>
 
 </html>

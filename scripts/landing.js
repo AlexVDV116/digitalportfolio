@@ -2,6 +2,7 @@ import { initDiagramPage } from "./shared/diagramPage.js";
 import { DIAGRAM } from "./diagram.js";
 import { NODE_INFO } from "./nodeInfo.js";
 import { initHamburgerNav } from "../scripts/shared/nav.js";
+import { initStoryMode } from "../scripts/shared/storyMode.js";
 
 initDiagramPage({
     diagramText: DIAGRAM,
@@ -13,3 +14,4 @@ initDiagramPage({
 });
 
 initHamburgerNav();
+initStoryMode();

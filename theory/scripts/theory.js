@@ -7,6 +7,7 @@ import {
 import { LITERATURE } from "./data/literature.js";
 import { THEORY_MAP } from "./data/theoryMap.js";
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
+import { initStoryMode } from "../../scripts/shared/storyMode.js";
 
 const elSideTitle = document.getElementById("sideTitle");
 const elSideDesc = document.getElementById("sideDesc");
@@ -787,3 +788,4 @@ function renderSankey() {
         });
 }
 initHamburgerNav();
+initStoryMode();

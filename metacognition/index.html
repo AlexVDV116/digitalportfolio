@@ -19,6 +19,7 @@
             </div>
 
             <div class="topbar__actions">
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓 Tour</button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-expanded="false" aria-controls="navMenu"
                         aria-label="Open navigatie">
@@ -45,6 +46,9 @@
                         </a>
                         <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
                             Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
+                            OC Explorer
                         </a>
                         <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
                             Metacognitieve cyclus
@@ -231,8 +235,10 @@
 
     <script type="module">
         import { initHamburgerNav } from "../scripts/shared/nav.js";
+        import { initStoryMode } from "../scripts/shared/storyMode.js";
 
         initHamburgerNav();
+        initStoryMode();
     </script>
 </body>
 

@@ -2079,3 +2079,284 @@ body.is-presenting .storyOverlay {
         justify-content: flex-end;
     }
 }
+
+/* ===== Evaluation & Validation page ===== */
+
+.evalLayout {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 28px 60px;
+}
+
+/* Tabs */
+.evalTabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--line);
+    margin-bottom: 28px;
+}
+.evalTab {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    border-radius: 6px 6px 0 0;
+    transition: color .15s, border-color .15s;
+}
+.evalTab:hover { color: var(--ink); }
+.evalTab.is-active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--panel);
+}
+
+/* Sections */
+.evalSection {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+}
+.evalSection__title {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    color: var(--ink);
+    font-family: var(--font-serif);
+}
+.evalSection__sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 18px;
+    line-height: 1.5;
+}
+.evalSubtitle {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 12px;
+}
+.evalCols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+}
+.evalLink {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+.evalLink:hover { text-decoration: underline; }
+.evalList {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+    padding-left: 20px;
+}
+.evalNote {
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 380px;
+}
+
+/* Coverage summary cards */
+.coverCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+.coverCard {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    min-width: 140px;
+    flex: 1 1 140px;
+}
+.coverCard__num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+    font-family: var(--font-serif);
+}
+.coverCard__label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+}
+.coverCard__sub {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* Coverage progress bars */
+.coverBar {
+    margin-bottom: 14px;
+}
+.coverBar__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+.coverBar__label { font-size: 13px; color: var(--ink); }
+.coverBar__pct   { font-size: 12px; font-weight: 700; color: var(--muted); }
+.coverBar__track {
+    height: 10px;
+    background: var(--line);
+    border-radius: 99px;
+    overflow: hidden;
+}
+.coverBar__fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width .4s ease;
+}
+.coverBar__fill--good { background: #16a34a; }
+.coverBar__fill--mid  { background: #d97706; }
+.coverBar__fill--low  { background: #dc2626; }
+.coverBar__note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* Eval tables */
+.evalTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.evalTable th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    border-bottom: 2px solid var(--line);
+    padding: 6px 10px;
+}
+.evalTable td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+.evalTable tfoot td {
+    border-top: 2px solid var(--line);
+    border-bottom: none;
+}
+.evalTable tbody tr:hover { background: var(--panel); }
+.evalTable td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.evalTable--wide { table-layout: auto; }
+
+/* Protocol cards (GAT) */
+.protocolCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+.protocolCard {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: center;
+    flex: 1 1 160px;
+}
+.protocolCard__icon  { font-size: 24px; margin-bottom: 6px; }
+.protocolCard__label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: var(--muted); margin-bottom: 4px; }
+.protocolCard__value { font-size: 13px; color: var(--ink); line-height: 1.5; }
+
+/* GAT question list */
+.gatQList { display: flex; flex-direction: column; gap: 6px; }
+.gatQ {
+    display: grid;
+    grid-template-columns: 24px 1fr 48px;
+    gap: 8px;
+    align-items: start;
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--line);
+}
+.gatQ:last-child { border-bottom: none; }
+.gatQ__num { font-weight: 700; color: var(--accent); }
+.gatQ__text { color: var(--ink); line-height: 1.4; }
+.gatQ__scale { font-size: 11px; color: var(--muted); text-align: right; }
+
+/* GAT upload zone */
+.gatUpload {
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    margin-bottom: 20px;
+    position: relative;
+}
+.gatUpload:hover, .gatUpload.is-over {
+    border-color: var(--accent);
+    background: #f0f5ff;
+}
+.gatUpload__icon { font-size: 32px; margin-bottom: 10px; }
+.gatUpload__text { font-size: 14px; color: var(--ink); line-height: 1.6; }
+.gatUpload__hint { font-size: 12px; color: var(--muted); }
+.gatUpload__input {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+}
+
+/* GAT empty state */
+.gatEmpty {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    background: var(--panel);
+    border-radius: 10px;
+    border: 1px dashed var(--line);
+}
+
+/* Feedback quotes */
+.feedbackGroup { margin-bottom: 18px; }
+.feedbackGroup__label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+.feedbackQuote {
+    margin: 0 0 6px 0;
+    padding: 8px 12px;
+    background: var(--panel);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+@media (max-width: 900px) {
+    .evalCols { grid-template-columns: 1fr; }
+    .coverCards, .protocolCards { gap: 10px; }
+}

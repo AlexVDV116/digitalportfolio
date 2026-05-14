@@ -2,7 +2,7 @@
 
 **Onderwerp:** Veilige en beheersbare integratie van een lokaal gehost Large Language Model in Visual Studio 2022 binnen een gesloten Defensieomgeving.
 
-Dit script begeleidt de **🎓 Tour** in het digitale portfolio. Twaalf scènes, ongeveer vijf tot zes minuten spreektijd, voor de inleiding van de verdediging. Per scène staat:
+Dit script begeleidt de **🎓 Tour** in het digitale portfolio. Dertien scènes, ongeveer zes tot zeven minuten spreektijd, voor de inleiding van de verdediging. Per scène staat:
 
 - **Spreekdoel** — wat de commissie na deze scène moet begrijpen
 - **Wat de commissie ziet** — wat op het scherm staat
@@ -143,11 +143,25 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 > *De evaluatie loopt langs vijf dimensies. De eerste is de OC-naleving: alle negen ontwerpcriteria zijn in de v0.3-codebase aantoonbaar geïmplementeerd — negen keer "Ja" in de evaluatiematrix. De tweede dimensie is de code coverage: 247 testcases over 20 testklassen. Het project-totaal staat op 38,91% lijn-dekking, maar dat getal vraagt uitleg. De VS2022 Code Coverage engine meetelt ook de View-laag — WPF-controls die architectureel buiten de unit-testscope vallen. De kernscope, de unit-testbare services en viewmodels, haalt circa 74% lijn-dekking. De drie testklassen voor OllamaClient, OllamaClientArguments en OpenWebUIClient staan op 100%. De derde dimensie is de STRIDE-analyse: alle zes bedreigingscategorieën zijn beoordeeld; het hoogste restrisico is "Matig" bij Repudiation — bewust geaccepteerd omdat promptinhoud niet wordt gelogd. De vierde is de risicoregister: R3, R4, R7, R8 en R9 zijn gemitigeerd door de ontwerpkeuzes. R6 over hardware-performance staat bewust open. De vijfde dimensie — de praktijkevaluatie met de gebruikersacceptatietest — is gepland; dat is het tweede tabblad op deze pagina.*
 
 **Overgang:**
+> *De technische validatie toont negen OC's voldaan. De vijfde dimensie — de praktijkevaluatie — loopt nog; dat is het volgende tabblad.*
+
+---
+
+## Scène 10 — Praktijkevaluatie: gebruikersacceptatietest
+
+**Spreekdoel:** de commissie begrijpt hoe de praktijkvalidatie is opgezet, welke vijf meetpunten nog openstaan en waarom de GAT bewust als afzonderlijke toets is ingepland.
+
+**Wat de commissie ziet:** de Evaluatie & Validatie-pagina, tabblad *Praktijkevaluatie (GAT)* — protocolkaarten (7 ontwikkelaars, 2 weken), vragenlijststructuur en de vijf openstaande DV5-meetpunten.
+
+**Spreektekst:**
+> *De technische validatie beantwoordt de vraag of de MVP voldoet aan de gestelde criteria. Maar de vraag "werkt het ook in de praktijk voor de doelgroep?" vereist een andere methode. De gebruikersacceptatietest bestaat uit een periode van twee weken waarbij zeven ontwikkelaars uit de doelgroep — JIVC SO&I — de extensie in vrij gebruik nemen. Na die periode vullen ze een gestructureerde vragenlijst in via Google Forms. Die vragenlijst bevat elf Likert-vragen over bruikbaarheid, context-UX, veiligheid en Defensie-toepasbaarheid, aangevuld met een aanbevelingsscore en een eindcijfer. Maar de GAT is meer dan een tevredenheidsmeting; hij valideert ook vijf specifieke meetpunten. Eén: de empirische responstijdmeting voor NFR-2 op representatieve hardware met codellama:13b-instruct. Twee: de OC-3 herhaalbaarheidstest — drie identieke prompts, cold-start en warm-start, gemeten op Levenshtein-afstand. Drie: observatie van overreliance voor OC-1 en R7 — wanneer worden AI-suggesties gekopieerd zonder review? Vier: hoe ContextMode in de praktijk wordt ervaren. En vijf: een packet capture op het localhost-endpoint gedurende één werkdag om OC-4 empirisch te bevestigen. De resultaten worden na afloop als CSV aan de codebase toegevoegd en hier automatisch getoond.*
+
+**Overgang:**
 > *De heatmap laat in één oogopslag zien welke OC's het zwaarst onderbouwd zijn vanuit de deelvragen.*
 
 ---
 
-## Scène 10 — Evaluatie: dekking in één oogopslag
+## Scène 11 — Evaluatie: OC × DV-dekking in één oogopslag
 
 **Spreekdoel:** de commissie ziet visueel dat elke OC empirisch is gedekt vanuit ten minste één deelvraag, en welke OC's het zwaarst onderbouwd zijn.
 
@@ -161,7 +175,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ---
 
-## Scène 11 — Validatie: risico's afgedekt door ontwerpcriteria
+## Scène 12 — Validatie: risico's afgedekt door ontwerpcriteria
 
 **Spreekdoel:** de commissie begrijpt dat het onderzoek systematisch geïdentificeerde risico's heeft afgedekt via ontwerpkeuzes, en dat de paar openstaande risico's bewust en gemotiveerd open blijven.
 
@@ -175,7 +189,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ---
 
-## Scène 12 — Conclusie: resultaat in cijfers
+## Scène 13 — Conclusie: resultaat in cijfers
 
 **Spreekdoel:** de commissie houdt drie cijfers en één boodschap over: het kader is compleet, de MVP realiseert het, en alles is herleidbaar.
 

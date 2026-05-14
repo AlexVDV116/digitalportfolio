@@ -17,20 +17,25 @@ loadGatData();
 // ── Tabs ──────────────────────────────────────────────────────────────────
 
 function initTabs() {
-    document.querySelectorAll(".evalTab").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const key = btn.dataset.tab;
-            document.querySelectorAll(".evalTab").forEach(b => {
-                b.classList.toggle("is-active", b === btn);
-                b.setAttribute("aria-selected", b === btn ? "true" : "false");
-            });
-            document.querySelectorAll(".evalPane").forEach(p => {
-                const active = p.id === `pane-${key}`;
-                p.classList.toggle("is-active", active);
-                p.hidden = !active;
-            });
+    function activateTab(key) {
+        document.querySelectorAll(".evalTab").forEach(b => {
+            b.classList.toggle("is-active", b.dataset.tab === key);
+            b.setAttribute("aria-selected", b.dataset.tab === key ? "true" : "false");
         });
+        document.querySelectorAll(".evalPane").forEach(p => {
+            const active = p.id === `pane-${key}`;
+            p.classList.toggle("is-active", active);
+            p.hidden = !active;
+        });
+    }
+
+    document.querySelectorAll(".evalTab").forEach(btn => {
+        btn.addEventListener("click", () => activateTab(btn.dataset.tab));
     });
+
+    // Honour ?tab= URL param (used by story tour to deep-link directly to a tab)
+    const urlTab = new URLSearchParams(window.location.search).get("tab");
+    if (urlTab) activateTab(urlTab);
 }
 
 // ── Coverage cards ────────────────────────────────────────────────────────

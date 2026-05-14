@@ -24,7 +24,7 @@ export const STORY_SCENES = [
         chapter: "Probleem",
         title: "Deelvragen & omvang van het onderzoek",
         narration:
-            "Vijf deelvragen operationaliseren de centrale vraag: van beveiligingsanalyse tot evaluatie van de MVP.",
+            "De vijf deelvragen werken de centrale vraag stap voor stap uit: van beveiliging en contextgebruik tot ontwerp, bouw en evaluatie van de MVP.",
         path: "#glance",
     },
     {
@@ -32,7 +32,7 @@ export const STORY_SCENES = [
         chapter: "Theorie",
         title: "Drie theoretische domeinen — spanningsvelden",
         narration:
-            "LLM-gedrag, beveiliging en IDE-integratie raken elkaar; juist de overlap leverde de ontwerpprincipes.",
+            "De theorie laat zien waar LLM-gedrag, beveiliging en IDE-integratie elkaar raken. Uit die overlap zijn de ontwerpprincipes afgeleid.",
         path: "theory/",
     },
     {
@@ -48,7 +48,7 @@ export const STORY_SCENES = [
         chapter: "Ontwerpcriteria",
         title: "9 ontwerpcriteria — overkoepelend",
         narration:
-            "OC-1 t/m OC-9 vormen het toetsbare kader. Hieronder de afleiding vanuit de deelvragen.",
+            "OC-1 t/m OC-9 vormen het kader waarop het ontwerp en de evaluatie zijn gebaseerd.",
         path: "traceability/?preset=dv-oc",
     },
     {
@@ -63,8 +63,7 @@ export const STORY_SCENES = [
         id: "requirements",
         chapter: "Requirements",
         title: "OC vertaald naar requirements",
-        narration:
-            "Elke OC produceert een set FR/NFR/Constraints. Klik een node om de keten zichtbaar te maken.",
+        narration: "Elke OC is herleidbaar naar een set FR/NFR/Constraints.",
         path: "traceability/?preset=must",
     },
     {
@@ -79,8 +78,7 @@ export const STORY_SCENES = [
         id: "evaluatie-validatie",
         chapter: "Evaluatie & Validatie",
         title: "Systematische validatie van de MVP",
-        narration:
-            `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.classes} testklassen · Core-scope ${METRICS.tests.coreLine}% lijn-dekking · alle 9 OC's aantoonbaar voldaan · STRIDE zonder kritieke bevindingen.`,
+        narration: `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.classes} testklassen · Core-scope ${METRICS.tests.coreLine}% lijn-dekking · alle 9 OC's aantoonbaar voldaan · STRIDE zonder kritieke bevindingen.`,
         path: "evaluation/",
     },
     {
@@ -88,23 +86,21 @@ export const STORY_SCENES = [
         chapter: "Evaluatie & Validatie",
         title: "Dekking in één oogopslag — heatmap",
         narration:
-            "Elke OC heeft empirische dekking vanuit ten minste één deelvraag; de zwaarst gedekte criteria (OC-2, OC-4) weerspiegelen de kern van het probleem.",
+            "Elke OC heeft dekking vanuit ten minste één deelvraag; de zwaarst gedekte criteria (OC-2, OC-4) weerspiegelen de kern van het probleem.",
         path: "traceability/?tab=heatmap",
     },
     {
         id: "validatie",
         chapter: "Validatie",
         title: "Risico's afgedekt door ontwerpcriteria",
-        narration:
-            "OC-1 t/m OC-9 mitigeren R3, R4, R7, R8 en R9. R6 blijft open (hardwaremeting in doelomgeving).",
+        narration: "OC-1 t/m OC-9 mitigeren R3, R4, R7, R8 en R9.",
         path: "traceability/?preset=oc-risk",
     },
     {
         id: "afsluiting",
         chapter: "Conclusie",
         title: "Resultaat in cijfers",
-        narration:
-            `${METRICS.research.oc} ontwerpcriteria · ${METRICS.research.requirements} requirements · ${METRICS.tests.total} MSTest-cases · alle OC's voldoen aan hun acceptatievoorwaarden.`,
+        narration: `${METRICS.research.oc} ontwerpcriteria · ${METRICS.research.requirements} requirements · ${METRICS.tests.total} MSTest-cases · alle OC's voldoen aan hun acceptatievoorwaarden.`,
         path: "#glance",
     },
 ];

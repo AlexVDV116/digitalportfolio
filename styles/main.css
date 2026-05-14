@@ -2325,7 +2325,7 @@ body.is-presenting .storyOverlay {
 /* GAT empty state */
 .gatEmpty {
     text-align: center;
-    padding: 32px 24px;
+    padding: 40px 32px;
     color: var(--muted);
     font-size: 14px;
     line-height: 1.7;
@@ -2333,6 +2333,15 @@ body.is-presenting .storyOverlay {
     border-radius: 10px;
     border: 1px dashed var(--line);
 }
+.gatEmpty__icon { font-size: 36px; margin-bottom: 12px; }
+.gatEmpty__title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+
+/* Star ratings */
+.starRating { display: block; line-height: 1; margin: 4px 0 2px; }
+.star { font-size: 16px; letter-spacing: 1px; }
+.star--filled { color: #f59e0b; }
+.star--empty  { color: var(--line); }
+.coverCard--stars { min-width: 170px; }
 
 /* Feedback quotes */
 .feedbackGroup { margin-bottom: 18px; }

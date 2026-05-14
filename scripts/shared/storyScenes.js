@@ -79,7 +79,15 @@ export const STORY_SCENES = [
         chapter: "Evaluatie & Validatie",
         title: "Systematische validatie van de MVP",
         narration: `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.classes} testklassen · Core-scope ${METRICS.tests.coreLine}% lijn-dekking · alle 9 OC's aantoonbaar voldaan · STRIDE zonder kritieke bevindingen.`,
-        path: "evaluation/",
+        path: "evaluation/?tab=technical",
+    },
+    {
+        id: "evaluatie-gat",
+        chapter: "Evaluatie & Validatie",
+        title: "Praktijkevaluatie — gebruikersacceptatietest",
+        narration:
+            `7 JIVC SO&I-ontwikkelaars testen de MVP gedurende 2 weken in vrij gebruik. Meetpunten: NFR-2 responstijd · OC-3 herhaalbaarheid · OC-1/R7 overreliance · OC-4 packet capture.`,
+        path: "evaluation/?tab=gat",
     },
     {
         id: "evaluatie-heatmap",

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Evaluatie & Validatie — LocalLLM MVP</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__wrap">
+            <div>
+                <h1 class="topbar__title">Evaluatie &amp; Validatie — LocalLLM MVP v0.3</h1>
+                <p class="topbar__subtitle">Technische validatie · Code coverage · OC-matrix · STRIDE · Gebruikersacceptatietest</p>
+            </div>
+            <div class="topbar__actions">
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓 Tour</button>
+                <div class="nav" id="nav">
+                    <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                        aria-controls="navMenu" title="Menu">
+                        <span class="nav__icon" aria-hidden="true"></span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+
+                    <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                        <div class="nav__sectionTitle">Pagina's</div>
+
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio" data-nav-close>
+                            Project overview
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/pva/" data-nav-close>
+                            Plan van aanpak
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/execution/" data-nav-close>
+                            Uitvoering
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/timeline/" data-nav-close>
+                            Planning
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
+                            Master Traceability Matrix
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
+                            Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
+                            OC Explorer
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/evaluation/" data-nav-close>
+                            Evaluatie &amp; Validatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
+                            Metacognitieve cyclus
+                        </a>
+
+                        <div class="nav__divider"></div>
+                        <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Projectstatusrapport ↗
+                        </a>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Wekelijkse zelfreflecties ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="evalLayout">
+
+        <!-- ── Tab navigation ─────────────────────────────────────────── -->
+        <nav class="evalTabs" id="evalTabs" role="tablist" aria-label="Evaluatiedimensies">
+            <button class="evalTab is-active" role="tab" aria-selected="true"
+                    data-tab="technical" id="tab-technical">
+                Technische validatie
+            </button>
+            <button class="evalTab" role="tab" aria-selected="false"
+                    data-tab="gat" id="tab-gat">
+                Praktijkevaluatie (GAT)
+            </button>
+        </nav>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             TAB 1 — TECHNISCHE VALIDATIE
+        ══════════════════════════════════════════════════════════════════ -->
+        <div class="evalPane is-active" id="pane-technical" role="tabpanel" aria-labelledby="tab-technical">
+
+            <!-- Coverage summary row -->
+            <section class="evalSection" aria-label="Coverage samenvatting">
+                <h2 class="evalSection__title">Code coverage &amp; teststatistieken</h2>
+                <p class="evalSection__sub">
+                    VS2022 Enterprise Code Coverage · run <strong>11-05-2026</strong> ·
+                    MSTest 4.2.1 · .NET Framework 4.8
+                </p>
+
+                <div class="coverCards" id="coverCards">
+                    <!-- Rendered by evaluation.js -->
+                </div>
+
+                <div class="evalCols">
+                    <!-- Left: coverage bars -->
+                    <div>
+                        <h3 class="evalSubtitle">Lijn- &amp; block-dekking</h3>
+                        <div id="coverBars"></div>
+                    </div>
+                    <!-- Right: test class table -->
+                    <div>
+                        <h3 class="evalSubtitle">Testklassen &amp; case-aantallen</h3>
+                        <div id="classTable"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OC validation matrix -->
+            <section class="evalSection" aria-label="OC-validatiematrix">
+                <h2 class="evalSection__title">OC-validatiematrix</h2>
+                <p class="evalSection__sub">
+                    Naleving van alle 9 ontwerpcriteria in de v0.3-codebase ·
+                    Evaluatierapport v6 ·
+                    <a href="../oc/" class="evalLink">→ OC Explorer</a> ·
+                    <a href="../traceability/?preset=oc-mvp" class="evalLink">→ Traceability graph</a>
+                </p>
+                <div id="ocMatrix"></div>
+            </section>
+
+            <!-- STRIDE -->
+            <section class="evalSection" aria-label="STRIDE-analyse">
+                <h2 class="evalSection__title">STRIDE-analyse</h2>
+                <p class="evalSection__sub">
+                    Beveiligingsanalyse van de v0.3-extensie conform DV1-kader ·
+                    D/301, D/302, OWASP LLM Top 10
+                </p>
+                <div id="strideTable"></div>
+            </section>
+
+            <!-- Risk register -->
+            <section class="evalSection" aria-label="Risicoregister">
+                <h2 class="evalSection__title">Risicoregister — actuele status</h2>
+                <p class="evalSection__sub">
+                    R1–R9 uit het projectrisicoregister ·
+                    <a href="../traceability/?preset=oc-risk" class="evalLink">→ OC × Risico-graph</a>
+                </p>
+                <div id="riskTable"></div>
+            </section>
+
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             TAB 2 — PRAKTIJKEVALUATIE (GAT)
+        ══════════════════════════════════════════════════════════════════ -->
+        <div class="evalPane" id="pane-gat" role="tabpanel" aria-labelledby="tab-gat" hidden>
+
+            <!-- Protocol summary -->
+            <section class="evalSection" aria-label="Evaluatieprotocol">
+                <h2 class="evalSection__title">Gebruikersacceptatietest — protocol</h2>
+                <p class="evalSection__sub">
+                    Evaluatiedimensie 5 · DV5-protocol · JIVC SO&amp;I ontwikkelaars
+                </p>
+                <div class="protocolCards" id="protocolCards">
+                    <div class="protocolCard">
+                        <div class="protocolCard__icon">👥</div>
+                        <div class="protocolCard__label">Doelgroep</div>
+                        <div class="protocolCard__value">3–5 JIVC SO&amp;I<br>ontwikkelaars</div>
+                    </div>
+                    <div class="protocolCard">
+                        <div class="protocolCard__icon">⏱</div>
+                        <div class="protocolCard__label">Duur</div>
+                        <div class="protocolCard__value">1 werkdag<br>vrij gebruik</div>
+                    </div>
+                    <div class="protocolCard">
+                        <div class="protocolCard__icon">📋</div>
+                        <div class="protocolCard__label">Methode</div>
+                        <div class="protocolCard__value">Gestructureerde<br>observatie + vragenlijst</div>
+                    </div>
+                    <div class="protocolCard">
+                        <div class="protocolCard__icon">🎯</div>
+                        <div class="protocolCard__label">Meetpunten</div>
+                        <div class="protocolCard__value">NFR-2 · OC-3-herhaling<br>OC-1 UX-effectiviteit</div>
+                    </div>
+                </div>
+
+                <div class="evalCols">
+                    <div>
+                        <h3 class="evalSubtitle">Vragenlijst — Likert-vragen (1–5)</h3>
+                        <p class="evalSection__sub" style="margin-bottom:10px">
+                            11 gestructureerde vragen over bruikbaarheid, veiligheid en Defensie-toepasbaarheid.
+                        </p>
+                        <div id="gatQuestions"></div>
+                    </div>
+                    <div>
+                        <h3 class="evalSubtitle">Aanvullende meetpunten</h3>
+                        <ul class="evalList">
+                            <li><strong>NPS (0–10):</strong> aanbevelingsbereidheid aan collega-ontwikkelaars</li>
+                            <li><strong>Eindcijfer (1–10):</strong> algemeen oordeel over de MVP</li>
+                            <li><strong>Open feedback:</strong> meerwaarde, aandachtspunten, suggesties v1.0</li>
+                            <li><strong>Ja/Nee:</strong> hergebruiksintentie · Defensie-haalbaarheid</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CSV data loader -->
+            <section class="evalSection" aria-label="GAT resultaten">
+                <h2 class="evalSection__title">GAT-resultaten</h2>
+                <p class="evalSection__sub">
+                    Laad de Google Form CSV-export om scores en feedback te visualiseren.
+                </p>
+
+                <div class="gatUpload" id="gatUpload">
+                    <div class="gatUpload__icon">📂</div>
+                    <p class="gatUpload__text">
+                        Sleep de CSV-export hier naartoe<br>
+                        <span class="gatUpload__hint">of klik om een bestand te kiezen</span>
+                    </p>
+                    <input type="file" id="gatFile" accept=".csv" class="gatUpload__input" aria-label="Kies GAT CSV-bestand" />
+                </div>
+
+                <div id="gatResults" hidden>
+                    <div class="coverCards" id="gatSummaryCards"></div>
+                    <div class="evalCols">
+                        <div>
+                            <h3 class="evalSubtitle">Gemiddelde scores per vraag</h3>
+                            <div id="gatBarChart"></div>
+                        </div>
+                        <div>
+                            <h3 class="evalSubtitle">Open feedback</h3>
+                            <div id="gatFeedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gatEmpty" id="gatEmpty">
+                    <p>Nog geen data geladen — de gebruikersacceptatietest is gepland als onderdeel van DV5.</p>
+                    <p>Zodra de testperiode is afgerond, laad je de CSV-export hierboven om scores en feedback te visualiseren.</p>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer" aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="scripts/evaluation.js"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 
 **Onderwerp:** Veilige en beheersbare integratie van een lokaal gehost Large Language Model in Visual Studio 2022 binnen een gesloten Defensieomgeving.
 
-Dit script begeleidt de **🎓 Tour** in het digitale portfolio. Elf scènes, ongeveer vijf minuten spreektijd, voor de inleiding van de verdediging. Per scène staat:
+Dit script begeleidt de **🎓 Tour** in het digitale portfolio. Twaalf scènes, ongeveer vijf tot zes minuten spreektijd, voor de inleiding van de verdediging. Per scène staat:
 
 - **Spreekdoel** — wat de commissie na deze scène moet begrijpen
 - **Wat de commissie ziet** — wat op het scherm staat
@@ -98,7 +98,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** OC Explorer met OC-4 actief — vijf genummerde secties van herkomst, requirements, normen, implementatie en validatie.
 
 **Spreektekst:**
-> *OC-4 luidt: "alle LLM-verwerking gebeurt volledig offline." Ik gebruik dit criterium als voorbeeld omdat het de kern van de Defensiecontext raakt. In de eerste sectie zie je waar het vandaan komt: DV1 leverde dit op, met als theoretische basis Shostack over zero-trust en OWASP LLM06 over information disclosure. In sectie twee zie je hoe ik het heb vertaald naar concrete eisen: de twee harde constraints C-1 en C-2 en de niet-functionele eis NFR-1 voor stabiliteit. Sectie drie verankert het in normen: D/304 en BIO 13.1 voor netwerkscheiding. Sectie vier wijst aan waar het in de code zit: in OllamaClient.cs, in de IsLocalhost-check op regel 289 tot 300. Daar zit overigens ook een ontdekking: in .NET 4.8 retourneert Uri.Host voor "[::1]" inclusief blokhaken, wat zonder fix een latente kwetsbaarheid zou zijn. Sectie vijf toont de validatie: achttien testcases in OllamaClientTests dekken alle varianten — localhost, 127.0.0.1, IPv6 — en weigeren alles wat niet lokaal is. En tot slot: dit criterium mitigeert risico R8 uit het risicoregister. Dit is de bewijs-keten die ik voor elk van de negen OC's kan tonen.*
+> *OC-4 luidt: "alle LLM-verwerking gebeurt volledig offline." Ik gebruik dit criterium als voorbeeld omdat het de kern van de Defensiecontext raakt. In de eerste sectie zie je waar het vandaan komt: DV1 leverde dit op, met als theoretische basis Shostack over zero-trust en OWASP LLM06 over information disclosure. In sectie twee zie je hoe ik het heb vertaald naar concrete eisen: de twee harde constraints C-1 en C-2 en de niet-functionele eis NFR-1 voor stabiliteit. Sectie drie verankert het in normen: D/304 en BIO 13.1 voor netwerkscheiding. Sectie vier wijst aan waar het in de code zit: in LlmClientBase, in de IsValidHttpUrl-check die URL-syntaxvalidatie afdwingt. OC-4 is in v0.3 een gedeelde verantwoordelijkheid: de client valideert de URL-syntax, de netwerklaag dwingt endpoint-allow-listing af via JIVC SO&I-LAN-segmentatie. Sectie vijf toont de validatie: 47 URL-validatietestcases in OllamaClientTests, OllamaClientArgumentTests en OpenWebUIClientTests dekken alle varianten. En tot slot: dit criterium mitigeert risico R8 uit het risicoregister. Dit is de bewijs-keten die ik voor elk van de negen OC's kan tonen.*
 
 **Overgang:**
 > *Hoe die criteria zich vertalen naar concrete requirements, laat het volgende beeld zien.*
@@ -133,7 +133,21 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ---
 
-## Scène 9 — Evaluatie: dekking in één oogopslag
+## Scène 9 — Evaluatie & Validatie: systematische validatie van de MVP
+
+**Spreekdoel:** de commissie ziet dat de MVP niet alleen gebouwd maar ook systematisch gevalideerd is — via code coverage, OC-matrix, STRIDE en een geplande gebruikersacceptatietest.
+
+**Wat de commissie ziet:** de Evaluatie & Validatie-pagina, tabblad *Technische validatie* — coveragekaarten, progressbars, OC-validatiematrix en STRIDE-tabel.
+
+**Spreektekst:**
+> *De evaluatie loopt langs vijf dimensies. De eerste is de OC-naleving: alle negen ontwerpcriteria zijn in de v0.3-codebase aantoonbaar geïmplementeerd — negen keer "Ja" in de evaluatiematrix. De tweede dimensie is de code coverage: 247 testcases over 20 testklassen. Het project-totaal staat op 38,91% lijn-dekking, maar dat getal vraagt uitleg. De VS2022 Code Coverage engine meetelt ook de View-laag — WPF-controls die architectureel buiten de unit-testscope vallen. De kernscope, de unit-testbare services en viewmodels, haalt circa 74% lijn-dekking. De drie testklassen voor OllamaClient, OllamaClientArguments en OpenWebUIClient staan op 100%. De derde dimensie is de STRIDE-analyse: alle zes bedreigingscategorieën zijn beoordeeld; het hoogste restrisico is "Matig" bij Repudiation — bewust geaccepteerd omdat promptinhoud niet wordt gelogd. De vierde is de risicoregister: R3, R4, R7, R8 en R9 zijn gemitigeerd door de ontwerpkeuzes. R6 over hardware-performance staat bewust open. De vijfde dimensie — de praktijkevaluatie met de gebruikersacceptatietest — is gepland; dat is het tweede tabblad op deze pagina.*
+
+**Overgang:**
+> *De heatmap laat in één oogopslag zien welke OC's het zwaarst onderbouwd zijn vanuit de deelvragen.*
+
+---
+
+## Scène 10 — Evaluatie: dekking in één oogopslag
 
 **Spreekdoel:** de commissie ziet visueel dat elke OC empirisch is gedekt vanuit ten minste één deelvraag, en welke OC's het zwaarst onderbouwd zijn.
 
@@ -147,7 +161,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ---
 
-## Scène 10 — Validatie: risico's afgedekt door ontwerpcriteria
+## Scène 11 — Validatie: risico's afgedekt door ontwerpcriteria
 
 **Spreekdoel:** de commissie begrijpt dat het onderzoek systematisch geïdentificeerde risico's heeft afgedekt via ontwerpkeuzes, en dat de paar openstaande risico's bewust en gemotiveerd open blijven.
 
@@ -161,7 +175,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ---
 
-## Scène 11 — Conclusie: resultaat in cijfers
+## Scène 12 — Conclusie: resultaat in cijfers
 
 **Spreekdoel:** de commissie houdt drie cijfers en één boodschap over: het kader is compleet, de MVP realiseert het, en alles is herleidbaar.
 
@@ -189,6 +203,9 @@ Mocht de commissie tijdens de Q&A een specifiek onderdeel willen zien:
 | "Hoe vergelijken de OC's zich tegen elkaar?" | Traceability heatmap |
 | "Hoe is DV-X uitgevoerd?" | Klik DV-X in het uitvoeringsdiagram, of `?focus=DV-X` in graph URL |
 | "Welke norm wordt hier geraakt?" | Tabblad **Normen** in de traceability matrix |
+| "Wat is de code coverage?" | Evaluatie & Validatie → Technische validatie → coverage cards |
+| "Hoe is STRIDE uitgevoerd?" | Evaluatie & Validatie → STRIDE-analyse sectie |
+| "Hoe staat het met de gebruikerstest?" | Evaluatie & Validatie → Praktijkevaluatie (GAT) tabblad |
 
 ---
 

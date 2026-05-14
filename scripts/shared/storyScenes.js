@@ -1,20 +1,14 @@
+import { METRICS } from "./researchMetrics.js";
+
 /**
  * Geleide verdedigings-flow door het portfolio.
  *
- * Elke scène = één deep-link naar een bestaande pagina. De story mode
- * navigeert achter elkaar door deze scenes; `?story=N` markeert
- * welke scène actief is zodat de overlay zichtbaar blijft na navigatie.
+ * Volgorde: probleem → theorie → synthese → ontwerpcriteria → requirements
+ *   → architectuur → evaluatie & validatie → heatmap → risico's → conclusie.
  *
- * Volgorde volgt de methodische opbouw van het onderzoek:
- *   probleem → theorie → synthese → ontwerpcriteria → requirements
- *   → architectuur → MVP → evaluatie → validatie.
- */
-
-/**
  * Paden zijn relatief aan de portfolio-root.
- * Op productie (GitHub Pages) wordt dat `/digitalportfolio/<path>`.
- * Lokaal (python -m http.server) wordt dat `/<path>`.
- * De resolver in storyMode.js zorgt voor het juiste prefix.
+ * Op productie (GitHub Pages): `/digitalportfolio/<path>`.
+ * Lokaal (python -m http.server): `/<path>`.
  */
 export const STORY_SCENES = [
     {
@@ -62,7 +56,7 @@ export const STORY_SCENES = [
         chapter: "Ontwerpcriteria",
         title: "Bewijs-keten OC-4 (Volledig offline)",
         narration:
-            "Vanuit DV1 + BIO 13.1 + OWASP LLM06 → C-1/C-2/NFR-1 → OllamaClient.IsLocalhost → 18 tests → mitigeert R8.",
+            "Vanuit DV1 + BIO 13.1 + OWASP LLM06 → C-1/C-2/NFR-1 → LlmClientBase.IsValidHttpUrl + netwerklaag-segmentatie → 47 URL-tests → mitigeert R8.",
         path: "oc/?id=OC-4",
     },
     {
@@ -82,8 +76,16 @@ export const STORY_SCENES = [
         path: "traceability/?preset=oc-mvp",
     },
     {
-        id: "evaluatie",
-        chapter: "Evaluatie",
+        id: "evaluatie-validatie",
+        chapter: "Evaluatie & Validatie",
+        title: "Systematische validatie van de MVP",
+        narration:
+            `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.classes} testklassen · Core-scope ${METRICS.tests.coreLine}% lijn-dekking · alle 9 OC's aantoonbaar voldaan · STRIDE zonder kritieke bevindingen.`,
+        path: "evaluation/",
+    },
+    {
+        id: "evaluatie-heatmap",
+        chapter: "Evaluatie & Validatie",
         title: "Dekking in één oogopslag — heatmap",
         narration:
             "Elke OC heeft empirische dekking vanuit ten minste één deelvraag; de zwaarst gedekte criteria (OC-2, OC-4) weerspiegelen de kern van het probleem.",
@@ -102,7 +104,7 @@ export const STORY_SCENES = [
         chapter: "Conclusie",
         title: "Resultaat in cijfers",
         narration:
-            "9 ontwerpcriteria · 15 requirements · 247 MSTest-cases · alle OC's voldoen aan of gedeeltelijk aan hun acceptatievoorwaarden.",
+            `${METRICS.research.oc} ontwerpcriteria · ${METRICS.research.requirements} requirements · ${METRICS.tests.total} MSTest-cases · alle OC's voldoen aan hun acceptatievoorwaarden.`,
         path: "#glance",
     },
 ];

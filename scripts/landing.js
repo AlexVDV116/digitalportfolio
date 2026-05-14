@@ -3,6 +3,7 @@ import { DIAGRAM } from "./diagram.js";
 import { NODE_INFO } from "./nodeInfo.js";
 import { initHamburgerNav } from "../scripts/shared/nav.js";
 import { initStoryMode } from "../scripts/shared/storyMode.js";
+import { METRICS } from "./shared/researchMetrics.js";
 
 initDiagramPage({
     diagramText: DIAGRAM,
@@ -15,3 +16,10 @@ initDiagramPage({
 
 initHamburgerNav();
 initStoryMode();
+
+// Sync KPI tiles from central config
+document.querySelectorAll("[data-metric]").forEach(el => {
+    const key = el.dataset.metric;
+    const val = key.split(".").reduce((o, k) => o?.[k], METRICS);
+    if (val !== undefined) el.textContent = val;
+});

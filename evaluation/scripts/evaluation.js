@@ -201,11 +201,11 @@ function renderGatQuestions() {
     document.getElementById("gatQuestions").innerHTML = `<div class="gatQList">${items}</div>`;
 }
 
-// ── GAT data loader (static CSV in codebase) ─────────────────────────────
+// ── GAT data loader (live Google Sheets CSV) ─────────────────────────────
 
 async function loadGatData() {
     try {
-        const res = await fetch("data/gat-results.csv");
+        const res = await fetch(METRICS.gat.csvUrl);
         if (!res.ok) { showGatEmpty(); return; }
         const text = await res.text();
         const rows = parseCsv(text);

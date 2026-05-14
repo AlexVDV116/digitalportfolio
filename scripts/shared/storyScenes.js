@@ -63,7 +63,7 @@ export const STORY_SCENES = [
         id: "requirements",
         chapter: "Requirements",
         title: "OC vertaald naar requirements",
-        narration: "Elke OC is herleidbaar naar een set FR/NFR/Constraints.",
+        narration: "Elke OC produceert een set FR/NFR/Constraints.",
         path: "traceability/?preset=must",
     },
     {
@@ -71,7 +71,7 @@ export const STORY_SCENES = [
         chapter: "Architectuur & MVP",
         title: "Realisatie — OC's gerealiseerd in code",
         narration:
-            "Zeven kernmodules dragen de OC's. AppDefaults centraliseert constants; OllamaClient is de enige uitgaande netwerkactor.",
+            "In de architectuur is te zien hoe de ontwerpcriteria terugkomen in de belangrijkste modules van de extensie.",
         path: "traceability/?preset=oc-mvp",
     },
     {
@@ -94,14 +94,14 @@ export const STORY_SCENES = [
         chapter: "Evaluatie & Validatie",
         title: "Dekking in één oogopslag — heatmap",
         narration:
-            "Elke OC heeft dekking vanuit ten minste één deelvraag; de zwaarst gedekte criteria (OC-2, OC-4) weerspiegelen de kern van het probleem.",
+            "De heatmap laat per ontwerpcriterium zien vanuit welke deelvragen en evaluaties er dekking is.",
         path: "traceability/?tab=heatmap",
     },
     {
         id: "validatie",
         chapter: "Validatie",
         title: "Risico's afgedekt door ontwerpcriteria",
-        narration: "OC-1 t/m OC-9 mitigeren R3, R4, R7, R8 en R9.",
+        narration: "De ontwerpcriteria beperken de belangrijkste risico's.",
         path: "traceability/?preset=oc-risk",
     },
     {

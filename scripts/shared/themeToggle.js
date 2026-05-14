@@ -26,13 +26,10 @@ function applyTheme(theme) {
     });
 }
 
-/** Read stored preference, or fall back to OS preference. */
+/** Read stored preference, or default to light. */
 function getPreferred() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === DARK || stored === LIGHT) return stored;
-
-    // Respect system preference
-    if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) return DARK;
     return LIGHT;
 }
 
@@ -57,12 +54,4 @@ export function initThemeToggle() {
         btn.addEventListener("click", toggle);
     });
 
-    // Listen for OS preference changes
-    window.matchMedia?.("(prefers-color-scheme: dark)")
-        .addEventListener("change", e => {
-            // Only auto-switch if user hasn't explicitly chosen
-            if (!localStorage.getItem(STORAGE_KEY)) {
-                applyTheme(e.matches ? DARK : LIGHT);
-            }
-        });
 }

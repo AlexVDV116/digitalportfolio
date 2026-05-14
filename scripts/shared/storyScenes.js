@@ -85,7 +85,8 @@ export const STORY_SCENES = [
         id: "evaluatie-gat",
         chapter: "Evaluatie & Validatie",
         title: "Praktijkevaluatie — gebruikersacceptatietest",
-        narration: `7 JIVC SO&I-ontwikkelaars testen de MVP gedurende 2 weken in vrij gebruik. Meetpunten: NFR-2 responstijd · OC-3 herhaalbaarheid · OC-1/R7 overreliance · OC-4 packet capture.`,
+        narration:
+            `7 JIVC SO&I-ontwikkelaars testen de MVP gedurende 2 weken in vrij gebruik. Meetpunten: NFR-2 responstijd · OC-3 herhaalbaarheid · OC-1/R7 overreliance · OC-4 packet capture.`,
         path: "evaluation/?tab=gat",
     },
     {

@@ -112,6 +112,8 @@ export const METRICS = {
 
     // ── Gebruikersacceptatietest — vragenstructuur (Google Form) ──────────
     gat: {
+        // Live CSV-export van het gepubliceerde Google Forms-spreadsheet
+        csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_28qxuxu4ebus-99ggUEGbhcEByZfhsuJdlQGhBxt-W2CyW6BHKLf6YTnYDFe0Nh7mQFk1-jzkQnD/pub?output=csv",
         // Kolom-indices in de CSV-export (0-gebaseerd)
         nameCol: 1,
         functionCol: 2,

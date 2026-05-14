@@ -94,7 +94,7 @@ export const METRICS = {
         { threat: "Repudiation",           mitigation: "ExtensionLogger logt tijd + lengte (geen content); rol + tijdstip in bubble", residual: "Matig" },
         { threat: "Information Disclosure",mitigation: "URL-validatie; geen persistence; ContextMode-ceiling; 500-regel cap; context-strip; no-op storage", residual: "Laag" },
         { threat: "Denial of Service",     mitigation: "120s ChatRequestTimeout; 5s AvailabilityProbeTimeout; linked CTS; async UI; top-level catch", residual: "Zeer laag" },
-        { threat: "Elevation of Privilege",mitigation: "Ollama als apart OS-proces; geen FS-toegang; geen reflection/dynamic compilation", residual: "Zeer laag" },
+        { threat: "Elevation of Privilege",mitigation: "LLM-server als apart OS-proces; geen FS-toegang; geen reflection/dynamic compilation", residual: "Zeer laag" },
     ],
 
     // ── Risicoregister (Risicoregister.csv) ───────────────────────────────

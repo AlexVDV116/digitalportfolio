@@ -105,12 +105,12 @@ export const OC_DETAILS = {
             tests: [
                 {
                     name: "ContextSelectionTests",
-                    result: "6 cases — factory-isolatie en mode-roundtrip",
+                    result: "10 cases — factory-isolatie en mode-roundtrip",
                     type: "unit",
                 },
                 {
                     name: "InMemoryContextSettingsTests",
-                    result: "14 cases — settings persistence",
+                    result: "16 cases — settings persistence",
                     type: "unit",
                 },
             ],
@@ -151,7 +151,7 @@ export const OC_DETAILS = {
             tests: [
                 {
                     name: "AppDefaultsTests",
-                    result: "12 cases — pinning + integratie OllamaClient/PromptOrchestrator",
+                    result: "16 cases — pinning + integratie OllamaClient/PromptOrchestrator",
                     type: "unit",
                 },
                 {
@@ -167,10 +167,10 @@ export const OC_DETAILS = {
 
     "OC-4": {
         designDecision:
-            "Alleen localhost-egress (http://localhost:11434). IsLocalhost-check incl. IPv6-fix " +
-            "TrimStart('[').TrimEnd(']') corrigeert latente kwetsbaarheid in .NET 4.8 " +
-            "waarbij Uri.Host '[::1]' inclusief blokhaken retourneert. " +
-            "OllamaClient is de enige uitgaande netwerkactor in de hele oplossing.",
+            "Tweelagenmodel voor offline verwerking: (1) URL-syntaxvalidatie in LlmClientBase.IsValidHttpUrl " +
+            "(Uri.TryCreate + http/https-scheme check), gedeeld door OllamaClient en OpenWebUIClient; " +
+            "(2) endpoint-allow-listing op netwerklaag (firewall + JIVC SO&I-LAN-segmentatie). " +
+            "IsLocalhost-restrictie is in v0.2→v0.3 verwijderd; endpoint-keuze is beheerverantwoordelijkheid.",
         origin: {
             dvs: ["DV1"],
             insights: ["IN_OFFLINE"],
@@ -191,19 +191,27 @@ export const OC_DETAILS = {
         ],
         implementation: [
             {
-                module: "OllamaClient.cs",
-                lines: "r.289–300 (IsLocalhost incl. IPv6-fix); r.92–104 (BaseUrl-setter); r.131–135 (per-call validatie)",
+                module: "LlmClientBase.cs",
+                lines: "IsValidHttpUrl (Uri.TryCreate + http/https-scheme); CreateBaseUri — gedeeld door beide backends",
+            },
+            {
+                module: "OllamaClient.cs + OpenWebUIClient.cs",
+                lines: "Implementaties van ILlmClient via LlmClientBase; URL-validatie geërfd; 100% lijn- en block-dekking",
+            },
+            {
+                module: "LlmClientSelector.cs",
+                lines: "Runtime backend-selectie op basis van ConnectionType-configuratie",
             },
             {
                 module: "AppDefaults.cs",
-                lines: "OllamaBaseUrl = http://localhost:11434",
+                lines: "OllamaBaseUrl = http://localhost:11434 (dev-default)",
             },
         ],
         validation: {
             tests: [
                 {
-                    name: "OllamaClientTests",
-                    result: "18 cases (na DataRow-expansie): localhost / 127.0.0.1 / [::1] / .localhost geaccepteerd; example.com / 192.168.x / 10.x / internal.corp / 0.0.0.0 geweigerd",
+                    name: "OllamaClientTests + OllamaClientArgumentTests + OpenWebUIClientTests",
+                    result: "59 URL-validatietests: alle geldige http(s)-URLs geaccepteerd; ongeldige (blanks, malformed, niet-http(s)) geweigerd",
                     type: "unit",
                 },
                 {
@@ -276,7 +284,7 @@ export const OC_DETAILS = {
 
     "OC-6": {
         designDecision:
-            "LocalLLM.Core kent geen VS-SDK references. Ollama draait als apart OS-proces. " +
+            "LocalLLM.Core kent geen VS-SDK references. LLM-server draait als apart OS-proces. " +
             "SettingsProxy fungeert als trust-grens tussen Core en VSIX-host en lost tweefase-init " +
             "op zonder downstream-componenten te raken.",
         origin: {
@@ -386,7 +394,8 @@ export const OC_DETAILS = {
     "OC-8": {
         designDecision:
             "Typed exceptions (OllamaUnavailableException, OllamaResponseException) maken " +
-            "error-paden testbaar. Linked CancellationTokenSource met 5s timeout op IsAvailableAsync. " +
+            "error-paden testbaar. LlmClientBase definieert URL-validatie en foutcontract voor beide backends. " +
+            "Linked CancellationTokenSource met 5s timeout op IsAvailableAsync. " +
             "AsyncRelayCommand top-level catch beschermt async-void.",
         origin: {
             dvs: ["DV4", "DV5"],
@@ -406,8 +415,16 @@ export const OC_DETAILS = {
         ],
         implementation: [
             {
+                module: "LlmClientBase.cs",
+                lines: "IsValidHttpUrl + CreateBaseUri — gedeeld validatie- en foutcontract voor OllamaClient en OpenWebUIClient",
+            },
+            {
                 module: "OllamaClient.cs",
-                lines: "r.18–35 (typed exceptions); r.65–68 (HttpClient + 120s timeout); r.125–229 (SendChatAsync); r.240–258 (IsAvailableAsync linked CTS)",
+                lines: "r.18–35 (typed exceptions); r.65–68 (HttpClient + 120s timeout); r.125–229 (SendChatAsync exception-mapping); r.240–258 (IsAvailableAsync linked CTS)",
+            },
+            {
+                module: "OpenWebUIClient.cs",
+                lines: "Analoge foutafhandeling via LlmClientBase; OpenAI-compatible response-mapping",
             },
             {
                 module: "ChatWindowViewModel.cs",
@@ -421,13 +438,18 @@ export const OC_DETAILS = {
         validation: {
             tests: [
                 {
-                    name: "OllamaClientTests",
-                    result: "Dekt timeout / 4xx / 5xx / cancel / malformed JSON",
+                    name: "OllamaClientTests + OllamaClientSendChatTests",
+                    result: "Dekken timeout / 4xx / 5xx / cancel / malformed JSON voor Ollama-backend",
+                    type: "unit",
+                },
+                {
+                    name: "OpenWebUIClientTests",
+                    result: "22 cases — URL-validatie en response-mapping voor Open WebUI-backend",
                     type: "unit",
                 },
                 {
                     name: "Foutinjectietest",
-                    result: "Ollama-stop, timeout, 4xx, 5xx, malformed JSON — alle paden graceful",
+                    result: "Ollama-stop, timeout, 4xx, 5xx, malformed JSON — alle paden graceful; IDE blijft bruikbaar",
                     type: "integration",
                 },
             ],
@@ -438,7 +460,7 @@ export const OC_DETAILS = {
 
     "OC-9": {
         designDecision:
-            "Context-strip toont vorm/herkomst vóór verzending. 'Ollama'-label op elk antwoord. " +
+            "Context-strip toont vorm/herkomst vóór verzending. Model-label op elk antwoord. " +
             "Status-dot in vier kleuren. Read-only settings-mirror met ⚙ Open settings-knop. " +
             "Markdown-rendering via Markdig 0.40.0 attached property.",
         origin: {

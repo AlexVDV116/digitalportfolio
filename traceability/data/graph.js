@@ -149,7 +149,7 @@ export const NODES = [
         type: "oc",
         label: "OC-4",
         name: "Volledig offline verwerking",
-        desc: "IsLocalhost incl. IPv6-fix; geen externe HTTP-calls; air-gap als architectuurprincipe.",
+        desc: "LlmClientBase URL-syntaxvalidatie (IsValidHttpUrl); geen externe HTTP-calls; air-gap als architectuurprincipe.",
         status: "ok",
     },
     {
@@ -165,7 +165,7 @@ export const NODES = [
         type: "oc",
         label: "OC-6",
         name: "Gescheiden verantwoordelijkheden / taakscheiding",
-        desc: "Core zonder VS-SDK refs, Ollama als apart OS-proces, SettingsProxy als trust-grens.",
+        desc: "Core zonder VS-SDK refs, LLM-server als apart OS-proces, SettingsProxy als trust-grens.",
         status: "ok",
     },
     {
@@ -343,7 +343,7 @@ export const NODES = [
         label: "R3",
         name: "OC onvoldoende toetsbaar",
         status: "ok",
-        desc: "Gemitigeerd: AppDefaults + pinning-tests; 75 MSTest-cases borgen OC-3.",
+        desc: "Gemitigeerd: AppDefaults + pinning-tests; 247 MSTest-cases over 20 testklassen borgen OC-3.",
     },
     {
         id: "R4",
@@ -382,7 +382,7 @@ export const NODES = [
         label: "R8",
         name: "Onbedoelde verwerking gevoelige info",
         status: "ok",
-        desc: "Gemitigeerd via OC-2/4/5: ContextMode-ceiling, IPv6-fix, no-op storage.",
+        desc: "Gemitigeerd via OC-2/4/5: ContextMode-ceiling, URL-syntaxvalidatie, netwerksegmentatie, no-op storage.",
     },
     {
         id: "R9",
@@ -425,12 +425,36 @@ export const NODES = [
 
     // ===== MVP-modules (kerncomponenten) =====
     {
+        id: "M-LlmBase",
+        type: "mvp",
+        label: "LlmClientBase",
+        name: "LlmClientBase.cs — abstracte basisklasse met URL-validatie (IsValidHttpUrl) en foutcontract",
+        status: "ok",
+        desc: "ILlmClient → LlmClientBase: definieert CreateBaseUri, IsValidHttpUrl, SendChatAsync-contract. Gedeeld door OllamaClient en OpenWebUIClient.",
+    },
+    {
         id: "M-Ollama",
         type: "mvp",
         label: "OllamaClient",
-        name: "OllamaClient.cs — HTTP-client met IsLocalhost-afdwinging en typed exceptions",
+        name: "OllamaClient.cs — Ollama-backend via /api/chat met typed exceptions",
         status: "ok",
-        desc: "Enige uitgaande netwerkactor; 18 OllamaClientTests valideren localhost/IPv6.",
+        desc: "Implementeert ILlmClient via LlmClientBase; 18 + 19 = 37 OllamaClient-tests valideren URL, timeout, error-mapping.",
+    },
+    {
+        id: "M-OpenWebUI",
+        type: "mvp",
+        label: "OpenWebUIClient",
+        name: "OpenWebUIClient.cs — Open WebUI-backend via OpenAI-compatible chat-completions",
+        status: "ok",
+        desc: "Implementeert ILlmClient via LlmClientBase; 22 OpenWebUIClientTests valideren URL-validatie en response-mapping.",
+    },
+    {
+        id: "M-LlmSelector",
+        type: "mvp",
+        label: "LlmClientSelector",
+        name: "LlmClientSelector.cs — runtime backend-selectie op basis van ConnectionType",
+        status: "ok",
+        desc: "Factory die op basis van geconfigureerde ConnectionType de juiste ILlmClient-implementatie retourneert.",
     },
     {
         id: "M-Prompt",
@@ -577,20 +601,27 @@ export const EDGES = [
     ["OC-2", "M-Opts", "implements"],
     ["OC-3", "M-Defaults", "implements"],
     ["OC-3", "M-Ollama", "implements"],
+    ["OC-4", "M-LlmBase", "implements"],
     ["OC-4", "M-Ollama", "implements"],
+    ["OC-4", "M-OpenWebUI", "implements"],
     ["OC-4", "M-Defaults", "implements"],
     ["OC-5", "M-Prompt", "implements"],
     ["OC-5", "M-Opts", "implements"],
     ["OC-6", "M-Ctx", "implements"],
     ["OC-6", "M-Pkg", "implements"],
+    ["OC-6", "M-LlmSelector", "implements"],
     ["OC-7", "M-Pkg", "implements"],
+    ["OC-8", "M-LlmBase", "implements"],
     ["OC-8", "M-Ollama", "implements"],
+    ["OC-8", "M-OpenWebUI", "implements"],
     ["OC-8", "M-Chat", "implements"],
     ["OC-9", "M-Chat", "implements"],
 
     // FR / NFR → MVP-modules (getest door)
     ["FR-1", "M-Prompt", "tests"],
+    ["FR-1", "M-LlmBase", "tests"],
     ["FR-1", "M-Ollama", "tests"],
+    ["FR-1", "M-OpenWebUI", "tests"],
     ["FR-2", "M-Prompt", "tests"],
     ["FR-3", "M-Prompt", "tests"],
     ["FR-4", "M-Ctx", "tests"],
@@ -601,7 +632,9 @@ export const EDGES = [
     ["FR-8", "M-Opts", "tests"],
     ["NFR-1", "M-Pkg", "tests"],
     ["NFR-1", "M-Chat", "tests"],
+    ["NFR-4", "M-LlmBase", "tests"],
     ["NFR-4", "M-Ollama", "tests"],
+    ["NFR-4", "M-OpenWebUI", "tests"],
     ["NFR-5", "M-Chat", "tests"],
 
     // ===== Constraint → Norm =====

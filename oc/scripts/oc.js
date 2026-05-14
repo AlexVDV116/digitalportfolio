@@ -1,5 +1,6 @@
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
 import { initStoryMode } from "../../scripts/shared/storyMode.js";
+import { initThemeToggle } from "../../scripts/shared/themeToggle.js";
 import { OC_DETAILS, OC_ORDER } from "../data/ocDetails.js";
 import { NODES } from "../../traceability/data/graph.js";
 import { LITERATURE } from "../../theory/scripts/data/literature.js";
@@ -36,6 +37,7 @@ const requested = params.get("id");
 showOc(OC_ORDER.includes(requested) ? requested : "OC-1");
 
 initHamburgerNav();
+initThemeToggle();
 initStoryMode();
 initPresentationMode();
 

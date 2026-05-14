@@ -3,6 +3,7 @@ import { DIAGRAM } from "./diagram.js";
 import { NODE_INFO } from "./nodeInfo.js";
 import { initHamburgerNav } from "../scripts/shared/nav.js";
 import { initStoryMode } from "../scripts/shared/storyMode.js";
+import { initThemeToggle } from "../scripts/shared/themeToggle.js";
 import { METRICS } from "./shared/researchMetrics.js";
 
 initDiagramPage({
@@ -15,6 +16,7 @@ initDiagramPage({
 });
 
 initHamburgerNav();
+initThemeToggle();
 initStoryMode();
 
 // Sync KPI tiles from central config

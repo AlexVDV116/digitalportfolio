@@ -7,6 +7,9 @@
     <title>Tijdlijn & planning</title>
     <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
     <link rel="stylesheet" href="../styles/main.css" />
+    <script>/* Prevent flash */
+    (function(){var t=localStorage.getItem("theme");if(!t)t=window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)})();
+    </script>
 </head>
 
 <body>
@@ -21,6 +24,10 @@
                 </div>
 
                 <div class="topbar__actions">
+                    <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                        <span class="themeToggle__moon" aria-hidden="true">🌙</span>
+                        <span class="themeToggle__sun" aria-hidden="true">☀️</span>
+                    </button>
                     <button id="btnReset" class="btn" type="button">Reset filters</button>
                     <button id="btnStory" class="btn btn--story" type="button"
                         title="Verdedigings-tour (geleide flow)">🎓 Tour</button>

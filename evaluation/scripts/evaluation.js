@@ -1,8 +1,10 @@
 import { METRICS } from "../../scripts/shared/researchMetrics.js";
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
 import { initStoryMode } from "../../scripts/shared/storyMode.js";
+import { initThemeToggle } from "../../scripts/shared/themeToggle.js";
 
 initHamburgerNav();
+initThemeToggle();
 initStoryMode();
 initTabs();
 renderCoverCards();

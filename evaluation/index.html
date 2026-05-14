@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Evaluatie & Validatie — LocalLLM MVP</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
     <link rel="stylesheet" href="../styles/main.css" />
 </head>
 
@@ -13,10 +14,12 @@
         <div class="topbar__wrap">
             <div>
                 <h1 class="topbar__title">Evaluatie &amp; Validatie — LocalLLM MVP v0.3</h1>
-                <p class="topbar__subtitle">Technische validatie · Code coverage · OC-matrix · STRIDE · Gebruikersacceptatietest</p>
+                <p class="topbar__subtitle">Technische validatie · Code coverage · OC-matrix · STRIDE ·
+                    Gebruikersacceptatietest</p>
             </div>
             <div class="topbar__actions">
-                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓 Tour</button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓
+                    Tour</button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
                         aria-controls="navMenu" title="Menu">
@@ -79,12 +82,10 @@
 
         <!-- ── Tab navigation ─────────────────────────────────────────── -->
         <nav class="evalTabs" id="evalTabs" role="tablist" aria-label="Evaluatiedimensies">
-            <button class="evalTab is-active" role="tab" aria-selected="true"
-                    data-tab="technical" id="tab-technical">
+            <button class="evalTab is-active" role="tab" aria-selected="true" data-tab="technical" id="tab-technical">
                 Technische validatie
             </button>
-            <button class="evalTab" role="tab" aria-selected="false"
-                    data-tab="gat" id="tab-gat">
+            <button class="evalTab" role="tab" aria-selected="false" data-tab="gat" id="tab-gat">
                 Praktijkevaluatie (GAT)
             </button>
         </nav>
@@ -199,7 +200,8 @@
                     <div>
                         <h3 class="evalSubtitle">Aanvullende meetpunten</h3>
                         <ul class="evalList">
-                            <li><strong>Aanbevelingsscore (0–10):</strong> bereidheid om de extensie aan collega-ontwikkelaars aan te bevelen</li>
+                            <li><strong>Aanbevelingsscore (0–10):</strong> bereidheid om de extensie aan
+                                collega-ontwikkelaars aan te bevelen</li>
                             <li><strong>Eindcijfer (1–10):</strong> algemeen oordeel over de MVP</li>
                             <li><strong>Open feedback:</strong> meerwaarde, aandachtspunten, suggesties v1.0</li>
                             <li><strong>Ja/Nee:</strong> hergebruiksintentie · Defensie-haalbaarheid</li>
@@ -207,11 +209,16 @@
                         <div class="gatMeetpunten">
                             <h4 class="evalSubtitle" style="margin-top:16px">Openstaande meetpunten (DV5)</h4>
                             <ul class="evalList">
-                                <li><strong>NFR-2:</strong> empirische responstijdmeting op representatieve hardware (codellama:13b-instruct) — p50/p95 over 3 ronden van 5 prompts</li>
-                                <li><strong>OC-3:</strong> herhaalbaarheidstest — 3× identieke prompt (cold-start + warm-start), vergelijking op Levenshtein-afstand</li>
-                                <li><strong>OC-1/R7:</strong> observatie overreliance — wanneer worden AI-suggesties gekopieerd zonder review</li>
-                                <li><strong>OC-2:</strong> ContextMode-UX in de praktijk — SelectionOnly als default zonder frictie</li>
-                                <li><strong>OC-4:</strong> packet capture op localhost-endpoint gedurende één werkdag — scan op adressen buiten 127.0.0.1/::1/.localhost</li>
+                                <li><strong>NFR-2:</strong> empirische responstijdmeting op representatieve hardware
+                                    (codellama:13b-instruct) — p50/p95 over 3 ronden van 5 prompts</li>
+                                <li><strong>OC-3:</strong> herhaalbaarheidstest — 3× identieke prompt (cold-start +
+                                    warm-start), vergelijking op Levenshtein-afstand</li>
+                                <li><strong>OC-1/R7:</strong> observatie overreliance — wanneer worden AI-suggesties
+                                    gekopieerd zonder review</li>
+                                <li><strong>OC-2:</strong> ContextMode-UX in de praktijk — SelectionOnly als default
+                                    zonder frictie</li>
+                                <li><strong>OC-4:</strong> packet capture op localhost-endpoint gedurende één werkdag —
+                                    scan op adressen buiten 127.0.0.1/::1/.localhost</li>
                             </ul>
                         </div>
                     </div>
@@ -222,7 +229,8 @@
             <section class="evalSection" aria-label="GAT resultaten">
                 <h2 class="evalSection__title">GAT-resultaten</h2>
                 <p class="evalSection__sub">
-                    Resultaten worden live opgehaald uit het gepubliceerde Google Forms-spreadsheet — zodra deelnemers het formulier invullen, verschijnen de scores hier automatisch.
+                    Resultaten worden live opgehaald uit het gepubliceerde Google Forms-spreadsheet — zodra deelnemers
+                    het formulier invullen, verschijnen de scores hier automatisch.
                 </p>
 
                 <div id="gatResults" hidden>
@@ -242,8 +250,12 @@
                 <div class="gatEmpty" id="gatEmpty">
                     <div class="gatEmpty__icon">📊</div>
                     <p class="gatEmpty__title">Testperiode nog actief</p>
-                    <p>De gebruikersacceptatietest loopt gedurende een periode van 2 weken met 7 ontwikkelaars uit de doelgroep (JIVC SO&amp;I). Na de testperiode vullen de deelnemers het Google Forms-formulier in.</p>
-                    <p>Zodra deelnemers het Google Forms-formulier invullen, worden de scores automatisch opgehaald uit het gepubliceerde spreadsheet en hier weergegeven — zonder dat de codebase hoeft te worden bijgewerkt.</p>
+                    <p>De gebruikersacceptatietest loopt gedurende een periode van 2 weken met 7 ontwikkelaars uit de
+                        doelgroep (JIVC SO&amp;I). Na de testperiode vullen de deelnemers het Google Forms-formulier in.
+                    </p>
+                    <p>Zodra deelnemers het Google Forms-formulier invullen, worden de scores automatisch opgehaald uit
+                        het gepubliceerde spreadsheet en hier weergegeven — zonder dat de codebase hoeft te worden
+                        bijgewerkt.</p>
                 </div>
             </section>
 
@@ -257,10 +269,12 @@
                 <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek - Avans Hogeschool</p>
             </div>
             <div class="footer__links">
-                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="OneDrive">
                     <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
                 </a>
-                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer" aria-label="Jira">
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Jira">
                     <img src="../assets/icons/jira.svg" alt="Jira" />
                 </a>
                 <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">

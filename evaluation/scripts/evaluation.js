@@ -222,22 +222,27 @@ function showGatEmpty() {
 }
 
 function parseCsv(text) {
+    // RFC-4180 compliant: handles newlines and escaped quotes inside quoted fields.
     const rows = [];
-    const lines = text.split(/\r?\n/);
-    for (const line of lines) {
-        if (!line.trim()) continue;
-        const cols = [];
-        let cur = "", inQ = false;
-        for (let i = 0; i < line.length; i++) {
-            const ch = line[i];
-            if (ch === '"') { inQ = !inQ; continue; }
-            if (ch === "," && !inQ) { cols.push(cur); cur = ""; continue; }
+    let row = [], cur = "", inQ = false;
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (ch === '"') {
+            if (inQ && text[i + 1] === '"') { cur += '"'; i++; } // escaped ""
+            else inQ = !inQ;
+        } else if (ch === "," && !inQ) {
+            row.push(cur); cur = "";
+        } else if (ch === "\r" && text[i + 1] === "\n" && !inQ) {
+            i++; // skip \r, fall through to \n handler below
+            row.push(cur); cur = ""; rows.push(row); row = [];
+        } else if (ch === "\n" && !inQ) {
+            row.push(cur); cur = ""; rows.push(row); row = [];
+        } else {
             cur += ch;
         }
-        cols.push(cur);
-        rows.push(cols);
     }
-    return rows;
+    if (row.length || cur) { row.push(cur); rows.push(row); } // last row
+    return rows.filter(r => r.some(v => v.trim())); // drop fully-empty rows
 }
 
 function renderGatResults(rows) {

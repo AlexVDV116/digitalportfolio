@@ -1,5 +1,6 @@
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
 import { initStoryMode } from "../../scripts/shared/storyMode.js";
+import { initThemeToggle } from "../../scripts/shared/themeToggle.js";
 import { mountGraph } from "./graph.js";
 import { mountHeatmap } from "./heatmap.js";
 
@@ -347,4 +348,5 @@ if (new URLSearchParams(window.location.search).get("present") === "1") {
 }
 
 initHamburgerNav();
+initThemeToggle();
 initStoryMode();

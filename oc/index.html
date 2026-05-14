@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>OC Explorer — Bewijs-keten per ontwerpcriterium</title>
     <link rel="stylesheet" href="../styles/main.css" />
+    <script>/* Prevent flash */
+    (function(){var t=localStorage.getItem("theme");if(!t)t=window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)})();
+    </script>
 </head>
 
 <body>
@@ -18,6 +21,10 @@
                 </p>
             </div>
             <div class="topbar__actions">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                    <span class="themeToggle__moon" aria-hidden="true">🌙</span>
+                    <span class="themeToggle__sun" aria-hidden="true">☀️</span>
+                </button>
                 <a class="btn" href="../traceability/">Open graph</a>
                 <button id="btnPresent" class="btn btn--present" type="button" title="Presentatie-modus (P)">▶ Presentatie</button>
                 <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓 Tour</button>

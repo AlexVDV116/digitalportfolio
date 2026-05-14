@@ -102,7 +102,7 @@ export const STORY_SCENES = [
         chapter: "Conclusie",
         title: "Resultaat in cijfers",
         narration:
-            "9 ontwerpcriteria · 15 requirements · 75 MSTest-cases · alle OC's voldoen aan of gedeeltelijk aan hun acceptatievoorwaarden.",
+            "9 ontwerpcriteria · 15 requirements · 247 MSTest-cases · alle OC's voldoen aan of gedeeltelijk aan hun acceptatievoorwaarden.",
         path: "#glance",
     },
 ];

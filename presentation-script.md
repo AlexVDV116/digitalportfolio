@@ -42,7 +42,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** het "Onderzoek in één oogopslag"-blok met de vijf deelvraagkaartjes en KPI-tegels.
 
 **Spreektekst:**
-> *De vijf deelvragen volgen de logische opbouw van een ontwerpgericht onderzoek. DV1 inventariseert de beveiligings- en architectuureisen, vooral via documentanalyse van BIO, de D/300-serie, het DBB en de OWASP LLM Top 10. DV2 verzamelt functionele en niet-functionele requirements via stakeholderinterviews. DV3 doet een vergelijkende analyse van bestaande LLM-integraties om ontwerpprincipes te onderbouwen. DV4 ontwerpt de communicatie tussen IDE en LLM, inclusief trust boundaries. En DV5 evalueert de MVP. Rechts zien jullie de omvang van het onderzoek in cijfers: negen ontwerpcriteria, vijftien requirements en vijfenzeventig MSTest-cases. Dat zijn de meetpunten waarop ik bij de evaluatie steeds terugkom.*
+> *De vijf deelvragen volgen de logische opbouw van een ontwerpgericht onderzoek. DV1 inventariseert de beveiligings- en architectuureisen, vooral via documentanalyse van BIO, de D/300-serie, het DBB en de OWASP LLM Top 10. DV2 verzamelt functionele en niet-functionele requirements via stakeholderinterviews. DV3 doet een vergelijkende analyse van bestaande LLM-integraties om ontwerpprincipes te onderbouwen. DV4 ontwerpt de communicatie tussen IDE en LLM, inclusief trust boundaries. En DV5 evalueert de MVP. Rechts zien jullie de omvang van het onderzoek in cijfers: negen ontwerpcriteria, vijftien requirements en tweehonderdzevenenveertig MSTest-cases. Dat zijn de meetpunten waarop ik bij de evaluatie steeds terugkom.*
 
 **Overgang:**
 > *De onderbouwing van die deelvragen begint bij het theoretisch kader.*
@@ -165,10 +165,10 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 **Spreekdoel:** de commissie houdt drie cijfers en één boodschap over: het kader is compleet, de MVP realiseert het, en alles is herleidbaar.
 
-**Wat de commissie ziet:** landingspagina met de KPI-tegels — 9 OC, 15 requirements, 75 MSTest-cases, link naar de graph.
+**Wat de commissie ziet:** landingspagina met de KPI-tegels — 9 OC, 15 requirements, 247 MSTest-cases, link naar de graph.
 
 **Spreektekst:**
-> *Drie cijfers vatten het resultaat samen. Negen ontwerpcriteria die het toetsbare kader vormen. Vijftien requirements waarin die criteria geoperationaliseerd zijn. Vijfenzeventig MSTest-cases die bewijzen dat de implementatie aan haar verplichtingen voldoet. Alle MUST-eisen zijn gerealiseerd. Eén niet-functionele eis is gedeeltelijk — open en transparant gerapporteerd. Maar belangrijker dan de cijfers is wat dit portfolio laat zien: dat elk van die OC's, requirements en testresultaten herleidbaar is naar een specifieke deelvraag en naar specifieke literatuur. De centrale onderzoeksvraag is daarmee beantwoord, niet alleen met een werkende prototype, maar met een ontwerpkennis-keten die opdrachtgever en commissie kunnen verifiëren. Dat is wat traceability in dit onderzoek concreet betekent.*
+> *Drie cijfers vatten het resultaat samen. Negen ontwerpcriteria die het toetsbare kader vormen. Vijftien requirements waarin die criteria geoperationaliseerd zijn. Tweehonderdzevenenveertig MSTest-cases die bewijzen dat de implementatie aan haar verplichtingen voldoet. Alle MUST-eisen zijn gerealiseerd. Eén niet-functionele eis is gedeeltelijk — open en transparant gerapporteerd. Maar belangrijker dan de cijfers is wat dit portfolio laat zien: dat elk van die OC's, requirements en testresultaten herleidbaar is naar een specifieke deelvraag en naar specifieke literatuur. De centrale onderzoeksvraag is daarmee beantwoord, niet alleen met een werkende prototype, maar met een ontwerpkennis-keten die opdrachtgever en commissie kunnen verifiëren. Dat is wat traceability in dit onderzoek concreet betekent.*
 
 **Afsluiting:**
 > *Dat was de geleide tour. De rest van het portfolio — de tabellen, de uitvoeringsdiagrammen, het Plan van Aanpak — is beschikbaar om door te klikken bij vragen. Ik ben benieuwd naar jullie vragen.*

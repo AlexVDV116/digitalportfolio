@@ -169,22 +169,22 @@
                     <div class="protocolCard">
                         <div class="protocolCard__icon">👥</div>
                         <div class="protocolCard__label">Doelgroep</div>
-                        <div class="protocolCard__value">3–5 JIVC SO&amp;I<br>ontwikkelaars</div>
+                        <div class="protocolCard__value">7 JIVC SO&amp;I<br>ontwikkelaars</div>
                     </div>
                     <div class="protocolCard">
                         <div class="protocolCard__icon">⏱</div>
-                        <div class="protocolCard__label">Duur</div>
-                        <div class="protocolCard__value">1 werkdag<br>vrij gebruik</div>
+                        <div class="protocolCard__label">Testperiode</div>
+                        <div class="protocolCard__value">2 weken<br>vrij gebruik</div>
                     </div>
                     <div class="protocolCard">
                         <div class="protocolCard__icon">📋</div>
                         <div class="protocolCard__label">Methode</div>
-                        <div class="protocolCard__value">Gestructureerde<br>observatie + vragenlijst</div>
+                        <div class="protocolCard__value">Vrij gebruik +<br>Google Forms vragenlijst</div>
                     </div>
                     <div class="protocolCard">
                         <div class="protocolCard__icon">🎯</div>
                         <div class="protocolCard__label">Meetpunten</div>
-                        <div class="protocolCard__value">NFR-2 · OC-3-herhaling<br>OC-1 UX-effectiviteit</div>
+                        <div class="protocolCard__value">NFR-2 · OC-3 · OC-1/R7<br>OC-2 · OC-4 (egress)</div>
                     </div>
                 </div>
 
@@ -199,30 +199,31 @@
                     <div>
                         <h3 class="evalSubtitle">Aanvullende meetpunten</h3>
                         <ul class="evalList">
-                            <li><strong>NPS (0–10):</strong> aanbevelingsbereidheid aan collega-ontwikkelaars</li>
+                            <li><strong>Aanbevelingsscore (0–10):</strong> bereidheid om de extensie aan collega-ontwikkelaars aan te bevelen</li>
                             <li><strong>Eindcijfer (1–10):</strong> algemeen oordeel over de MVP</li>
                             <li><strong>Open feedback:</strong> meerwaarde, aandachtspunten, suggesties v1.0</li>
                             <li><strong>Ja/Nee:</strong> hergebruiksintentie · Defensie-haalbaarheid</li>
                         </ul>
+                        <div class="gatMeetpunten">
+                            <h4 class="evalSubtitle" style="margin-top:16px">Openstaande meetpunten (DV5)</h4>
+                            <ul class="evalList">
+                                <li><strong>NFR-2:</strong> empirische responstijdmeting op representatieve hardware (codellama:13b-instruct) — p50/p95 over 3 ronden van 5 prompts</li>
+                                <li><strong>OC-3:</strong> herhaalbaarheidstest — 3× identieke prompt (cold-start + warm-start), vergelijking op Levenshtein-afstand</li>
+                                <li><strong>OC-1/R7:</strong> observatie overreliance — wanneer worden AI-suggesties gekopieerd zonder review</li>
+                                <li><strong>OC-2:</strong> ContextMode-UX in de praktijk — SelectionOnly als default zonder frictie</li>
+                                <li><strong>OC-4:</strong> packet capture op localhost-endpoint gedurende één werkdag — scan op adressen buiten 127.0.0.1/::1/.localhost</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- CSV data loader -->
+            <!-- GAT resultaten (auto-geladen uit data/gat-results.csv) -->
             <section class="evalSection" aria-label="GAT resultaten">
                 <h2 class="evalSection__title">GAT-resultaten</h2>
                 <p class="evalSection__sub">
-                    Laad de Google Form CSV-export om scores en feedback te visualiseren.
+                    Resultaten worden automatisch geladen zodra <code>evaluation/data/gat-results.csv</code> beschikbaar is in de codebase.
                 </p>
-
-                <div class="gatUpload" id="gatUpload">
-                    <div class="gatUpload__icon">📂</div>
-                    <p class="gatUpload__text">
-                        Sleep de CSV-export hier naartoe<br>
-                        <span class="gatUpload__hint">of klik om een bestand te kiezen</span>
-                    </p>
-                    <input type="file" id="gatFile" accept=".csv" class="gatUpload__input" aria-label="Kies GAT CSV-bestand" />
-                </div>
 
                 <div id="gatResults" hidden>
                     <div class="coverCards" id="gatSummaryCards"></div>
@@ -239,8 +240,10 @@
                 </div>
 
                 <div class="gatEmpty" id="gatEmpty">
-                    <p>Nog geen data geladen — de gebruikersacceptatietest is gepland als onderdeel van DV5.</p>
-                    <p>Zodra de testperiode is afgerond, laad je de CSV-export hierboven om scores en feedback te visualiseren.</p>
+                    <div class="gatEmpty__icon">📊</div>
+                    <p class="gatEmpty__title">Testperiode nog actief</p>
+                    <p>De gebruikersacceptatietest loopt gedurende een periode van 2 weken met 7 ontwikkelaars uit de doelgroep (JIVC SO&amp;I). Na de testperiode vullen de deelnemers het Google Forms-formulier in.</p>
+                    <p>Zodra de resultaten beschikbaar zijn, worden deze als <code>gat-results.csv</code> aan de codebase toegevoegd en hier automatisch weergegeven.</p>
                 </div>
             </section>
 

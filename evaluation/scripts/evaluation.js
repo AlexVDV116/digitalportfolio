@@ -12,7 +12,7 @@ renderOcMatrix();
 renderStride();
 renderRiskTable();
 renderGatQuestions();
-initGatUpload();
+loadGatData();
 
 // ── Tabs ──────────────────────────────────────────────────────────────────
 
@@ -196,35 +196,24 @@ function renderGatQuestions() {
     document.getElementById("gatQuestions").innerHTML = `<div class="gatQList">${items}</div>`;
 }
 
-// ── GAT CSV upload & parsing ──────────────────────────────────────────────
+// ── GAT data loader (static CSV in codebase) ─────────────────────────────
 
-function initGatUpload() {
-    const zone = document.getElementById("gatUpload");
-    const input = document.getElementById("gatFile");
-
-    zone.addEventListener("click", () => input.click());
-    zone.addEventListener("dragover", e => { e.preventDefault(); zone.classList.add("is-over"); });
-    zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
-    zone.addEventListener("drop", e => {
-        e.preventDefault();
-        zone.classList.remove("is-over");
-        const file = e.dataTransfer.files[0];
-        if (file) readCsv(file);
-    });
-    input.addEventListener("change", () => {
-        if (input.files[0]) readCsv(input.files[0]);
-    });
+async function loadGatData() {
+    try {
+        const res = await fetch("data/gat-results.csv");
+        if (!res.ok) { showGatEmpty(); return; }
+        const text = await res.text();
+        const rows = parseCsv(text);
+        if (rows.length < 2) { showGatEmpty(); return; }
+        renderGatResults(rows.slice(1));
+    } catch {
+        showGatEmpty();
+    }
 }
 
-function readCsv(file) {
-    const reader = new FileReader();
-    reader.onload = e => {
-        const text = e.target.result;
-        const rows = parseCsv(text);
-        if (rows.length < 2) return;
-        renderGatResults(rows.slice(1)); // skip header
-    };
-    reader.readAsText(file, "utf-8");
+function showGatEmpty() {
+    document.getElementById("gatEmpty").hidden = false;
+    document.getElementById("gatResults").hidden = true;
 }
 
 function parseCsv(text) {
@@ -257,20 +246,27 @@ function renderGatResults(rows) {
     const grades = rows.map(r => parseFloat(r[gat.gradeCol])).filter(v => !isNaN(v));
     const npsScores = rows.map(r => parseFloat(r[gat.npsCol])).filter(v => !isNaN(v));
     const avgGrade = grades.length ? (grades.reduce((a, b) => a + b, 0) / grades.length).toFixed(1) : "–";
-    const promoters = npsScores.filter(v => v >= 9).length;
-    const detractors = npsScores.filter(v => v <= 6).length;
-    const nps = npsScores.length ? Math.round(((promoters - detractors) / npsScores.length) * 100) : "–";
 
-    document.getElementById("gatSummaryCards").innerHTML = [
-        { num: n, label: "Respondenten", sub: "ingevulde vragenlijsten" },
-        { num: avgGrade, label: "Gemiddeld eindcijfer", sub: "schaal 1–10" },
-        { num: typeof nps === "number" ? nps : "–", label: "NPS-score", sub: "aanbevelingsbereidheid" },
-    ].map(c => `
+    const avgNps = npsScores.length ? (npsScores.reduce((a, b) => a + b, 0) / npsScores.length).toFixed(1) : null;
+
+    document.getElementById("gatSummaryCards").innerHTML = `
         <div class="coverCard">
-            <div class="coverCard__num">${c.num}</div>
-            <div class="coverCard__label">${c.label}</div>
-            <div class="coverCard__sub">${c.sub}</div>
-        </div>`).join("");
+            <div class="coverCard__num">${n}</div>
+            <div class="coverCard__label">Respondenten</div>
+            <div class="coverCard__sub">ingevulde vragenlijsten</div>
+        </div>
+        <div class="coverCard coverCard--stars">
+            <div class="coverCard__num">${avgGrade}</div>
+            <div class="starRating">${renderStars(parseFloat(avgGrade), 10)}</div>
+            <div class="coverCard__label">Gemiddeld eindcijfer</div>
+            <div class="coverCard__sub">schaal 1–10</div>
+        </div>
+        <div class="coverCard coverCard--stars">
+            <div class="coverCard__num">${avgNps ?? "–"}</div>
+            <div class="starRating">${avgNps ? renderStars(parseFloat(avgNps), 10) : ""}</div>
+            <div class="coverCard__label">Aanbevelingsscore</div>
+            <div class="coverCard__sub">gemiddeld · schaal 0–10</div>
+        </div>`;
 
     // Likert bar chart
     renderGatBars(rows);
@@ -316,6 +312,15 @@ function renderGatFeedback(rows) {
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────
+
+function renderStars(score, max) {
+    const filled = Math.round(score);
+    let html = "";
+    for (let i = 1; i <= max; i++) {
+        html += `<span class="star ${i <= filled ? "star--filled" : "star--empty"}">★</span>`;
+    }
+    return html;
+}
 
 function esc(s) {
     return String(s ?? "").replace(/[&<>"']/g, m =>

@@ -113,6 +113,7 @@ function goToScene(idx) {
 
     if (target.pathname === cur || pathEquivalent(target.pathname, cur)) {
         // Same page — just update query/hash + redraw overlay
+        const prevSearch = window.location.search; // capture BEFORE replaceState
         const newSearch = target.search;
         const newHash = target.hash;
         history.replaceState(null, "", target.pathname + newSearch + newHash);
@@ -124,7 +125,7 @@ function goToScene(idx) {
         renderOverlay(idx);
         // If the page has query-driven views (graph presets etc.), force a soft reload
         // for pages where state isn't tracked via JS event listeners.
-        maybeApplyQueryState(target);
+        maybeApplyQueryState(target, prevSearch);
     } else {
         // Different page — navigate. The destination page will pick up ?story=N
         window.location.href = target.pathname + target.search + target.hash;
@@ -184,14 +185,15 @@ function renderOverlay(idx) {
     overlayEl.querySelector("#storyClose")?.addEventListener("click", stop);
 }
 
-function maybeApplyQueryState(target) {
+function maybeApplyQueryState(target, prevSearch) {
     // Some pages read URL state only at boot (e.g. graph readUrlState).
     // For story-internal navigation between scenes that target the SAME page
     // but different query (e.g. graph preset → heatmap on the same /traceability/),
     // we soft-reload so the page picks up the new state cleanly.
     const same = window.location.pathname === target.pathname;
     if (!same) return;
-    const params = new URLSearchParams(window.location.search);
+    // Use prevSearch (captured before replaceState) so we detect actual changes.
+    const params = new URLSearchParams(prevSearch ?? "");
     const interesting = ["focus", "filter", "preset", "tab", "id"];
     const changed = interesting.some(
         (k) => params.get(k) !== target.searchParams.get(k)

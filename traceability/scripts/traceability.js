@@ -13,6 +13,7 @@ const TAB_CONFIG = {
     normen: { kind: "table", title: "Beveiligingsnormen", file: "./data/Beveiligingsnormen.csv" },
     risico: { kind: "table", title: "Risicoregister", file: "./data/Risicoregister.csv" },
     todo: { kind: "table", title: "To-do", file: "./data/Todo.csv" },
+    changelog: { kind: "table", title: "Changelog", file: "./data/Changelog.csv" },
     graph: { kind: "graph", title: "Traceability graph" },
     heatmap: { kind: "heatmap", title: "OC × DV coverage" },
 };

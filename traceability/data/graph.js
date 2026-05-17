@@ -1,7 +1,7 @@
 /**
  * Curated traceability graph.
  *
- * Source: Master Traceability Matrix v3 (CSV's in ./data/).
+ * Source: Master Traceability Matrix v4 (CSV's in ./data/).
  * Node and edge structure is hand-curated because the CSV fields use
  * free-text references (e.g. "FR-5, NFR-4") that don't survive automatic
  * parsing, and because the graph benefits from typed semantic edges
@@ -141,7 +141,7 @@ export const NODES = [
         type: "oc",
         label: "OC-3",
         name: "Beheersing van modelstochasticiteit",
-        desc: "Temperature=0.2, TopP=0.9, NumPredict=2048 vastgezet; pinning-tests bewaken drift.",
+        desc: "Temperature=0.2, TopP=0.9, MaxTokensPreset (default Extended=4096) vastgezet; pinning-tests bewaken drift.",
         status: "ok",
     },
     {
@@ -157,7 +157,7 @@ export const NODES = [
         type: "oc",
         label: "OC-5",
         name: "Geen persistente opslag van gevoelige data",
-        desc: "In-memory history, no-op storage in OptionsPage, logger zonder content.",
+        desc: "In-memory history; reasoning/cancelled/incomplete niet in history; logger zonder content; config via DialogPage.",
         status: "ok",
     },
     {
@@ -181,7 +181,7 @@ export const NODES = [
         type: "oc",
         label: "OC-8",
         name: "Foutbestendige communicatie",
-        desc: "Typed exceptions, timeouts, linked CTS, graceful UI; geen freeze of crash bij faalpad.",
+        desc: "Typed exceptions, timeouts, linked CTS, SSE-foutpaden, streaming cancellation, graceful UI; geen freeze of crash bij faalpad.",
         status: "ok",
     },
     {
@@ -189,7 +189,7 @@ export const NODES = [
         type: "oc",
         label: "OC-9",
         name: "Transparante interactie",
-        desc: "Context-strip, status-dot, Markdown-rendering, read-only Model/URL/Mode-mirror.",
+        desc: "Context-strip, status-dot, Markdown-rendering, read-only settings-mirror, streaming-statussen, reasoning-expander.",
         status: "ok",
     },
 
@@ -283,8 +283,8 @@ export const NODES = [
         label: "NFR-3",
         name: "Streaming / tussenstatus",
         priority: "SHOULD",
-        status: "no",
-        desc: "Bewust buiten MVP-scope; NDJSON-parser is referentiearchitectuur-item C1.",
+        status: "ok",
+        desc: "Gerealiseerd in v0.4: SSE-streaming via StreamChatAsync; progressieve tokenweergave; statuslabels; legacy non-streaming blijft default.",
     },
     {
         id: "NFR-4",
@@ -343,7 +343,7 @@ export const NODES = [
         label: "R3",
         name: "OC onvoldoende toetsbaar",
         status: "ok",
-        desc: "Gemitigeerd: AppDefaults + pinning-tests; 247 MSTest-cases over 20 testklassen borgen OC-3.",
+        desc: "Gemitigeerd: AppDefaults + pinning-tests; 421 MSTest-cases over 26 testklassen borgen OC-3.",
     },
     {
         id: "R4",
@@ -382,7 +382,7 @@ export const NODES = [
         label: "R8",
         name: "Onbedoelde verwerking gevoelige info",
         status: "ok",
-        desc: "Gemitigeerd via OC-2/4/5: ContextMode-ceiling, URL-syntaxvalidatie, netwerksegmentatie, no-op storage.",
+        desc: "Gemitigeerd via OC-2/4/5: ContextMode-ceiling, URL-syntaxvalidatie, netwerksegmentatie, geen persistentie interactie-inhoud.",
     },
     {
         id: "R9",
@@ -390,7 +390,7 @@ export const NODES = [
         label: "R9",
         name: "Theorie–artefact koppeling niet traceerbaar",
         status: "ok",
-        desc: "Gemitigeerd via Master Traceability Matrix v3 (deze visualisatie).",
+        desc: "Gemitigeerd via Master Traceability Matrix v4 (deze visualisatie).",
     },
 
     // ===== Normatieve kaders (cluster-niveau) =====
@@ -430,15 +430,15 @@ export const NODES = [
         label: "LlmClientBase",
         name: "LlmClientBase.cs — abstracte basisklasse met URL-validatie (IsValidHttpUrl) en foutcontract",
         status: "ok",
-        desc: "ILlmClient → LlmClientBase: definieert CreateBaseUri, IsValidHttpUrl, SendChatAsync-contract. Gedeeld door OllamaClient en OpenWebUIClient.",
+        desc: "ILlmClient → LlmClientBase: definieert CreateBaseUri, SendChatAsync/StreamChatAsync-contract. Gedeeld door OpenAICompatibleClient en OpenWebUIClient.",
     },
     {
-        id: "M-Ollama",
+        id: "M-OpenAI",
         type: "mvp",
-        label: "OllamaClient",
-        name: "OllamaClient.cs — Ollama-backend via /api/chat met typed exceptions",
+        label: "OpenAICompatibleClient",
+        name: "OpenAICompatibleClient.cs — OpenAI-compatible backend via /v1/chat/completions met typed exceptions",
         status: "ok",
-        desc: "Implementeert ILlmClient via LlmClientBase; 18 + 19 = 37 OllamaClient-tests valideren URL, timeout, error-mapping.",
+        desc: "Implementeert ILlmClient via LlmClientBase; 18 + 19 + 10 + 33 = 80 tests valideren URL, timeout, error-mapping, SSE-streaming.",
     },
     {
         id: "M-OpenWebUI",
@@ -481,7 +481,7 @@ export const NODES = [
         id: "M-Opts",
         type: "mvp",
         label: "LocalLLMOptionsPage",
-        name: "LocalLLMOptionsPage.cs — DialogPage met no-op storage, Mode/URL/Model",
+        name: "LocalLLMOptionsPage.cs — DialogPage met Mode/URL/Model/ConnectionType/ApiToken/Streaming/Reasoning/MaxTokensPreset",
         status: "ok",
     },
     {
@@ -600,9 +600,9 @@ export const EDGES = [
     ["OC-2", "M-Ctx", "implements"],
     ["OC-2", "M-Opts", "implements"],
     ["OC-3", "M-Defaults", "implements"],
-    ["OC-3", "M-Ollama", "implements"],
+    ["OC-3", "M-OpenAI", "implements"],
     ["OC-4", "M-LlmBase", "implements"],
-    ["OC-4", "M-Ollama", "implements"],
+    ["OC-4", "M-OpenAI", "implements"],
     ["OC-4", "M-OpenWebUI", "implements"],
     ["OC-4", "M-Defaults", "implements"],
     ["OC-5", "M-Prompt", "implements"],
@@ -612,7 +612,7 @@ export const EDGES = [
     ["OC-6", "M-LlmSelector", "implements"],
     ["OC-7", "M-Pkg", "implements"],
     ["OC-8", "M-LlmBase", "implements"],
-    ["OC-8", "M-Ollama", "implements"],
+    ["OC-8", "M-OpenAI", "implements"],
     ["OC-8", "M-OpenWebUI", "implements"],
     ["OC-8", "M-Chat", "implements"],
     ["OC-9", "M-Chat", "implements"],
@@ -620,7 +620,7 @@ export const EDGES = [
     // FR / NFR → MVP-modules (getest door)
     ["FR-1", "M-Prompt", "tests"],
     ["FR-1", "M-LlmBase", "tests"],
-    ["FR-1", "M-Ollama", "tests"],
+    ["FR-1", "M-OpenAI", "tests"],
     ["FR-1", "M-OpenWebUI", "tests"],
     ["FR-2", "M-Prompt", "tests"],
     ["FR-3", "M-Prompt", "tests"],
@@ -633,7 +633,7 @@ export const EDGES = [
     ["NFR-1", "M-Pkg", "tests"],
     ["NFR-1", "M-Chat", "tests"],
     ["NFR-4", "M-LlmBase", "tests"],
-    ["NFR-4", "M-Ollama", "tests"],
+    ["NFR-4", "M-OpenAI", "tests"],
     ["NFR-4", "M-OpenWebUI", "tests"],
     ["NFR-5", "M-Chat", "tests"],
 

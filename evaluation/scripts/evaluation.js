@@ -47,7 +47,7 @@ function renderCoverCards() {
     const cards = [
         { num: t.total,         label: "MSTest-cases",          sub: `${t.classes} testklassen` },
         { num: `${t.projectLine}%`, label: "Project lijn-dekking", sub: `${t.coveredLines}/${t.totalLines} regels` },
-        { num: `${t.projectBlock}%`, label: "Project block-dekking", sub: `${t.coveredBlocks}/${t.totalBlocks} blocks` },
+        { num: `${t.projectBranch}%`, label: "Project branch-dekking", sub: `${t.coveredBranches}/${t.totalBranches} branches` },
         { num: `~${t.coreLine}%`,   label: "Core-scope lijn",    sub: `excl. View-laag` },
         { num: t.classesAt100,  label: "Klassen op 100% lijn",  sub: `van ${t.totalProductionClasses} totaal` },
     ];
@@ -64,10 +64,10 @@ function renderCoverCards() {
 function renderCoverBars() {
     const t = METRICS.tests;
     const bars = [
-        { label: "Project lijn-dekking",    pct: t.projectLine,  note: "VS2022 full solution" },
-        { label: "Project block-dekking",   pct: t.projectBlock, note: "VS2022 full solution" },
-        { label: "Core-scope lijn-dekking", pct: t.coreLine,     note: "excl. View-laag" },
-        { label: "Core-scope block-dekking",pct: t.coreBlock,    note: "excl. View-laag" },
+        { label: "Project lijn-dekking",     pct: t.projectLine,   note: "Coverlet/Cobertura" },
+        { label: "Project branch-dekking",  pct: t.projectBranch, note: "Coverlet/Cobertura" },
+        { label: "Core-scope lijn-dekking", pct: t.coreLine,      note: "excl. View-laag" },
+        { label: "Core-scope branch-dekking",pct: t.coreBranch,   note: "excl. View-laag" },
     ];
     document.getElementById("coverBars").innerHTML = bars.map(b => {
         const pct = parseFloat(b.pct);
@@ -121,12 +121,12 @@ function renderOcMatrix() {
     const evalNotes = {
         "OC-1": "Geen auto-apply; dismissbare banner + SessionDisclaimer Info-bubble",
         "OC-2": "ContextMode-ceiling (Off/SelectionOnly/IncludeMethod/IncludeFile); default SelectionOnly",
-        "OC-3": "AppDefaults: Temperature=0.2f, TopP=0.9f, NumPredict=2048; pinning-tests in CI",
+        "OC-3": "AppDefaults: Temperature=0.2f, TopP=0.9f, MaxTokensPreset (default Extended=4096); pinning-tests in CI",
         "OC-4": "LlmClientBase URL-syntaxvalidatie (IsValidHttpUrl); netwerklaag-segmentatie JIVC SO&I-LAN",
-        "OC-5": "In-memory only; no-op LoadSettings/SaveSettings; grep: 0 hits File.Write* in productiecode",
+        "OC-5": "In-memory only; reasoning/cancelled/incomplete niet in history; grep: 0 hits File.Write* voor interactie-inhoud",
         "OC-6": "LocalLLM.Core zonder VS-SDK refs; SettingsProxy als composition root; STRIDE EoP = Zeer laag",
         "OC-7": "Uitsluitend gedocumenteerde SDK-types; AllowsBackgroundLoading; KnownMonikers",
-        "OC-8": "Typed exceptions; 120s + 5s timeouts; linked CTS; top-level catch in AsyncRelayCommand",
+        "OC-8": "Typed exceptions; 120s + 5s timeouts; linked CTS; SSE-foutpaden; streaming cancellation; top-level catch",
         "OC-9": "Context-strip; status-dot; model-label per bubble; Markdig 0.40.0 Markdown-rendering",
     };
     const rows = METRICS.ocStatus.map(oc => `

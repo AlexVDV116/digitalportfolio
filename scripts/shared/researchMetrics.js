@@ -1,9 +1,9 @@
 /**
  * Centrale onderzoeksstatistieken — één plek voor alle cijfers.
  *
- * Bronnen (peildatum 11-05-2026):
- *   - Test Coverage Report v5 (Bijlage XI)
- *   - Evaluatierapport MVP v6 (Bijlage IX)
+ * Bronnen (peildatum 16-05-2026):
+ *   - Evaluatierapport MVP v7 (Bijlage IX) — §9
+ *   - Cobertura/Coverlet Test Coverage Report (30-04-2026)
  *   - OC_Traceability.csv, FR/NFR/Constraints CSVs, Risicoregister.csv
  *
  * Gebruik:
@@ -14,9 +14,9 @@ export const METRICS = {
 
     // ── MVP-versie ────────────────────────────────────────────────────────
     mvp: {
-        version: "v0.3",
-        evalVersion: "v6",
-        evalDate: "11 mei 2026",
+        version: "v0.4",
+        evalVersion: "v7",
+        evalDate: "16 mei 2026",
         framework: ".NET Framework 4.8 · C# 7.3 · MSTest 4.2.1",
     },
 
@@ -30,51 +30,57 @@ export const METRICS = {
         constraints: 2,
     },
 
-    // ── Tests & coverage (VS2022 Enterprise, 11-05-2026) ──────────────────
+    // ── Tests & coverage (Coverlet/Cobertura, 30-04-2026 + Evaluatierapport v7) ──
     tests: {
-        total: 247,
-        classes: 20,
-        // Project-totaal (volledige solution, incl. View-laag)
-        projectLine: 38.91,
-        projectBlock: 41.98,
-        totalLines: 1663,
-        coveredLines: 647,
-        totalBlocks: 2382,
-        coveredBlocks: 1000,
-        // Core-scope (unit-testbare klassen, excl. View-laag / async state-machines)
-        coreLine: 74,
-        coreBlock: 77,
-        coreLines: 879,
+        total: 421,
+        classes: 26,
+        // Project-totaal (Coverlet/Cobertura over 22 productie-klassen)
+        projectLine: 51.8,
+        projectBranch: 45.3,
+        totalLines: 833,
+        coveredLines: 432,
+        totalBranches: 346,
+        coveredBranches: 157,
+        // Core-scope (unit-testbare klassen, excl. View-laag)
+        coreLine: 78,
+        coreBranch: 73,
+        coreLines: 551,
         // Klassenverdeling
-        classesAt100: 18,
-        classesAt0: 15,
-        totalProductionClasses: 51,
+        classesAt100: 8,
+        classesAt0: 5,
+        totalProductionClasses: 22,
         // Per-klasse telling (TestMethod-instances + DataRow-expansies)
         classCounts: [
-            { name: "AppDefaultsTests",                   methods: 16, dataRows:  0, total: 16 },
-            { name: "ApplyTargetTests",                   methods: 14, dataRows:  0, total: 14 },
-            { name: "AsyncRelayCommandTests",             methods: 10, dataRows:  0, total: 10 },
-            { name: "ChatMessageDisplayTests",            methods: 11, dataRows:  0, total: 11 },
-            { name: "ChatMessageTests",                   methods:  6, dataRows:  0, total:  6 },
-            { name: "ChatWindowViewModelApplyTests",      methods: 11, dataRows:  0, total: 11 },
-            { name: "ChatWindowViewModelTests",           methods: 18, dataRows:  0, total: 18 },
-            { name: "ContextSelectionTests",              methods: 10, dataRows:  0, total: 10 },
-            { name: "EllipsisDetectorTests",              methods:  8, dataRows:  0, total:  8 },
-            { name: "InMemoryContextSettingsTests",       methods: 16, dataRows:  0, total: 16 },
-            { name: "IndentationAdjusterTests",           methods: 10, dataRows:  0, total: 10 },
-            { name: "LanguageMatcherTests",               methods:  9, dataRows:  0, total:  9 },
-            { name: "LineDiffTests",                      methods: 13, dataRows:  0, total: 13 },
-            { name: "OllamaClientArgumentTests",          methods: 10, dataRows:  9, total: 19 },
-            { name: "OllamaClientSendChatTests",          methods: 10, dataRows:  0, total: 10 },
-            { name: "OllamaClientTests",                  methods:  8, dataRows: 10, total: 18 },
-            { name: "OpenWebUIClientTests",               methods: 22, dataRows:  0, total: 22 },
-            { name: "PromptOrchestratorTests",            methods: 12, dataRows:  0, total: 12 },
-            { name: "PromptOrchestratorTruncationTests",  methods:  7, dataRows:  0, total:  7 },
-            { name: "RelayCommandTests",                  methods:  7, dataRows:  0, total:  7 },
+            { name: "AppDefaultsTests",                      methods: 16, dataRows:  0, total: 16 },
+            { name: "ApplyTargetTests",                      methods: 14, dataRows:  0, total: 14 },
+            { name: "AsyncRelayCommandTests",                methods: 10, dataRows:  0, total: 10 },
+            { name: "ChatMessageDisplayTests",               methods: 11, dataRows:  0, total: 11 },
+            { name: "ChatMessageDisplayStreamingTests",      methods: 55, dataRows:  0, total: 55 },
+            { name: "ChatMessageTests",                      methods:  6, dataRows:  0, total:  6 },
+            { name: "ChatWindowViewModelApplyTests",         methods: 11, dataRows:  0, total: 11 },
+            { name: "ChatWindowViewModelTests",              methods: 18, dataRows:  0, total: 18 },
+            { name: "ChatWindowViewModelStreamingTests",     methods: 53, dataRows:  0, total: 53 },
+            { name: "ContextSelectionTests",                 methods: 10, dataRows:  0, total: 10 },
+            { name: "EllipsisDetectorTests",                 methods:  8, dataRows:  0, total:  8 },
+            { name: "InMemoryContextSettingsTests",          methods: 26, dataRows:  0, total: 26 },
+            { name: "IndentationAdjusterTests",              methods: 10, dataRows:  0, total: 10 },
+            { name: "LanguageMatcherTests",                  methods:  9, dataRows:  0, total:  9 },
+            { name: "LineDiffTests",                         methods: 13, dataRows:  0, total: 13 },
+            { name: "LmStudioLiveStreamingTests",            methods:  8, dataRows:  0, total:  8 },
+            { name: "OllamaLiveStreamingTests",              methods:  8, dataRows:  0, total:  8 },
+            { name: "OpenAICompatibleClientArgumentTests",   methods: 10, dataRows:  9, total: 19 },
+            { name: "OpenAICompatibleClientSendChatTests",   methods: 10, dataRows:  0, total: 10 },
+            { name: "OpenAICompatibleClientStreamChatTests", methods: 33, dataRows:  0, total: 33 },
+            { name: "OpenAICompatibleClientTests",           methods:  8, dataRows: 10, total: 18 },
+            { name: "OpenWebUIClientTests",                  methods: 22, dataRows:  0, total: 22 },
+            { name: "PromptOrchestratorTests",               methods: 12, dataRows:  0, total: 12 },
+            { name: "PromptOrchestratorTruncationTests",     methods:  7, dataRows:  0, total:  7 },
+            { name: "ReasoningModeControlSpike",             methods:  7, dataRows:  0, total:  7 },
+            { name: "RelayCommandTests",                     methods:  7, dataRows:  0, total:  7 },
         ],
     },
 
-    // ── OC-naleving (Evaluatierapport v6) ─────────────────────────────────
+    // ── OC-naleving (Evaluatierapport v7) ─────────────────────────────────
     ocStatus: [
         { id: "OC-1", label: "Human-in-the-loop",              status: "Ja" },
         { id: "OC-2", label: "Contextbeperking",               status: "Ja" },
@@ -87,13 +93,13 @@ export const METRICS = {
         { id: "OC-9", label: "Transparante interactie",        status: "Ja" },
     ],
 
-    // ── STRIDE-analyse (Evaluatierapport v6 §5.2) ─────────────────────────
+    // ── STRIDE-analyse (Evaluatierapport v7 §8.2) ─────────────────────────
     stride: [
-        { threat: "Spoofing",              mitigation: "URL-validatie; connection-status UI; auto-refresh",             residual: "Laag" },
-        { threat: "Tampering",             mitigation: "In-memory; typed JSON; SettingsProxy; read-only UI",             residual: "Zeer laag" },
-        { threat: "Repudiation",           mitigation: "ExtensionLogger logt tijd + lengte (geen content); rol + tijdstip in bubble", residual: "Matig" },
-        { threat: "Information Disclosure",mitigation: "URL-validatie; geen persistence; ContextMode-ceiling; 500-regel cap; context-strip; no-op storage", residual: "Laag" },
-        { threat: "Denial of Service",     mitigation: "120s ChatRequestTimeout; 5s AvailabilityProbeTimeout; linked CTS; async UI; top-level catch", residual: "Zeer laag" },
+        { threat: "Spoofing",              mitigation: "URL-validatie; connection-status UI; auto-refresh",             residual: "Zeer laag" },
+        { threat: "Tampering",             mitigation: "In-memory; typed JSON (Newtonsoft); SettingsProxy; read-only UI", residual: "Laag" },
+        { threat: "Repudiation",           mitigation: "ExtensionLogger logt tijd + lengte (geen content); rol + tijdstip in bubble", residual: "Gedeeltelijk" },
+        { threat: "Information Disclosure",mitigation: "URL-validatie; geen persistentie interactie-inhoud; ContextMode-ceiling; 500-regel cap; context-strip; reasoning niet in history", residual: "Laag" },
+        { threat: "Denial of Service",     mitigation: "120s ChatRequestTimeout; 5s AvailabilityProbeTimeout; streaming cancellation; per-request CTS; async UI; top-level catch", residual: "Laag" },
         { threat: "Elevation of Privilege",mitigation: "LLM-server als apart OS-proces; geen FS-toegang; geen reflection/dynamic compilation", residual: "Zeer laag" },
     ],
 

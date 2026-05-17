@@ -16,7 +16,8 @@ export const OC_DETAILS = {
     "OC-1": {
         designDecision:
             "LLM-output altijd als suggestie/preview; geen autonome code-injectie. " +
-            "Bewuste keuze om geen IVsTextManager.ReplaceText of DTE.ActiveDocument.Selection te gebruiken.",
+            "Bewuste keuze om geen IVsTextManager.ReplaceText of DTE.ActiveDocument.Selection te gebruiken. " +
+            "In v0.4 versterkt: Apply uitgeschakeld tijdens streaming, na cancellation, bij incomplete output en bij niet-normale finish_reason.",
         origin: {
             dvs: ["DV5"],
             insights: ["IN_HITL"],
@@ -37,19 +38,28 @@ export const OC_DETAILS = {
         implementation: [
             {
                 module: "ChatWindowViewModel.cs",
-                lines: "r.83 (DisplayMessages); r.153–173 (IsDisclaimerVisible); r.224 (DismissDisclaimerCommand); r.238/r.423 (SessionDisclaimer)",
+                lines: "DisplayMessages; IsDisclaimerVisible; DismissDisclaimerCommand; SessionDisclaimer; SendStreamingAsync (Apply-safety)",
+            },
+            {
+                module: "ChatMessageDisplay.cs",
+                lines: "CanApply: !IsStreaming && !IsCancelled && !IsIncomplete + FinishReason-controle",
             },
             {
                 module: "ChatToolWindowControl.xaml",
-                lines: "r.401–442 — banner 'AI-generated — human review required' + ✕-knop",
+                lines: "Banner 'AI-generated — human review required' + ✕-knop",
             },
         ],
         validation: {
             tests: [
                 {
                     name: "Code-grep editor-manipulatie API's",
-                    result: "0 hits (DV5 v3 §4.2.1)",
+                    result: "0 hits (DV5 v7 §4.1)",
                     type: "static",
+                },
+                {
+                    name: "ChatWindowViewModelStreamingTests",
+                    result: "53 cases — streaming routing, Apply-safety, cancellation",
+                    type: "unit",
                 },
                 {
                     name: "Gebruikersevaluatie banner-effectiviteit",
@@ -58,7 +68,7 @@ export const OC_DETAILS = {
                 },
             ],
             mitigatesRisks: ["R7", "R9"],
-            evalRef: "DV5 v3 §4.2.1, §4.6",
+            evalRef: "DV5 v7 §4.1, §7",
         },
     },
 
@@ -110,7 +120,7 @@ export const OC_DETAILS = {
                 },
                 {
                     name: "InMemoryContextSettingsTests",
-                    result: "16 cases — settings persistence",
+                    result: "26 cases — settings persistence, streaming/reasoning properties",
                     type: "unit",
                 },
             ],
@@ -121,8 +131,9 @@ export const OC_DETAILS = {
 
     "OC-3": {
         designDecision:
-            "Niet-deterministische modelparameters (Temperature=0.2f, TopP=0.9f, NumPredict=2048) " +
-            "vast ingesteld in AppDefaults.FixedOptions. Pinning-tests bewaken drift.",
+            "Niet-deterministische modelparameters (Temperature=0.2f, TopP=0.9f) vast in AppDefaults. " +
+            "MaxTokensPreset biedt drie gecontroleerde output-budgetten (Standard=2048, Extended=4096, Large=8192) " +
+            "i.p.v. vast NumPredict. Default Extended. Pinning-tests bewaken drift.",
         origin: {
             dvs: ["DV3"],
             insights: ["IN_STOCH"],
@@ -140,18 +151,18 @@ export const OC_DETAILS = {
         implementation: [
             {
                 module: "AppDefaults.cs",
-                lines: "r.98 (Temperature=0.2f); r.105 (TopP=0.9f); r.111 (NumPredict=2048)",
+                lines: "Temperature=0.2f; TopP=0.9f; DefaultMaxTokensPreset=Extended; MapMaxTokens()",
             },
             {
-                module: "OllamaClient.cs",
-                lines: "r.76–81 (FixedOptions static readonly); r.151 (assignatie in SendChatAsync)",
+                module: "LlmClientBase.cs",
+                lines: "BuildRequestJson en BuildStreamRequestJson gebruiken dezelfde AppDefaults-waarden",
             },
         ],
         validation: {
             tests: [
                 {
                     name: "AppDefaultsTests",
-                    result: "16 cases — pinning + integratie OllamaClient/PromptOrchestrator",
+                    result: "16 cases — pinning waarden + preset-mapping + integratie",
                     type: "unit",
                 },
                 {
@@ -167,10 +178,11 @@ export const OC_DETAILS = {
 
     "OC-4": {
         designDecision:
-            "Tweelagenmodel voor offline verwerking: (1) URL-syntaxvalidatie in LlmClientBase.IsValidHttpUrl " +
-            "(Uri.TryCreate + http/https-scheme check), gedeeld door OllamaClient en OpenWebUIClient; " +
+            "Tweelagenmodel voor offline verwerking: (1) URL-syntaxvalidatie in LlmClientBase.CreateBaseUri " +
+            "(Uri.TryCreate + http/https-scheme check), gedeeld door OpenAICompatibleClient en OpenWebUIClient; " +
             "(2) endpoint-allow-listing op netwerklaag (firewall + JIVC SO&I-LAN-segmentatie). " +
-            "IsLocalhost-restrictie is in v0.2→v0.3 verwijderd; endpoint-keuze is beheerverantwoordelijkheid.",
+            "Twee adapterprofielen: OpenAICompatibleClient (POST /v1/chat/completions, geen auth) en " +
+            "OpenWebUIClient (POST /api/chat/completions, Bearer-token). Endpoint-keuze is beheerverantwoordelijkheid.",
         origin: {
             dvs: ["DV1"],
             insights: ["IN_OFFLINE"],
@@ -192,10 +204,10 @@ export const OC_DETAILS = {
         implementation: [
             {
                 module: "LlmClientBase.cs",
-                lines: "IsValidHttpUrl (Uri.TryCreate + http/https-scheme); CreateBaseUri — gedeeld door beide backends",
+                lines: "CreateBaseUri (Uri.TryCreate + http/https-scheme) — gedeeld door beide backends",
             },
             {
-                module: "OllamaClient.cs + OpenWebUIClient.cs",
+                module: "OpenAICompatibleClient.cs + OpenWebUIClient.cs",
                 lines: "Implementaties van ILlmClient via LlmClientBase; URL-validatie geërfd; 100% lijn- en block-dekking",
             },
             {
@@ -204,14 +216,14 @@ export const OC_DETAILS = {
             },
             {
                 module: "AppDefaults.cs",
-                lines: "OllamaBaseUrl = http://localhost:11434 (dev-default)",
+                lines: "DefaultBaseUrl = http://localhost:11434 (dev-default)",
             },
         ],
         validation: {
             tests: [
                 {
-                    name: "OllamaClientTests + OllamaClientArgumentTests + OpenWebUIClientTests",
-                    result: "59 URL-validatietests: alle geldige http(s)-URLs geaccepteerd; ongeldige (blanks, malformed, niet-http(s)) geweigerd",
+                    name: "OpenAICompatibleClientTests + ArgumentTests + StreamChatTests + OpenWebUIClientTests",
+                    result: "63 URL-validatietests: alle geldige http(s)-URLs geaccepteerd; ongeldige (blanks, malformed, niet-http(s)) geweigerd",
                     type: "unit",
                 },
                 {
@@ -227,8 +239,11 @@ export const OC_DETAILS = {
 
     "OC-5": {
         designDecision:
-            "Geen persistente opslag van prompts/output. ChatHistory is List<ChatMessage> in-memory; " +
-            "LocalLLMOptionsPage overschrijft LoadSettingsToStorage/SaveSettingsToStorage met no-op. " +
+            "Geen persistente opslag van interactie-inhoud (prompts, codecontext, chathistorie, modeloutput). " +
+            "ChatHistory is List<ChatMessage> in-memory. Reasoning_content, cancelled en incomplete responses " +
+            "worden niet als assistant-turn in history opgenomen. " +
+            "Configuratie (Mode, ModelName, BaseUrl, ConnectionType, ApiToken, streaming/reasoning/MaxTokensPreset) " +
+            "wordt via standaard DialogPage-persistentie opgeslagen. " +
             "ExtensionLogger schrijft alleen tijd/lengte/status, geen inhoud.",
         origin: {
             dvs: ["DV1"],
@@ -249,7 +264,11 @@ export const OC_DETAILS = {
         implementation: [
             {
                 module: "PromptOrchestrator.cs",
-                lines: "r.48 (_history List<ChatMessage>) — in-memory",
+                lines: "_history List<ChatMessage> — in-memory; RecordAssistantReply alleen bij complete succesvolle responses",
+            },
+            {
+                module: "ChatWindowViewModel.cs",
+                lines: "SendStreamingAsync: reasoning, cancelled en incomplete responses niet in history opgenomen",
             },
             {
                 module: "ExtensionLogger.cs",
@@ -257,24 +276,29 @@ export const OC_DETAILS = {
             },
             {
                 module: "LocalLLMOptionsPage.cs",
-                lines: "r.135–148 — no-op overrides van Load/SaveSettingsToStorage",
+                lines: "Standaard DialogPage-persistentie voor configuratie; API-token als plaintext in per-user VS-profiel",
             },
             {
                 module: "ChatToolWindowControl.xaml",
-                lines: "r.728–732 — UI-tekst 'History is in-memory and not saved'",
+                lines: "UI-tekst 'Chat history is not saved between sessions'",
             },
         ],
         validation: {
             tests: [
                 {
                     name: "Statische codescan",
-                    result: "Grep over solution: 0 hits op File.Write* / StreamWriter / FileStream / WritableSettingsStore / BinaryFormatter in productiecode",
+                    result: "Grep over solution: 0 hits op File.Write* / StreamWriter / FileStream / BinaryFormatter voor opslag van interactie-inhoud",
                     type: "static",
                 },
                 {
-                    name: "Experimental-hive restart-test (P3)",
-                    result: "Bevestigt dat OptionsPage-waarden niet persisteren na VS-restart",
+                    name: "Experimental-hive restart-test (P2)",
+                    result: "Chat-historie verdwijnt bij IDE-restart; OptionsPage-waarden behouden via DialogPage-persistentie",
                     type: "manual",
+                },
+                {
+                    name: "ChatWindowViewModelStreamingTests",
+                    result: "53 cases — history-regels bij streaming: reasoning, cancelled, incomplete niet opgenomen",
+                    type: "unit",
                 },
             ],
             mitigatesRisks: ["R8"],
@@ -393,8 +417,10 @@ export const OC_DETAILS = {
 
     "OC-8": {
         designDecision:
-            "Typed exceptions (OllamaUnavailableException, OllamaResponseException) maken " +
+            "Typed exceptions (LlmUnavailableException, LlmResponseException) maken " +
             "error-paden testbaar. LlmClientBase definieert URL-validatie en foutcontract voor beide backends. " +
+            "In v0.4 uitgebreid met SSE-foutpaden: malformed SSE → IsIncomplete, non-SSE → FallbackToNonStreaming, " +
+            "cancellation tijdens streaming, finish_reason-afhandeling. " +
             "Linked CancellationTokenSource met 5s timeout op IsAvailableAsync. " +
             "AsyncRelayCommand top-level catch beschermt async-void.",
         origin: {
@@ -416,30 +442,35 @@ export const OC_DETAILS = {
         implementation: [
             {
                 module: "LlmClientBase.cs",
-                lines: "IsValidHttpUrl + CreateBaseUri — gedeeld validatie- en foutcontract voor OllamaClient en OpenWebUIClient",
+                lines: "CreateBaseUri, SendChatAsync, StreamChatAsync, PostStreamAsync, ReadSseStreamAsync — gedeeld validatie- en foutcontract",
             },
             {
-                module: "OllamaClient.cs",
-                lines: "r.18–35 (typed exceptions); r.65–68 (HttpClient + 120s timeout); r.125–229 (SendChatAsync exception-mapping); r.240–258 (IsAvailableAsync linked CTS)",
+                module: "OpenAICompatibleClient.cs",
+                lines: "Typed exceptions (LlmUnavailableException, LlmResponseException); HttpClient + 120s timeout; exception-mapping; IsAvailableAsync linked CTS",
             },
             {
                 module: "OpenWebUIClient.cs",
-                lines: "Analoge foutafhandeling via LlmClientBase; OpenAI-compatible response-mapping",
+                lines: "Analoge foutafhandeling via LlmClientBase; Bearer-token auth; OpenAI-compatible response-mapping",
             },
             {
                 module: "ChatWindowViewModel.cs",
-                lines: "r.267–282 (OnSettingsChanged + auto-refresh); r.326–375 (try/catch)",
+                lines: "OnSettingsChanged + auto-refresh; typed catch-blokken voor streaming + non-streaming; ClearHistoryOnBackendChange",
             },
             {
                 module: "AsyncRelayCommand.cs",
-                lines: "r.42–119 — top-level catch + isExecuting-guard",
+                lines: "Top-level catch + isExecuting-guard",
             },
         ],
         validation: {
             tests: [
                 {
-                    name: "OllamaClientTests + OllamaClientSendChatTests",
-                    result: "Dekken timeout / 4xx / 5xx / cancel / malformed JSON voor Ollama-backend",
+                    name: "OpenAICompatibleClientTests + SendChatTests",
+                    result: "Dekken timeout / 4xx / 5xx / cancel / malformed JSON",
+                    type: "unit",
+                },
+                {
+                    name: "OpenAICompatibleClientStreamChatTests",
+                    result: "33 cases — SSE, malformed JSON, missing [DONE], non-SSE fallback, cancellation, finish_reason",
                     type: "unit",
                 },
                 {
@@ -449,7 +480,7 @@ export const OC_DETAILS = {
                 },
                 {
                     name: "Foutinjectietest",
-                    result: "Ollama-stop, timeout, 4xx, 5xx, malformed JSON — alle paden graceful; IDE blijft bruikbaar",
+                    result: "Timeout, 4xx, 5xx, malformed JSON, malformed SSE, non-SSE fallback — alle paden graceful; IDE blijft bruikbaar",
                     type: "integration",
                 },
             ],
@@ -461,8 +492,10 @@ export const OC_DETAILS = {
     "OC-9": {
         designDecision:
             "Context-strip toont vorm/herkomst vóór verzending. Model-label op elk antwoord. " +
-            "Status-dot in vier kleuren. Read-only settings-mirror met ⚙ Open settings-knop. " +
-            "Markdown-rendering via Markdig 0.40.0 attached property.",
+            "Status-dot in vier kleuren. Read-only settings-mirror (Model/Max tokens/Context/Streaming/Reasoning) " +
+            "met ⚙ Open settings-knop. Markdown-rendering via Markdig 0.40.0 attached property. " +
+            "In v0.4: streaming-statussen (streaming...), (cancelled), (incomplete); reasoning-expander " +
+            "toont reasoning_content ingeklapt; automatische history-clear bij model/backendwijziging met infomelding.",
         origin: {
             dvs: ["DV5"],
             insights: ["IN_HITL", "IN_COMMS"],
@@ -482,11 +515,19 @@ export const OC_DETAILS = {
         implementation: [
             {
                 module: "Converters.cs",
-                lines: "r.53–80 (MessageHeaderConverter)",
+                lines: "MessageHeaderConverter",
             },
             {
                 module: "ChatToolWindowControl.xaml",
-                lines: "r.521–540 (context-strip); r.564–655 (read-only Model/URL/Mode-mirror); r.466–494 (status-dot DataTriggers); r.250–263 (RichTextBox)",
+                lines: "Context-strip; read-only settings-mirror (Model/Max tokens/Context/Streaming/Reasoning + ⚙-deeplink); status-dot DataTriggers; RichTextBox",
+            },
+            {
+                module: "ChatMessageDisplay.cs",
+                lines: "IsStreaming, IsCancelled, IsIncomplete, HasHiddenReasoning, ReasoningContent properties",
+            },
+            {
+                module: "ChatWindowViewModel.cs",
+                lines: "ClearHistoryOnBackendChange met infomelding en SessionDisclaimer-herstel",
             },
             {
                 module: "MarkdownHelper.cs",

@@ -56,7 +56,7 @@ export const STORY_SCENES = [
         chapter: "Ontwerpcriteria",
         title: "Bewijs-keten OC-4 (Volledig offline)",
         narration:
-            "Vanuit DV1 + BIO 13.1 + OWASP LLM06 → C-1/C-2/NFR-1 → LlmClientBase.IsValidHttpUrl + netwerklaag-segmentatie → 47 URL-tests → mitigeert R8.",
+            "Vanuit DV1 + BIO 13.1 + OWASP LLM06 → C-1/C-2/NFR-1 → LlmClientBase.CreateBaseUri + netwerklaag-segmentatie → 63 URL-tests → mitigeert R8.",
         path: "oc/?id=OC-4",
     },
     {

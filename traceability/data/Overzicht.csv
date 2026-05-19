@@ -1,21 +1,21 @@
-Master Traceability Matrix v4;
-Project LocalLLM — Visual Studio 2022 extensie met lokale LLM (OpenAI-compatible / Open WebUI) in air-gapped Defensie-omgeving;
+﻿Master Traceability Matrix v3.1;
+Bijlage I - Project LocalLLM — Visual Studio 2022 extensie met lokale LLM (Ollama / Open WebUI) in air-gapped Defensie-omgeving;
 ;
 Opdrachtgever;Ministerie van Defensie / JIVC SO&I
 Opdrachtnemer;Alex van der Velden (HBO Informatica, Avans Hogeschool)
 Begeleiders;Rutger Bos (bedrijfsbegeleider) & Patrick Ubags en Maurice van Haperen (Avans)
-Versie;v4
-Datum;16 mei 2026
+Versie;v3.1
+Datum;17/May/26
 ;
 Tabbladen;
-OC Traceability;Koppeling OC-1 t/m OC-9 aan requirements, theoretische basis, normatieve basis, status en bewijs (v0.4-regelreferenties).
-FR Traceability;Functionele requirements FR-1 t/m FR-8: prioriteit, status, implementatielocatie, testresultaat. FR-5 versterkt in v0.4 (Apply-safety streaming). FR-8 uitgebreid met streaming/reasoning/MaxTokensPreset.
-NFR Traceability;Niet-functionele requirements NFR-1 t/m NFR-5: prioriteit, status, testmethode. NFR-3 (streaming) is in v0.4 volledig gerealiseerd. NFR-2 blijft praktijkmeting in DV5.
-Constraints;Harde constraints C-1 (lokaal) en C-2 (air-gapped) met beheersmaatregel en bewijs. v0.4: OpenAICompatibleClient + OpenWebUIClient via LlmClientBase.
-Beveiligingsnormen;D/300-serie, BIO, DBB en OWASP LLM Top 10 — relevantie en MVP-toetsing. v0.4: streaming/reasoning uitbreiding in STRIDE en OWASP-analyses.
+OC Traceability;Koppeling OC-1 t/m OC-9 aan requirements, theoretische basis, normatieve basis, status en bewijs (v0.3-regelreferenties).
+FR Traceability;Functionele requirements FR-1 t/m FR-8: prioriteit, status, implementatielocatie, testresultaat. FR-8 is in v0.2 voor het eerst volledig gedekt.
+NFR Traceability;Niet-functionele requirements NFR-1 t/m NFR-5: prioriteit, status, testmethode. NFR-2 blijft praktijkmeting in DV5.
+Constraints;"Harde constraints C-1 (lokaal) en C-2 (air-gapped) met beheersmaatregel en bewijs. v0.3: IsLocalhost verwijderd; URL-syntaxvalidatie via LlmClientBase."
+Beveiligingsnormen;D/300-serie, BIO, DBB en OWASP LLM Top 10 — relevantie en MVP-toetsing. LLM09 is in v0.2 verschoven naar Ja.
 Risicoregister;R1 t/m R9 uit DV1 met actueel niveau, beheersmaatregel en restrisico. R7 is in v0.2 verschoven naar Gemitigeerd.
-To do;Afgeronde aanbevelingen (A1, A2, B1, B2, B3, C4, C10, C11, C13, C16–C20) en openstaande referentiearchitectuur-items (C3, C5–C9, C12, C14, C15).
-;
+To do;Afgeronde aanbevelingen (A1, A2, B1, B2, B3, C4, C10, C11, C13) en openstaande prioriteit-1 (P1) en referentiearchitectuur-items (C1–C15).
+Changelog MVP;Toelichting op grote wijzigingen in nieuwe versies van de MVP.
 Legenda;
 Ja / Voldoet / Gemitigeerd / Done;Criterium is volledig aangetoond in artefact en/of broncode.
 Gedeeltelijk / Open / To do;"Criterium deels afgedekt; aanbeveling of aanvullend bewijs vereist; moet nog gedaan worden."

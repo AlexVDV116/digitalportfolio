@@ -2677,6 +2677,154 @@ body.is-presenting .storyOverlay {
     table-layout: auto;
 }
 
+.evalTable--compact {
+    font-size: var(--text-sm);
+}
+.evalTable--compact th,
+.evalTable--compact td {
+    padding: var(--sp-1) var(--sp-2);
+}
+
+/* Coverage row highlights */
+.coverRow--good td:first-child { border-left: 3px solid var(--color-good); }
+.coverRow--mid td:first-child  { border-left: 3px solid var(--color-warn); }
+.coverRow--zero td { color: var(--muted); }
+
+/* Test strategy section */
+.testStrategy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+.testStrategy__intro p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--ink);
+}
+
+.strategyLayers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+}
+
+.strategyLayer {
+    display: flex;
+    gap: var(--sp-3);
+    padding: var(--sp-3);
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    transition: background var(--ease-slow), border-color var(--ease-slow);
+}
+
+.strategyLayer__icon {
+    font-size: var(--text-xl);
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
+}
+
+.strategyLayer__body {
+    flex: 1;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+
+.strategyLayer__body strong {
+    font-size: var(--text-base);
+}
+
+.strategyLayer__body p {
+    margin: var(--sp-1) 0 0;
+    color: var(--muted);
+}
+
+.strategyLayer__body code {
+    font-size: var(--text-xs);
+    padding: 1px 4px;
+    background: var(--surface-2);
+    border-radius: 3px;
+}
+
+/* Class summary grid (from parsed report) */
+.classSummaryGrid {
+    display: flex;
+    gap: var(--sp-3);
+    margin: var(--sp-3) 0;
+}
+
+.classSummaryItem {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-3);
+    border-radius: var(--radius-md);
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    font-size: var(--text-sm);
+    flex: 1;
+    transition: background var(--ease-slow), border-color var(--ease-slow);
+}
+
+.classSummaryItem__num {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.classSummaryItem--good .classSummaryItem__num { color: var(--color-good); }
+.classSummaryItem--mid .classSummaryItem__num  { color: var(--color-warn); }
+.classSummaryItem--low .classSummaryItem__num  { color: var(--muted); }
+
+.classSummaryItem__label {
+    color: var(--muted);
+    line-height: 1.3;
+}
+
+/* Collapsible per-class details */
+.strategyDetails {
+    margin-top: var(--sp-2);
+}
+
+.strategyDetails summary {
+    cursor: pointer;
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 600;
+    padding: var(--sp-1) 0;
+}
+
+.strategyDetails summary:hover {
+    text-decoration: underline;
+}
+
+.strategyDetails .evalTable {
+    margin-top: var(--sp-2);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Strategy references */
+.strategyRefs {
+    padding-top: var(--sp-3);
+    border-top: 1px solid var(--line);
+}
+
+.strategyRefs__note {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    margin: 0 0 var(--sp-2);
+    line-height: 1.5;
+}
+
+.strategyRefs__links {
+    display: flex;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+}
+
 /* Protocol cards (GAT) */
 .protocolCards {
     display: flex;

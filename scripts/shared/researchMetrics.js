@@ -1,9 +1,27 @@
 /**
  * Centrale onderzoeksstatistieken — één plek voor alle cijfers.
  *
- * Bronnen (peildatum 16-05-2026):
- *   - Evaluatierapport MVP v7 (Bijlage IX) — §9
- *   - Cobertura/Coverlet Test Coverage Report (30-04-2026)
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║  HOE TE UPDATEN BIJ EEN NIEUWE MVP-VERSIE OF NIEUW TESTREPORT     ║
+ * ║                                                                    ║
+ * ║  1. Coverage: vervang evaluation/data/CoverageReport/ door de      ║
+ * ║     nieuwe ReportGenerator HTML-output. De evaluatiepagina parst   ║
+ * ║     index.htm automatisch voor project-totalen en per-klasse data. ║
+ * ║                                                                    ║
+ * ║  2. Update ALLEEN de waarden hieronder die NIET uit het coverage   ║
+ * ║     rapport gelezen kunnen worden (gemarkeerd met "HANDMATIG").    ║
+ * ║     Dat zijn: mvp.*, tests.total, tests.unitClasses,              ║
+ * ║     tests.integrationClasses, tests.coreLine, tests.coreBranch,   ║
+ * ║     tests.mutationsKilled, tests.mutationsTotal.                   ║
+ * ║                                                                    ║
+ * ║  3. Pas research.* alleen aan als OC's, requirements of           ║
+ * ║     constraints wijzigen.                                          ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ *
+ * Bronnen (peildatum 18-05-2026):
+ *   - Software Test Document v2 (STD v2)
+ *   - Cobertura/ReportGenerator Coverage Report (16-17 mei 2026)
+ *   - Evaluatierapport MVP v7
  *   - OC_Traceability.csv, FR/NFR/Constraints CSVs, Risicoregister.csv
  *
  * Gebruik:
@@ -12,15 +30,18 @@
  */
 export const METRICS = {
 
-    // ── MVP-versie ────────────────────────────────────────────────────────
+    // ── MVP-versie (HANDMATIG) ────────────────────────────────────────────
     mvp: {
         version: "v0.4",
+        stdVersion: "STD v2",
+        stdDate: "18 mei 2026",
         evalVersion: "v7",
         evalDate: "16 mei 2026",
-        framework: ".NET Framework 4.8 · C# 7.3 · MSTest 4.2.1",
+        framework: ".NET Framework 4.8 · C# 7.3 · MSTest v2",
+        coverageTool: "Coverlet (Cobertura XML) + ReportGenerator",
     },
 
-    // ── Onderzoeksomvang ──────────────────────────────────────────────────
+    // ── Onderzoeksomvang (HANDMATIG — alleen wijzigen bij scope-aanpassing) ──
     research: {
         deelvragen: 5,
         oc: 9,
@@ -30,54 +51,38 @@ export const METRICS = {
         constraints: 2,
     },
 
-    // ── Tests & coverage (Coverlet/Cobertura, 30-04-2026 + Evaluatierapport v7) ──
+    // ── Tests & coverage ──────────────────────────────────────────────────
+    // HANDMATIG: tests die niet uit het coverage report gelezen kunnen worden
+    // (het report toont coverage, niet het aantal test-methoden of testklassen)
     tests: {
-        total: 421,
-        classes: 26,
-        // Project-totaal (Coverlet/Cobertura over 22 productie-klassen)
-        projectLine: 51.8,
-        projectBranch: 45.3,
-        totalLines: 833,
-        coveredLines: 432,
-        totalBranches: 346,
-        coveredBranches: 157,
-        // Core-scope (unit-testbare klassen, excl. View-laag)
-        coreLine: 78,
-        coreBranch: 73,
-        coreLines: 551,
-        // Klassenverdeling
-        classesAt100: 8,
-        classesAt0: 5,
-        totalProductionClasses: 22,
-        // Per-klasse telling (TestMethod-instances + DataRow-expansies)
-        classCounts: [
-            { name: "AppDefaultsTests",                      methods: 16, dataRows:  0, total: 16 },
-            { name: "ApplyTargetTests",                      methods: 14, dataRows:  0, total: 14 },
-            { name: "AsyncRelayCommandTests",                methods: 10, dataRows:  0, total: 10 },
-            { name: "ChatMessageDisplayTests",               methods: 11, dataRows:  0, total: 11 },
-            { name: "ChatMessageDisplayStreamingTests",      methods: 55, dataRows:  0, total: 55 },
-            { name: "ChatMessageTests",                      methods:  6, dataRows:  0, total:  6 },
-            { name: "ChatWindowViewModelApplyTests",         methods: 11, dataRows:  0, total: 11 },
-            { name: "ChatWindowViewModelTests",              methods: 18, dataRows:  0, total: 18 },
-            { name: "ChatWindowViewModelStreamingTests",     methods: 53, dataRows:  0, total: 53 },
-            { name: "ContextSelectionTests",                 methods: 10, dataRows:  0, total: 10 },
-            { name: "EllipsisDetectorTests",                 methods:  8, dataRows:  0, total:  8 },
-            { name: "InMemoryContextSettingsTests",          methods: 26, dataRows:  0, total: 26 },
-            { name: "IndentationAdjusterTests",              methods: 10, dataRows:  0, total: 10 },
-            { name: "LanguageMatcherTests",                  methods:  9, dataRows:  0, total:  9 },
-            { name: "LineDiffTests",                         methods: 13, dataRows:  0, total: 13 },
-            { name: "LmStudioLiveStreamingTests",            methods:  8, dataRows:  0, total:  8 },
-            { name: "OllamaLiveStreamingTests",              methods:  8, dataRows:  0, total:  8 },
-            { name: "OpenAICompatibleClientArgumentTests",   methods: 10, dataRows:  9, total: 19 },
-            { name: "OpenAICompatibleClientSendChatTests",   methods: 10, dataRows:  0, total: 10 },
-            { name: "OpenAICompatibleClientStreamChatTests", methods: 33, dataRows:  0, total: 33 },
-            { name: "OpenAICompatibleClientTests",           methods:  8, dataRows: 10, total: 18 },
-            { name: "OpenWebUIClientTests",                  methods: 22, dataRows:  0, total: 22 },
-            { name: "PromptOrchestratorTests",               methods: 12, dataRows:  0, total: 12 },
-            { name: "PromptOrchestratorTruncationTests",     methods:  7, dataRows:  0, total:  7 },
-            { name: "ReasoningModeControlSpike",             methods:  7, dataRows:  0, total:  7 },
-            { name: "RelayCommandTests",                     methods:  7, dataRows:  0, total:  7 },
-        ],
+        total: 499,                    // HANDMATIG — STD v2 §1.3
+        unitClasses: 29,               // HANDMATIG — STD v2 §4.1 (unit-testklassen)
+        integrationClasses: 3,         // HANDMATIG — STD v2 §8.2
+        totalTestClasses: 32,          // HANDMATIG — unitClasses + integrationClasses
+
+        // Core-scope (HANDMATIG — berekend na uitsluiting WPF/XAML-code)
+        // Bron: STD v2 §4.1 — unit-testbare code na uitsluiting View-laag
+        coreLine: 93.9,
+        coreBranch: 85,
+
+        // Mutatievalidatie (HANDMATIG — STD v2 §7)
+        mutationsKilled: 8,
+        mutationsTotal: 8,
+
+        // ── Project-totalen (AUTOMATISCH uit CoverageReport index.htm) ──
+        // Onderstaande waarden dienen als fallback wanneer het coverage report
+        // niet geladen kan worden. Bij een succesvol parse worden ze overschreven.
+        // Bron fallback: ReportGenerator rapport 16-17 mei 2026
+        projectLine: 62.7,
+        projectBranch: 71.3,
+        coveredLines: 1771,
+        coverableLines: 2822,
+        totalLines: 5869,
+        coveredBranches: 934,
+        totalBranches: 1309,
+        totalProductionClasses: 42,
+        coverageDate: "16-5-2026 – 17-5-2026",
+        coverageParser: "MultiReport (4x Cobertura)",
     },
 
     // ── OC-naleving (Evaluatierapport v7) ─────────────────────────────────
@@ -118,9 +123,7 @@ export const METRICS = {
 
     // ── Gebruikersacceptatietest — vragenstructuur (Google Form) ──────────
     gat: {
-        // Live CSV-export van het gepubliceerde Google Forms-spreadsheet
         csvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_28qxuxu4ebus-99ggUEGbhcEByZfhsuJdlQGhBxt-W2CyW6BHKLf6YTnYDFe0Nh7mQFk1-jzkQnD/pub?output=csv",
-        // Kolom-indices in de CSV-export (0-gebaseerd)
         nameCol: 1,
         functionCol: 2,
         experienceCol: 3,
@@ -128,7 +131,6 @@ export const METRICS = {
         usageTypesCol: 5,
         npsCol: 28,
         gradeCol: 29,
-        // Likert-vragen (schaal 1–5), kolom 6–16
         likert: [
             { col: 6,  short: "Stabiliteit",      label: "De extensie voelt stabiel tijdens gebruik." },
             { col: 7,  short: "Workflow-fit",      label: "De extensie past goed binnen mijn normale ontwikkelworkflow." },
@@ -142,7 +144,6 @@ export const METRICS = {
             { col: 15, short: "Defensie-potentie", label: "Ik zie potentie voor deze vorm van AI-ondersteuning binnen Defensie." },
             { col: 16, short: "Hergebruik",        label: "Ik zou deze extensie opnieuw gebruiken indien verder doorontwikkeld." },
         ],
-        // Open vragen
         openCols: [
             { col: 17, label: "Meest nuttige toepassingen" },
             { col: 18, label: "Situaties minder goed" },
@@ -155,7 +156,6 @@ export const METRICS = {
             { col: 27, label: "Grootste risico / aandachtspunt" },
             { col: 30, label: "Overige opmerkingen" },
         ],
-        // Ja/nee vragen
         yesNoCols: [
             { col: 24, label: "Blijven gebruiken in huidige vorm?" },
             { col: 25, label: "Lokale AI haalbaar en waardevol binnen Defensie?" },

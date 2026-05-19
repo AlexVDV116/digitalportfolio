@@ -78,7 +78,7 @@ export const STORY_SCENES = [
         id: "evaluatie-validatie",
         chapter: "Evaluatie & Validatie",
         title: "Systematische validatie van de MVP",
-        narration: `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.classes} testklassen · Core-scope ${METRICS.tests.coreLine}% lijn-dekking · alle 9 OC's aantoonbaar voldaan · STRIDE zonder kritieke bevindingen.`,
+        narration: `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.totalTestClasses} testklassen · Core-scope ~${METRICS.tests.coreLine}% lijn-dekking · ${METRICS.tests.mutationsKilled}/${METRICS.tests.mutationsTotal} mutaties gevangen · alle 9 OC's aantoonbaar voldaan.`,
         path: "evaluation/?tab=technical",
     },
     {

@@ -343,7 +343,7 @@ export const NODES = [
         label: "R3",
         name: "OC onvoldoende toetsbaar",
         status: "ok",
-        desc: "Gemitigeerd: AppDefaults + pinning-tests; 421 MSTest-cases over 26 testklassen borgen OC-3.",
+        desc: "Gemitigeerd: AppDefaults + pinning-tests; 499 MSTest-cases over 32 testklassen borgen OC-3.",
     },
     {
         id: "R4",

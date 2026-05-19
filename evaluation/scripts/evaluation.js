@@ -1,4 +1,5 @@
 import { METRICS } from "../../scripts/shared/researchMetrics.js";
+import { parseCoverageReport } from "./coverageReportParser.js";
 import { initHamburgerNav } from "../../scripts/shared/nav.js";
 import { initStoryMode } from "../../scripts/shared/storyMode.js";
 import { initThemeToggle } from "../../scripts/shared/themeToggle.js";
@@ -7,14 +8,44 @@ initHamburgerNav();
 initThemeToggle();
 initStoryMode();
 initTabs();
-renderCoverCards();
-renderCoverBars();
-renderClassTable();
-renderOcMatrix();
-renderStride();
-renderRiskTable();
-renderGatQuestions();
-loadGatData();
+
+// Coverage data wordt asynchroon geladen uit het CoverageReport.
+// Bij succes worden de fallback-waarden in METRICS overschreven.
+initCoverageData().then(() => {
+    renderCoverCards();
+    renderCoverBars();
+    renderTestStrategy();
+    renderOcMatrix();
+    renderStride();
+    renderRiskTable();
+    renderGatQuestions();
+    loadGatData();
+});
+
+// ── Coverage report auto-parse ───────────────────────────────────────────
+
+/** @type {import("./coverageReportParser.js").CoverageData|null} */
+let reportData = null;
+
+async function initCoverageData() {
+    reportData = await parseCoverageReport();
+    if (!reportData) return; // fallback op METRICS
+
+    const s = reportData.summary;
+    const t = METRICS.tests;
+
+    // Overschrijf project-totalen met actuele waarden uit het rapport
+    t.projectLine = s.linePct;
+    t.projectBranch = s.branchPct;
+    t.coveredLines = s.coveredLines;
+    t.coverableLines = s.coverableLines;
+    t.totalLines = s.totalLines;
+    t.coveredBranches = s.coveredBranches;
+    t.totalBranches = s.totalBranches;
+    t.totalProductionClasses = s.classCount;
+    t.coverageDate = s.coverageDate;
+    t.coverageParser = s.parser;
+}
 
 // ── Tabs ──────────────────────────────────────────────────────────────────
 
@@ -35,7 +66,6 @@ function initTabs() {
         btn.addEventListener("click", () => activateTab(btn.dataset.tab));
     });
 
-    // Honour ?tab= URL param (used by story tour to deep-link directly to a tab)
     const urlTab = new URLSearchParams(window.location.search).get("tab");
     if (urlTab) activateTab(urlTab);
 }
@@ -45,11 +75,11 @@ function initTabs() {
 function renderCoverCards() {
     const t = METRICS.tests;
     const cards = [
-        { num: t.total,         label: "MSTest-cases",          sub: `${t.classes} testklassen` },
-        { num: `${t.projectLine}%`, label: "Project lijn-dekking", sub: `${t.coveredLines}/${t.totalLines} regels` },
-        { num: `${t.projectBranch}%`, label: "Project branch-dekking", sub: `${t.coveredBranches}/${t.totalBranches} branches` },
-        { num: `~${t.coreLine}%`,   label: "Core-scope lijn",    sub: `excl. View-laag` },
-        { num: t.classesAt100,  label: "Klassen op 100% lijn",  sub: `van ${t.totalProductionClasses} totaal` },
+        { num: t.total,             label: "MSTest-cases",            sub: `${t.totalTestClasses} testklassen (${t.unitClasses} unit · ${t.integrationClasses} integratie)` },
+        { num: `${t.projectLine}%`, label: "Project lijn-dekking",    sub: `${t.coveredLines} / ${t.coverableLines} regels` },
+        { num: `${t.projectBranch}%`, label: "Project branch-dekking", sub: `${t.coveredBranches} / ${t.totalBranches} branches` },
+        { num: `~${t.coreLine}%`,   label: "Core-scope lijn",         sub: `excl. WPF/XAML View-laag` },
+        { num: `${t.mutationsKilled}/${t.mutationsTotal}`, label: "Mutaties gevangen", sub: `handmatige mutatievalidatie` },
     ];
     document.getElementById("coverCards").innerHTML = cards.map(c => `
         <div class="coverCard">
@@ -64,10 +94,10 @@ function renderCoverCards() {
 function renderCoverBars() {
     const t = METRICS.tests;
     const bars = [
-        { label: "Project lijn-dekking",     pct: t.projectLine,   note: "Coverlet/Cobertura" },
-        { label: "Project branch-dekking",  pct: t.projectBranch, note: "Coverlet/Cobertura" },
-        { label: "Core-scope lijn-dekking", pct: t.coreLine,      note: "excl. View-laag" },
-        { label: "Core-scope branch-dekking",pct: t.coreBranch,   note: "excl. View-laag" },
+        { label: "Project lijn-dekking",       pct: t.projectLine,   note: t.coverageParser || "Coverlet/Cobertura" },
+        { label: "Project branch-dekking",     pct: t.projectBranch, note: t.coverageParser || "Coverlet/Cobertura" },
+        { label: "Core-scope lijn-dekking",    pct: t.coreLine,      note: "excl. WPF/XAML View-laag" },
+        { label: "Core-scope branch-dekking",  pct: t.coreBranch,    note: "excl. WPF/XAML View-laag" },
     ];
     document.getElementById("coverBars").innerHTML = bars.map(b => {
         const pct = parseFloat(b.pct);
@@ -87,47 +117,132 @@ function renderCoverBars() {
     }).join("");
 }
 
-// ── Test class table ──────────────────────────────────────────────────────
+// ── Teststrategie (vervangt de vorige testklassen-tabel) ─────────────────
 
-function renderClassTable() {
-    const rows = METRICS.tests.classCounts.map(c => `
-        <tr>
-            <td>${c.name}</td>
-            <td class="num">${c.methods}</td>
-            <td class="num">${c.dataRows > 0 ? `+${c.dataRows}` : "–"}</td>
-            <td class="num"><strong>${c.total}</strong></td>
-        </tr>`).join("");
+function renderTestStrategy() {
+    const t = METRICS.tests;
+    const m = METRICS.mvp;
+
+    // Bereken per-klasse coverage samenvatting als het rapport beschikbaar is
+    let classSummaryHtml = "";
+    if (reportData?.classes?.length) {
+        const sorted = [...reportData.classes].sort((a, b) => b.linePct - a.linePct);
+        const full = sorted.filter(c => c.linePct === 100);
+        const high = sorted.filter(c => c.linePct >= 80 && c.linePct < 100);
+        const zero = sorted.filter(c => c.linePct === 0);
+        const other = sorted.filter(c => c.linePct > 0 && c.linePct < 80);
+
+        classSummaryHtml = `
+            <div class="strategyDetail">
+                <h4 class="evalSubtitle">Coverage per klasse (uit rapport)</h4>
+                <div class="classSummaryGrid">
+                    <div class="classSummaryItem classSummaryItem--good">
+                        <span class="classSummaryItem__num">${full.length}</span>
+                        <span class="classSummaryItem__label">klassen op 100%</span>
+                    </div>
+                    <div class="classSummaryItem classSummaryItem--mid">
+                        <span class="classSummaryItem__num">${high.length}</span>
+                        <span class="classSummaryItem__label">klassen 80–99%</span>
+                    </div>
+                    <div class="classSummaryItem classSummaryItem--low">
+                        <span class="classSummaryItem__num">${zero.length}</span>
+                        <span class="classSummaryItem__label">klassen 0% (WPF/XAML)</span>
+                    </div>
+                </div>
+                <details class="strategyDetails">
+                    <summary>Toon per-klasse dekking</summary>
+                    <table class="evalTable evalTable--compact">
+                        <thead><tr><th>Klasse</th><th class="num">Lijn</th><th class="num">Branch</th></tr></thead>
+                        <tbody>${sorted.map(c => {
+                            const cls = c.linePct === 100 ? "good" : c.linePct >= 80 ? "mid" : c.linePct > 0 ? "partial" : "zero";
+                            return `<tr class="coverRow--${cls}">
+                                <td>${esc(c.shortName)}</td>
+                                <td class="num">${c.linePct}%</td>
+                                <td class="num">${c.branchPct}%</td>
+                            </tr>`;
+                        }).join("")}</tbody>
+                    </table>
+                </details>
+            </div>`;
+    }
+
     document.getElementById("classTable").innerHTML = `
-        <table class="evalTable">
-            <thead><tr>
-                <th>Testklasse</th>
-                <th class="num">Methoden</th>
-                <th class="num">DataRows</th>
-                <th class="num">Totaal</th>
-            </tr></thead>
-            <tbody>${rows}</tbody>
-            <tfoot><tr>
-                <td><strong>Totaal</strong></td>
-                <td class="num"><strong>${METRICS.tests.classCounts.reduce((a,c)=>a+c.methods,0)}</strong></td>
-                <td class="num"><strong>+${METRICS.tests.classCounts.reduce((a,c)=>a+c.dataRows,0)}</strong></td>
-                <td class="num"><strong>${METRICS.tests.total}</strong></td>
-            </tr></tfoot>
-        </table>`;
+        <div class="testStrategy">
+            <div class="testStrategy__intro">
+                <p>De teststrategie volgt een <strong>testpiramide</strong>: unit tests vormen de kern,
+                aangevuld met coverage-analyse, handmatige mutatievalidatie en exploratieve verificatie.
+                De testsuite is <strong>hermetisch</strong> opgezet — alle externe afhankelijkheden
+                (HTTP-backends, WPF-dispatcher, Visual Studio-host) zijn vervangen door testdoubles.</p>
+            </div>
+
+            <div class="strategyLayers">
+                <div class="strategyLayer">
+                    <div class="strategyLayer__icon">🧪</div>
+                    <div class="strategyLayer__body">
+                        <strong>Unit tests</strong> — ${t.total} tests over ${t.unitClasses} klassen
+                        <p>Functionele kernlogica: promptopbouw, contextinjectie, LLM-communicatie, SSE-streaming, apply-pipeline, ViewModel-gedrag en command-objecten. Alle tests draaien deterministisch zonder live backend.</p>
+                    </div>
+                </div>
+                <div class="strategyLayer">
+                    <div class="strategyLayer__icon">📊</div>
+                    <div class="strategyLayer__body">
+                        <strong>Coverage-analyse</strong> — ${t.projectLine}% lijn · ${t.projectBranch}% branch (project)
+                        <p>Gemeten met ${m.coverageTool}. De headline-dekking wordt gedrukt door WPF/XAML-klassen die structureel buiten de unit-testscope vallen. Na uitsluiting daarvan haalt de unit-testbare code ~${t.coreLine}% lijndekking.</p>
+                    </div>
+                </div>
+                <div class="strategyLayer">
+                    <div class="strategyLayer__icon">🧬</div>
+                    <div class="strategyLayer__body">
+                        <strong>Mutatievalidatie</strong> — ${t.mutationsKilled}/${t.mutationsTotal} mutaties gevangen
+                        <p>Acht realistische codewijzigingen in kritieke productiepaden (protocol-omzeiling, SSE-sentinel, Apply-blokkering, history-wissing). Alle gevangen door bestaande tests.</p>
+                    </div>
+                </div>
+                <div class="strategyLayer">
+                    <div class="strategyLayer__icon">🔌</div>
+                    <div class="strategyLayer__body">
+                        <strong>Integratietests</strong> — ${t.integrationClasses} klassen (buiten CI)
+                        <p>Live-verificatie tegen Ollama, LM Studio en reasoning-backends. Gemarkeerd met <code>[TestCategory("Integration")]</code>, niet standaard in CI.</p>
+                    </div>
+                </div>
+                <div class="strategyLayer">
+                    <div class="strategyLayer__icon">👁️</div>
+                    <div class="strategyLayer__body">
+                        <strong>Handmatige verificatie</strong>
+                        <p>WPF-rendering, Markdown-weergave, DiffPreviewWindow en VS-hostintegratie. Deze onderdelen vereisen een draaiende Visual Studio Experimental Hive.</p>
+                    </div>
+                </div>
+            </div>
+
+            ${classSummaryHtml}
+
+            <div class="strategyRefs">
+                <p class="strategyRefs__note">
+                    Detailinformatie over testarchitectuur, per-feature dekkingsmatrix, risicogebaseerde analyse en mutatievalidatie
+                    is beschikbaar in het <strong>Software Test Document (${m.stdVersion})</strong> en het
+                    <strong>Coverage Report</strong>.
+                </p>
+                <div class="strategyRefs__links">
+                    <a href="./data/CoverageReport/index.htm" class="evalLink" target="_blank" rel="noopener">
+                        Coverage Report openen ↗
+                    </a>
+                </div>
+            </div>
+        </div>`;
 }
 
 // ── OC validation matrix ──────────────────────────────────────────────────
 
 function renderOcMatrix() {
     const evalNotes = {
-        "OC-1": "Geen auto-apply; dismissbare banner + SessionDisclaimer Info-bubble",
+        "OC-1": "Geen auto-apply; dismissbare banner + SessionDisclaimer Info-bubble; Apply disabled tijdens streaming",
         "OC-2": "ContextMode-ceiling (Off/SelectionOnly/IncludeMethod/IncludeFile); default SelectionOnly",
         "OC-3": "AppDefaults: Temperature=0.2f, TopP=0.9f, MaxTokensPreset (default Extended=4096); pinning-tests in CI",
-        "OC-4": "LlmClientBase URL-syntaxvalidatie (IsValidHttpUrl); netwerklaag-segmentatie JIVC SO&I-LAN",
-        "OC-5": "In-memory only; reasoning/cancelled/incomplete niet in history; grep: 0 hits File.Write* voor interactie-inhoud",
+        "OC-4": "LlmClientBase.CreateBaseUri URL-syntaxvalidatie; netwerklaag-segmentatie JIVC SO&I-LAN",
+        "OC-5": "In-memory only; reasoning/cancelled/incomplete niet in history; DialogPage persistence config; geen interactie-inhoud naar disk",
         "OC-6": "LocalLLM.Core zonder VS-SDK refs; SettingsProxy als composition root; STRIDE EoP = Zeer laag",
         "OC-7": "Uitsluitend gedocumenteerde SDK-types; AllowsBackgroundLoading; KnownMonikers",
         "OC-8": "Typed exceptions; 120s + 5s timeouts; linked CTS; SSE-foutpaden; streaming cancellation; top-level catch",
-        "OC-9": "Context-strip; status-dot; model-label per bubble; Markdig 0.40.0 Markdown-rendering",
+        "OC-9": "Context-strip; status-dot; model-label per bubble; streaming statussen; reasoning-expander; history-clear melding",
     };
     const rows = METRICS.ocStatus.map(oc => `
         <tr>
@@ -224,18 +339,17 @@ function showGatEmpty() {
 }
 
 function parseCsv(text) {
-    // RFC-4180 compliant: handles newlines and escaped quotes inside quoted fields.
     const rows = [];
     let row = [], cur = "", inQ = false;
     for (let i = 0; i < text.length; i++) {
         const ch = text[i];
         if (ch === '"') {
-            if (inQ && text[i + 1] === '"') { cur += '"'; i++; } // escaped ""
+            if (inQ && text[i + 1] === '"') { cur += '"'; i++; }
             else inQ = !inQ;
         } else if (ch === "," && !inQ) {
             row.push(cur); cur = "";
         } else if (ch === "\r" && text[i + 1] === "\n" && !inQ) {
-            i++; // skip \r, fall through to \n handler below
+            i++;
             row.push(cur); cur = ""; rows.push(row); row = [];
         } else if (ch === "\n" && !inQ) {
             row.push(cur); cur = ""; rows.push(row); row = [];
@@ -243,8 +357,8 @@ function parseCsv(text) {
             cur += ch;
         }
     }
-    if (row.length || cur) { row.push(cur); rows.push(row); } // last row
-    return rows.filter(r => r.some(v => v.trim())); // drop fully-empty rows
+    if (row.length || cur) { row.push(cur); rows.push(row); }
+    return rows.filter(r => r.some(v => v.trim()));
 }
 
 function renderGatResults(rows) {
@@ -254,11 +368,9 @@ function renderGatResults(rows) {
     const n = rows.length;
     const gat = METRICS.gat;
 
-    // Summary cards
     const grades = rows.map(r => parseFloat(r[gat.gradeCol])).filter(v => !isNaN(v));
     const npsScores = rows.map(r => parseFloat(r[gat.npsCol])).filter(v => !isNaN(v));
     const avgGrade = grades.length ? (grades.reduce((a, b) => a + b, 0) / grades.length).toFixed(1) : "–";
-
     const avgNps = npsScores.length ? (npsScores.reduce((a, b) => a + b, 0) / npsScores.length).toFixed(1) : null;
 
     document.getElementById("gatSummaryCards").innerHTML = `
@@ -280,10 +392,7 @@ function renderGatResults(rows) {
             <div class="coverCard__sub">gemiddeld · schaal 0–10</div>
         </div>`;
 
-    // Likert bar chart
     renderGatBars(rows);
-
-    // Open feedback
     renderGatFeedback(rows);
 }
 

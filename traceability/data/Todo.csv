@@ -1,7 +1,7 @@
 #;Categorie;Aanbeveling;Koppeling;Status;Inspanning;Toelichting / Bewijs
 A1;Afgerond (v1 → v0.2);Vaste OllamaOptions met TopP/NumPredict + pinning-tests;OC-3, NFR-2, R3;Done;—;"AppDefaults.FixedOptions; AppDefaultsTests (16 cases) + OllamaClientTests valideren Temperature=0.2f, TopP=0.9f, NumPredict=2048."
 A2;Afgerond (v1 → v0.2);Methode-detectie expliciet maken via UI-keuze of uitschakelen;OC-2, FR-8, R8;Done;—;"ContextMode-enum (Off/SelectionOnly/IncludeMethod/IncludeFile) als ceiling; ContextProvider stopt expliciet per niveau."
-B1;Afgerond (v1 → v0.2);Testproject met dekking op OllamaClient, PromptOrchestrator en IsLocalhost;NFR-1, NFR-4, OC-8;Done;—;"LocalLLM.Tests met 421 MSTest-cases over 26 testklassen (gegroeid 0 → 26 → 75 → 247 → 421)."
+B1;Afgerond (v1 → v0.2);Testproject met dekking op OllamaClient, PromptOrchestrator en IsLocalhost;NFR-1, NFR-4, OC-8;Done;—;"LocalLLM.Tests met 499 MSTest-cases over 32 testklassen (gegroeid 0 → 26 → 75 → 247 → 421 → 499)."
 B2;Afgerond (v1 → v0.2);OptionsPage voor contextmodus en modelinstellingen;FR-8, OC-2, OC-7;Done;—;"LocalLLMOptionsPage met Mode/ModelName/BaseUrl/ConnectionType/ApiToken + streaming/reasoning/MaxTokensPreset; read-only mirror in chat-window."
 B3;Afgerond (v1 → v0.2);UI-disclaimer 'AI-generated — human review required';OC-1, R7, OWASP LLM09;Done;—;Banner bovenaan tool-window (volatiele dismiss) + SessionDisclaimer Info-bubble bij open en na ClearHistory.
 C4-v2;Afgerond (v1 → v0.2);Centrale Constants-klasse voor URL, model, timeouts en limieten;OC-7, onderhoudbaarheid;Done;—;"AppDefaults.cs met alle defaults op één plek; pinning-tests bewaken drift."

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ontwikkelroadmap — LocalLLM MVP</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+    <link rel="stylesheet" href="../styles/main.css" />
+    <script>/* Prevent flash */
+    (function(){var t=localStorage.getItem("theme");if(!t)t="light";document.documentElement.setAttribute("data-theme",t)})();
+    </script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__wrap">
+            <div>
+                <h1 class="topbar__title">Ontwikkelroadmap — LocalLLM MVP</h1>
+                <p class="topbar__subtitle">Iteratieve groei van conceptarchitectuur tot afdelingsrelease · Design
+                    cycle Wieringa</p>
+            </div>
+            <div class="topbar__actions">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                    <span class="themeToggle__moon" aria-hidden="true">🌙</span>
+                    <span class="themeToggle__sun" aria-hidden="true">☀️</span>
+                </button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓
+                    Tour</button>
+                <div class="nav" id="nav">
+                    <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                        aria-controls="navMenu" title="Menu">
+                        <span class="nav__icon" aria-hidden="true"></span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+
+                    <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                        <div class="nav__sectionTitle">Pagina's</div>
+
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio" data-nav-close>
+                            Project overview
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/pva/" data-nav-close>
+                            Plan van aanpak
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/execution/" data-nav-close>
+                            Uitvoering
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/timeline/" data-nav-close>
+                            Planning
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
+                            Master Traceability Matrix
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
+                            Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
+                            OC Explorer
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/evaluation/" data-nav-close>
+                            Evaluatie &amp; Validatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
+                            Metacognitieve cyclus
+                        </a>
+                        <a role="menuitem" class="nav__item nav__item--active" href="/digitalportfolio/roadmap/"
+                            data-nav-close>
+                            Roadmap
+                        </a>
+
+                        <div class="nav__divider"></div>
+                        <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Projectstatusrapport ↗
+                        </a>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Wekelijkse zelfreflecties ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="rm-layout">
+
+        <!-- ── Intro ──────────────────────────────────────────────────── -->
+        <section class="rm-intro" aria-label="Inleiding">
+            <div class="rm-intro__wrap">
+                <p>De roadmap volgt de structuur van het ontwerpgerichte onderzoek: elke versie is gekoppeld aan een
+                    specifieke onderzoeksfase en beantwoordt een andere validatievraag. De volgorde weerspiegelt de
+                    design cycle van Wieringa.</p>
+                <p class="rm-intro__meta">Klik op een versiekaart voor details &middot; Filter op status via de knoppen hieronder</p>
+            </div>
+        </section>
+
+        <!-- ── Filters ────────────────────────────────────────────────── -->
+        <section class="rm-filters" aria-label="Statusfilter">
+            <button class="rm-filterBtn" data-filter="done" type="button">
+                <span class="rm-statusBadge rm-statusBadge--done">&#10003;</span> Afgerond
+            </button>
+            <button class="rm-filterBtn" data-filter="current" type="button">
+                <span class="rm-statusBadge rm-statusBadge--current">&#9679;</span> Huidig
+            </button>
+            <button class="rm-filterBtn" data-filter="next" type="button">
+                <span class="rm-statusBadge rm-statusBadge--next">&#9654;</span> Volgende
+            </button>
+            <button class="rm-filterBtn" data-filter="future" type="button">
+                <span class="rm-statusBadge rm-statusBadge--future">&#9675;</span> Toekomstig
+            </button>
+        </section>
+
+        <!-- ── Phase bands ────────────────────────────────────────────── -->
+        <div class="rm-phaseBands" id="phaseBands" aria-label="Fasebanden"></div>
+
+        <!-- ── Timeline ───────────────────────────────────────────────── -->
+        <div class="rm-timeline" id="roadmapTimeline" aria-label="Versietijdlijn"></div>
+
+        <!-- ── Phase descriptions ─────────────────────────────────────── -->
+        <div class="rm-phaseDescRow" id="phaseDescRow" aria-label="Fasebeschrijvingen"></div>
+
+        <!-- ── Methodology table ──────────────────────────────────────── -->
+        <section class="rm-methodology" id="methodSection" aria-label="Methodologiekoppeling">
+            <h2 class="rm-methodology__title">Relatie met de ontwerpgerichte onderzoeksmethodiek</h2>
+            <p class="rm-methodology__intro">Elke versie beantwoordt een specifieke onderzoeksvraag en levert zowel een
+                technisch artefact als validatie-input voor de volgende cyclus.</p>
+            <div class="rm-tableWrap">
+                <table class="rm-table" aria-label="Koppeling versies en onderzoeksfasen">
+                    <thead>
+                        <tr>
+                            <th>Versie</th>
+                            <th>Onderzoeksfase</th>
+                            <th>Validatievraag</th>
+                        </tr>
+                    </thead>
+                    <tbody id="methodTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ── Legend ─────────────────────────────────────────────────── -->
+        <footer class="rm-legend" aria-label="Legenda">
+            <div class="rm-legend__group">
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase1"></span>Fase 1 — Onderzoeksfase</div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase2"></span>Fase 2 — Evaluatie</div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase3"></span>Fase 3 — Overdracht</div>
+            </div>
+            <div class="rm-legend__group">
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--current"></span><span id="legendCurrentLabel">Huidige positie</span></div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--scope"></span>Scopegrens onderzoekstraject</div>
+            </div>
+            <span class="rm-legend__ref">Figuur 14.1 — Tijdlijn LocalLLM-MVP</span>
+        </footer>
+
+    </main>
+
+    <!-- ── Detail panel ───────────────────────────────────────────── -->
+    <aside class="rm-detail" id="roadmapDetail" role="complementary" aria-hidden="true" aria-labelledby="rmDetailVer">
+        <button class="rm-detail__close" aria-label="Sluiten">&times;</button>
+        <div class="rm-detail__head">
+            <h3 class="rm-detail__version" id="rmDetailVer">v0.1</h3>
+            <span class="rm-detail__phase">Fase 1</span>
+        </div>
+        <div class="rm-detail__focus">Conceptarchitectuur</div>
+        <div class="rm-detail__body"></div>
+    </aside>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>&copy; 2026 Alex van der Velden<br>
+                    Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="scripts/roadmap.js"></script>
+</body>
+
+</html>

@@ -105,6 +105,22 @@ export const STORY_SCENES = [
         path: "traceability/?preset=oc-risk",
     },
     {
+        id: "roadmap-overzicht",
+        chapter: "Toekomstvisie",
+        title: "Ontwikkelroadmap — van onderzoek naar overdracht",
+        narration:
+            "De roadmap laat zien hoe de MVP zich ontwikkeld heeft van conceptarchitectuur (v0.1) via evaluatie (v0.4) naar overdracht. Elke versie beantwoordt een andere validatievraag uit de design cycle van Wieringa.",
+        path: "roadmap/",
+    },
+    {
+        id: "roadmap-methodologie",
+        chapter: "Toekomstvisie",
+        title: "Koppeling onderzoeksmethodiek — iteratief groeimodel",
+        narration:
+            "Het iteratieve groeimodel maakt de relatie tussen versies en onderzoeksfasen expliciet: vroege versies richten zich op haalbaarheid, middenversies op validatie, en latere versies op verfijning en overdracht.",
+        path: "roadmap/#methodSection",
+    },
+    {
         id: "afsluiting",
         chapter: "Conclusie",
         title: "Resultaat in cijfers",

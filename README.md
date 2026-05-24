@@ -26,6 +26,7 @@ Een statisch (HTML / CSS / vanilla JS) interactief portfolio dat het volledige o
 - **Traceability** — een interactieve force-directed graph die ontwerpcriteria, requirements, risico's, constraints en todo's aan elkaar koppelt.
 - **Evaluatie & validatie** — live coverage-statistieken, teststrategie, OC-naleving, STRIDE-analyse en heatmaps.
 - **Story Mode** — een begeleide tour door het hele portfolio met narration en automatisch scrollen.
+- **Roadmap** — data-driven ontwikkelroadmap van conceptarchitectuur tot afdelingsrelease, met interactieve versiekaarten en methodologiekoppeling.
 - **Theorie, uitvoering, tijdlijn, metacognitie, PvA** — afzonderlijke secties voor elk onderzoeksonderdeel.
 
 Er is geen backend, geen build-stap, en geen framework. Alle data wordt geladen uit CSV-bestanden, een JavaScript config-module (`researchMetrics.js`) en een ReportGenerator HTML-rapport.
@@ -44,6 +45,7 @@ Er is geen backend, geen build-stap, en geen framework. Alle data wordt geladen 
 | **Uitvoering** | `execution/index.html` | Interactief procesdiagram van de ontwikkelcyclus. |
 | **Tijdlijn** | `timeline/index.html` | Planning en tijdlijn van het project. |
 | **Metacognitie** | `metacognition/index.html` | Metacognitieve cyclus — reflectie op het onderzoeksproces. |
+| **Roadmap** | `roadmap/index.html` | Interactieve ontwikkelroadmap (v0.1-v1.0) met fasebanden, versiekaarten, statusfilters, detail-paneel en methodologiekoppelingstabel. |
 | **PvA** | `pva/index.html` | Plan van Aanpak — interactief procesdiagram. |
 
 ### Story Mode (Tour)
@@ -157,6 +159,12 @@ digitalportfolio/
 │       ├── Todo.csv                    # ★ MTM: Aanbevelingen / todo's
 │       ├── Changelog.csv              # ★ MTM: Changelog
 │       └── Overzicht.csv              # ★ MTM: Overzichtstabblad
+├── roadmap/
+│   ├── index.html                      # Roadmap pagina
+│   ├── scripts/
+│   │   └── roadmap.js                  # Roadmap rendering logic
+│   └── data/
+│       └── roadmapData.js              # ★ Centrale roadmap configuratie
 ├── theory/                             # Theoretisch kader
 ├── execution/                          # Uitvoering procesdiagram
 ├── timeline/                           # Tijdlijn & planning
@@ -312,6 +320,7 @@ GitHub Pages publiceert automatisch.
 | STRIDE-analyse | `researchMetrics.js` → `stride[]` | Handmatig uit evaluatierapport |
 | Risicoregister | `researchMetrics.js` → `risks[]` + `traceability/data/Risicoregister.csv` | Beide bijwerken |
 | MTM-tabbladen | `traceability/data/*.csv` | CSV-export uit MTM-spreadsheet |
+| Roadmap-versies | `roadmap/data/roadmapData.js` | Nieuwe versie: voeg object toe aan `VERSIONS[]`; verplaats `current: true` |
 | Story Mode teksten | `scripts/shared/storyScenes.js` | Handmatig narration bijwerken |
 | Thema / styling | `styles/main.css` | Enkel CSS-bestand |
 

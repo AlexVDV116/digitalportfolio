@@ -3293,9 +3293,8 @@ body.is-presenting .storyOverlay {
 .rm-phaseCol[data-count="2"] { grid-template-columns: 1fr 1fr; }
 .rm-phaseCol[data-count="3"] { grid-template-columns: 1fr 1fr 1fr; }
 
-/* Phase column dividers */
-.rm-timeline::before,
-.rm-timeline::after {
+/* Phase column divider */
+.rm-timeline::before {
     content: "";
     position: absolute;
     top: 0;
@@ -3308,18 +3307,13 @@ body.is-presenting .storyOverlay {
     left: calc(100% * 3 / 6);
     background: var(--line-strong);
 }
-.rm-timeline::after {
-    left: calc(100% * 5 / 6);
-    background: transparent;
-    border-left: 1.5px dashed var(--faint);
-}
 
 /* ── Scope boundary line ── */
 .rm-scopeLine {
     position: absolute;
     top: -44px;
     bottom: -8px;
-    left: calc(100% * 5 / 6);
+    left: 0;
     width: 0;
     border-left: 1.5px dashed var(--faint);
     z-index: 3;
@@ -3345,8 +3339,7 @@ body.is-presenting .storyOverlay {
     position: absolute;
     top: -44px;
     bottom: -8px;
-    /* v0.4 = first card in phase2 (col starts at 50%, card ~center at ~54.2%) */
-    left: calc(100% * 3 / 6 + (100% * 2 / 6) * 0.25);
+    left: 0;
     width: 0;
     border-left: 2px solid var(--rm-current);
     z-index: 4;
@@ -3780,8 +3773,7 @@ body.is-presenting .storyOverlay {
     }
     .rm-scopeLine,
     .rm-currentMarker,
-    .rm-timeline::before,
-    .rm-timeline::after {
+    .rm-timeline::before {
         display: none;
     }
     .rm-phaseBand__tag { display: none; }

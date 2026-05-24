@@ -81,7 +81,7 @@ function renderTimeline() {
     for (const p of PHASES) {
         const versions = groups.get(p.id) ?? [];
         const colCls = `rm-phaseCol rm-phaseCol--${p.color}`;
-        html += `<div class="${colCls}" data-count="${versions.length}">`;
+        html += `<div class="${colCls}" data-count="${versions.length}" data-phase="${esc(p.id)}">`;
         for (const v of versions) {
             html += renderCard(v, p);
         }
@@ -102,11 +102,16 @@ function renderTimeline() {
     }
 
     timelineEl.innerHTML = html;
+    positionTimelineMarkers();
 
     // Bind card clicks
     timelineEl.querySelectorAll(".rm-card").forEach((card) => {
-        card.addEventListener("click", () => showDetail(card.dataset.id));
+        card.addEventListener("click", () => {
+            if (card.classList.contains("rm-card--dimmed")) return;
+            showDetail(card.dataset.id);
+        });
         card.addEventListener("keydown", (e) => {
+            if (card.classList.contains("rm-card--dimmed")) return;
             if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 showDetail(card.dataset.id);
@@ -183,7 +188,7 @@ function showDetail(id) {
     </div>`;
     if (v.ocLinks.length) {
         bodyHtml += `<div class="rm-detail__ocs">${v.ocLinks.map(
-            (oc) => `<a href="/digitalportfolio/oc/?id=${esc(oc)}" class="rm-ocChip rm-ocChip--link">${esc(oc)}</a>`
+            (oc) => `<a href="/digitalportfolio/oc/?id=${encodeURIComponent(oc)}" class="rm-ocChip rm-ocChip--link">${esc(oc)}</a>`
         ).join("")}</div>`;
     }
 
@@ -243,16 +248,70 @@ document.querySelectorAll("[data-filter]").forEach((btn) => {
 
         // Filter cards
         timelineEl?.querySelectorAll(".rm-card").forEach((card) => {
-            if (!isActive) {
-                card.classList.remove("rm-card--dimmed");
-            } else {
+            let isDimmed = false;
+            if (isActive) {
                 const id = card.dataset.id;
                 const v = VERSIONS.find((x) => x.id === id);
-                card.classList.toggle("rm-card--dimmed", v?.status !== filter);
+                isDimmed = v?.status !== filter;
+            }
+            card.classList.toggle("rm-card--dimmed", isDimmed);
+            if (isDimmed) {
+                card.setAttribute("tabindex", "-1");
+                card.setAttribute("aria-disabled", "true");
+            } else {
+                card.setAttribute("tabindex", "0");
+                card.removeAttribute("aria-disabled");
             }
         });
     });
 });
+
+window.addEventListener("resize", positionTimelineMarkers);
+
+function positionTimelineMarkers() {
+    if (!timelineEl) return;
+    const timelineRect = timelineEl.getBoundingClientRect();
+
+    const currentCard = timelineEl.querySelector(".rm-card--highlight");
+    const markerEl = timelineEl.querySelector(".rm-currentMarker");
+    if (currentCard && markerEl) {
+        const cardRect = currentCard.getBoundingClientRect();
+        const markerLeft = cardRect.left - timelineRect.left + (cardRect.width / 2);
+        markerEl.style.left = `${markerLeft}px`;
+    }
+
+    const scopeLineEl = timelineEl.querySelector(".rm-scopeLine");
+    if (!scopeLineEl) return;
+
+    const afterCard = timelineEl.querySelector(`.rm-card[data-id="${SCOPE_BOUNDARY.afterVersion}"]`);
+    const beforeCard = timelineEl.querySelector(`.rm-card[data-id="${SCOPE_BOUNDARY.beforeVersion}"]`);
+
+    let scopeLeft = null;
+    if (afterCard && beforeCard) {
+        const afterRect = afterCard.getBoundingClientRect();
+        const beforeRect = beforeCard.getBoundingClientRect();
+        scopeLeft = ((afterRect.right + beforeRect.left) / 2) - timelineRect.left;
+    } else {
+        const afterVersion = VERSIONS.find((v) => v.id === SCOPE_BOUNDARY.afterVersion);
+        const beforeVersion = VERSIONS.find((v) => v.id === SCOPE_BOUNDARY.beforeVersion);
+        const afterColumn = afterVersion
+            ? timelineEl.querySelector(`.rm-phaseCol[data-phase="${afterVersion.phase}"]`)
+            : null;
+        const beforeColumn = beforeVersion
+            ? timelineEl.querySelector(`.rm-phaseCol[data-phase="${beforeVersion.phase}"]`)
+            : null;
+
+        if (afterColumn && beforeColumn) {
+            const afterRect = afterColumn.getBoundingClientRect();
+            const beforeRect = beforeColumn.getBoundingClientRect();
+            scopeLeft = ((afterRect.right + beforeRect.left) / 2) - timelineRect.left;
+        }
+    }
+
+    if (scopeLeft !== null) {
+        scopeLineEl.style.left = `${scopeLeft}px`;
+    }
+}
 
 // ═══════════════════════════════════════════════════════════════════
 // Helper

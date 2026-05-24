@@ -293,7 +293,7 @@ var assemblies = [
       { "name": "LocalLLM.Models.ApplyCodeBlockRequest", "rp": "LocalLLM_ApplyCodeBlockRequest.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 23, "cb": 2, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.Models.ApplyTarget", "rp": "LocalLLM_ApplyTarget.html", "cl": 48, "ucl": 5, "cal": 53, "tl": 121, "cb": 18, "tb": 22, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.Models.ChatMessage", "rp": "LocalLLM_ChatMessage.html", "cl": 24, "ucl": 0, "cal": 24, "tl": 54, "cb": 6, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "LocalLLM.Models.ChatMessageDisplay", "rp": "LocalLLM_ChatMessageDisplay.html", "cl": 239, "ucl": 31, "cal": 270, "tl": 486, "cb": 123, "tb": 146, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "LocalLLM.Models.ChatMessageDisplay", "rp": "LocalLLM_ChatMessageDisplay.html", "cl": 276, "ucl": 34, "cal": 310, "tl": 486, "cb": 150, "tb": 184, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.Models.ContextSelection", "rp": "LocalLLM_ContextSelection.html", "cl": 69, "ucl": 24, "cal": 93, "tl": 218, "cb": 24, "tb": 27, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.Models.LlmChatRequest", "rp": "LocalLLM_LlmChatRequest.html", "cl": 12, "ucl": 0, "cal": 12, "tl": 190, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.Models.LlmChatResponse", "rp": "LocalLLM_LlmChatResponse.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 190, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -323,13 +323,13 @@ var assemblies = [
       { "name": "LocalLLM.ToolWindow.DiffPreviewWindow", "rp": "LocalLLM_DiffPreviewWindow.html", "cl": 0, "ucl": 334, "cal": 334, "tl": 453, "cb": 0, "tb": 32, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ToolWindow.LanguageMatcher", "rp": "LocalLLM_LanguageMatcher.html", "cl": 34, "ucl": 2, "cal": 36, "tl": 127, "cb": 169, "tb": 172, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ToolWindow.LineDiff", "rp": "LocalLLM_LineDiff.html", "cl": 94, "ucl": 0, "cal": 94, "tl": 177, "cb": 35, "tb": 38, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "LocalLLM.ToolWindow.MarkdownHelper", "rp": "LocalLLM_MarkdownHelper.html", "cl": 0, "ucl": 38, "cal": 38, "tl": 681, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "LocalLLM.ToolWindow.MarkdownRenderer", "rp": "LocalLLM_MarkdownRenderer.html", "cl": 0, "ucl": 370, "cal": 370, "tl": 681, "cb": 0, "tb": 88, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "LocalLLM.ToolWindow.MarkdownHelper", "rp": "LocalLLM_MarkdownHelper.html", "cl": 0, "ucl": 59, "cal": 59, "tl": 681, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "LocalLLM.ToolWindow.MarkdownRenderer", "rp": "LocalLLM_MarkdownRenderer.html", "cl": 400, "ucl": 206, "cal": 606, "tl": 681, "cb": 101, "tb": 214, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ToolWindow.MessageHeaderConverter", "rp": "LocalLLM_MessageHeaderConverter.html", "cl": 0, "ucl": 30, "cal": 30, "tl": 104, "cb": 0, "tb": 19, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ToolWindow.NullOrEmptyToCollapsedConverter", "rp": "LocalLLM_NullOrEmptyToCollapsedConverter.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 104, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ViewModels.AsyncRelayCommand", "rp": "LocalLLM_AsyncRelayCommand.html", "cl": 32, "ucl": 0, "cal": 32, "tl": 158, "cb": 11, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ViewModels.AsyncRelayCommand<T>", "rp": "LocalLLM_AsyncRelayCommand_1.html", "cl": 38, "ucl": 0, "cal": 38, "tl": 158, "cb": 15, "tb": 16, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "LocalLLM.ViewModels.ChatWindowViewModel", "rp": "LocalLLM_ChatWindowViewModel.html", "cl": 483, "ucl": 17, "cal": 500, "tl": 671, "cb": 185, "tb": 220, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "LocalLLM.ViewModels.ChatWindowViewModel", "rp": "LocalLLM_ChatWindowViewModel.html", "cl": 624, "ucl": 3, "cal": 627, "tl": 671, "cb": 358, "tb": 424, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "LocalLLM.ViewModels.RelayCommand", "rp": "LocalLLM_RelayCommand.html", "cl": 8, "ucl": 0, "cal": 8, "tl": 33, "cb": 6, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "XamlGeneratedNamespace.GeneratedInternalTypeHelper", "rp": "LocalLLM_GeneratedInternalTypeHelper.html", "cl": 0, "ucl": 19, "cal": 19, "tl": 2, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
@@ -466,6 +466,18 @@ var riskHotspots = [
       { "value": 6, "exceeded": false },
     ]},
   {
+    "assembly": "LocalLLM", "class": "LocalLLM.ToolWindow.MarkdownRenderer", "reportPath": "LocalLLM_MarkdownRenderer.html", "methodName": "RenderTable(Markdig.Extensions.Tables.Table,LocalLLM.ToolWindow.MarkdownRenderer/MarkdownTheme)", "methodShortName": "RenderTable(...)", "fileIndex": 0, "line": 638,
+    "metrics": [
+      { "value": 40, "exceeded": true },
+      { "value": 40, "exceeded": true },
+    ]},
+  {
+    "assembly": "LocalLLM", "class": "LocalLLM.ToolWindow.MarkdownRenderer", "reportPath": "LocalLLM_MarkdownRenderer.html", "methodName": "RenderBlock(Markdig.Syntax.Block,LocalLLM.ToolWindow.MarkdownRenderer/MarkdownTheme,LocalLLM.ToolWindow.MarkdownRenderer/RenderContext)", "methodShortName": "RenderBlock(...)", "fileIndex": 0, "line": 291,
+    "metrics": [
+      { "value": 39, "exceeded": true },
+      { "value": 18, "exceeded": true },
+    ]},
+  {
     "assembly": "LocalLLM", "class": "LocalLLM.Services.LlmClientBase", "reportPath": "LocalLLM_LlmClientBase.html", "methodName": "ReadSseStreamAsync()", "methodShortName": "ReadSseStreamAsync()", "fileIndex": 0, "line": 237,
     "metrics": [
       { "value": 38, "exceeded": true },
@@ -484,6 +496,18 @@ var riskHotspots = [
       { "value": 28, "exceeded": true },
     ]},
   {
+    "assembly": "LocalLLM", "class": "LocalLLM.ViewModels.ChatWindowViewModel", "reportPath": "LocalLLM_ChatWindowViewModel.html", "methodName": "SendStreamingAsync()", "methodShortName": "SendStreamingAsync()", "fileIndex": 0, "line": 398,
+    "metrics": [
+      { "value": 28, "exceeded": false },
+      { "value": 28, "exceeded": true },
+    ]},
+  {
+    "assembly": "LocalLLM", "class": "LocalLLM.ViewModels.ChatWindowViewModel", "reportPath": "LocalLLM_ChatWindowViewModel.html", "methodName": "SendStreamingAsync()", "methodShortName": "SendStreamingAsync()", "fileIndex": 0, "line": 402,
+    "metrics": [
+      { "value": 28, "exceeded": false },
+      { "value": 28, "exceeded": true },
+    ]},
+  {
     "assembly": "LocalLLM", "class": "LocalLLM.Services.LlmClientBase", "reportPath": "LocalLLM_LlmClientBase.html", "methodName": "FallbackToNonStreamingAsync()", "methodShortName": "FallbackToNonStreamingAsync()", "fileIndex": 0, "line": 355,
     "metrics": [
       { "value": 26, "exceeded": false },
@@ -496,7 +520,25 @@ var riskHotspots = [
       { "value": 26, "exceeded": true },
     ]},
   {
+    "assembly": "LocalLLM", "class": "LocalLLM.ToolWindow.MarkdownRenderer", "reportPath": "LocalLLM_MarkdownRenderer.html", "methodName": "RenderInlines()", "methodShortName": "RenderInlines()", "fileIndex": 0, "line": 759,
+    "metrics": [
+      { "value": 27, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
     "assembly": "LocalLLM", "class": "LocalLLM.ViewModels.ChatWindowViewModel", "reportPath": "LocalLLM_ChatWindowViewModel.html", "methodName": "OnSettingsChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)", "methodShortName": "OnSettingsChanged(...)", "fileIndex": 0, "line": 189,
+    "metrics": [
+      { "value": 20, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "LocalLLM", "class": "LocalLLM.ViewModels.ChatWindowViewModel", "reportPath": "LocalLLM_ChatWindowViewModel.html", "methodName": "OnSettingsChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)", "methodShortName": "OnSettingsChanged(...)", "fileIndex": 0, "line": 198,
+    "metrics": [
+      { "value": 20, "exceeded": false },
+      { "value": 20, "exceeded": true },
+    ]},
+  {
+    "assembly": "LocalLLM", "class": "LocalLLM.ViewModels.ChatWindowViewModel", "reportPath": "LocalLLM_ChatWindowViewModel.html", "methodName": "OnSettingsChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)", "methodShortName": "OnSettingsChanged(...)", "fileIndex": 0, "line": 202,
     "metrics": [
       { "value": 20, "exceeded": false },
       { "value": 20, "exceeded": true },

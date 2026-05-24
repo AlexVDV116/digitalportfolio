@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Master Traceability Matrix</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.svg">
     <link rel="stylesheet" href="../styles/main.css" />
     <script>/* Prevent flash */
-    (function(){var t=localStorage.getItem("theme");if(!t)t="light";document.documentElement.setAttribute("data-theme",t)})();
+        (function () { var t = localStorage.getItem("theme"); if (!t) t = "light"; document.documentElement.setAttribute("data-theme", t) })();
     </script>
 </head>
 
@@ -22,15 +22,18 @@
                 </p>
             </div>
             <div class="topbar__actions">
-                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema"
+                    title="Midnight Scholar">
                     <span class="themeToggle__moon" aria-hidden="true">🌙</span>
                     <span class="themeToggle__sun" aria-hidden="true">☀️</span>
                 </button>
                 <a class="btn" href="../">Terug</a>
                 <button id="btnPresent" class="btn btn--present" type="button" title="Presentatie-modus (P)">▶
                     Presentatie</button>
-                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓
-                    Tour</button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">
+                    <img src="../assets/icons/iteration.png" alt="" class="btn__icon" aria-hidden="true">
+                    <span>Proces</span>
+                </button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
                         aria-controls="navMenu" title="Menu">

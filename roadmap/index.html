@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
     <link rel="stylesheet" href="../styles/main.css" />
     <script>/* Prevent flash */
-    (function(){var t=localStorage.getItem("theme");if(!t)t="light";document.documentElement.setAttribute("data-theme",t)})();
+        (function () { var t = localStorage.getItem("theme"); if (!t) t = "light"; document.documentElement.setAttribute("data-theme", t) })();
     </script>
 </head>
 
@@ -21,12 +21,15 @@
                     cycle Wieringa</p>
             </div>
             <div class="topbar__actions">
-                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema"
+                    title="Midnight Scholar">
                     <span class="themeToggle__moon" aria-hidden="true">🌙</span>
                     <span class="themeToggle__sun" aria-hidden="true">☀️</span>
                 </button>
-                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓
-                    Tour</button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">
+                    <img src="../assets/icons/iteration.png" alt="" class="btn__icon" aria-hidden="true">
+                    <span>Proces</span>
+                </button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
                         aria-controls="navMenu" title="Menu">
@@ -97,7 +100,8 @@
                 <p>De roadmap volgt de structuur van het ontwerpgerichte onderzoek: elke versie is gekoppeld aan een
                     specifieke onderzoeksfase en beantwoordt een andere validatievraag. De volgorde weerspiegelt de
                     design cycle van Wieringa.</p>
-                <p class="rm-intro__meta">Klik op een versiekaart voor details &middot; Filter op status via de knoppen hieronder</p>
+                <p class="rm-intro__meta">Klik op een versiekaart voor details &middot; Filter op status via de knoppen
+                    hieronder</p>
             </div>
         </section>
 
@@ -148,13 +152,18 @@
         <!-- ── Legend ─────────────────────────────────────────────────── -->
         <footer class="rm-legend" aria-label="Legenda">
             <div class="rm-legend__group">
-                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase1"></span>Fase 1 — Onderzoeksfase</div>
-                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase2"></span>Fase 2 — Evaluatie</div>
-                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase3"></span>Fase 3 — Overdracht</div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase1"></span>Fase 1 —
+                    Onderzoeksfase</div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase2"></span>Fase 2 —
+                    Evaluatie</div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--phase3"></span>Fase 3 —
+                    Overdracht</div>
             </div>
             <div class="rm-legend__group">
-                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--current"></span><span id="legendCurrentLabel">Huidige positie</span></div>
-                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--scope"></span>Scopegrens onderzoekstraject</div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--current"></span><span
+                        id="legendCurrentLabel">Huidige positie</span></div>
+                <div class="rm-legend__item"><span class="rm-legend__swatch rm-legend__swatch--scope"></span>Scopegrens
+                    onderzoekstraject</div>
             </div>
             <span class="rm-legend__ref">Figuur 14.1 — Tijdlijn LocalLLM-MVP</span>
         </footer>

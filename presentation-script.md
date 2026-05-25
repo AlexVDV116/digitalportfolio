@@ -2,14 +2,14 @@
 
 **Onderwerp:** Veilige en beheersbare integratie van een lokaal gehost Large Language Model in Visual Studio 2022 binnen een gesloten Defensieomgeving.
 
-Dit script begeleidt de **🎓 Tour** in het digitale portfolio. Dertien scènes, ongeveer zes tot zeven minuten spreektijd, voor de inleiding van de verdediging. Per scène staat:
+Dit script begeleidt de **🎓 Tour** in het digitale portfolio. Vijftien scènes, ongeveer acht tot negen minuten spreektijd, voor de inleiding van de verdediging. Per scène staat:
 
 - **Spreekdoel** — wat de commissie na deze scène moet begrijpen
 - **Wat de commissie ziet** — wat op het scherm staat
 - **Spreektekst** — wat ik mondeling vertel (natuurlijke toon, niet voorlezen)
 - **Overgang** — de zin waarmee ik doorloop naar de volgende scène
 
-De rode draad door alle scènes is dezelfde keten die het portfolio centraal stelt: **theorie → ontwerpcriteria → requirements → ontwerpbeslissingen → code/MVP → tests en evaluatie → conclusie**. Bij elke stap maak ik traceability expliciet.
+De rode draad door alle scènes is dezelfde keten die het portfolio centraal stelt: **theorie → ontwerpcriteria → requirements → ontwerpbeslissingen → code/MVP → tests en evaluatie → praktijkvalidatie → roadmap → conclusie**. Bij elke stap maak ik traceability expliciet.
 
 > **Tip vóór de start:** open het portfolio in fullscreen, klik op `🎓 Tour` en gebruik de spatiebalk of pijl-rechts om door te bladeren. `Esc` om de tour te sluiten als de commissie wil ingrijpen.
 
@@ -42,7 +42,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** het "Onderzoek in één oogopslag"-blok met de vijf deelvraagkaartjes en KPI-tegels.
 
 **Spreektekst:**
-> *De vijf deelvragen volgen de logische opbouw van een ontwerpgericht onderzoek. DV1 inventariseert de beveiligings- en architectuureisen, vooral via documentanalyse van BIO, de D/300-serie, het DBB en de OWASP LLM Top 10. DV2 verzamelt functionele en niet-functionele requirements via stakeholderinterviews. DV3 doet een vergelijkende analyse van bestaande LLM-integraties om ontwerpprincipes te onderbouwen. DV4 ontwerpt de communicatie tussen IDE en LLM, inclusief trust boundaries. En DV5 evalueert de MVP. Rechts zien jullie de omvang van het onderzoek in cijfers: negen ontwerpcriteria, vijftien requirements en tweehonderdzevenenveertig MSTest-cases. Dat zijn de meetpunten waarop ik bij de evaluatie steeds terugkom.*
+> *De vijf deelvragen volgen de logische opbouw van een ontwerpgericht onderzoek. DV1 inventariseert de beveiligings- en architectuureisen, vooral via documentanalyse van BIO, de D/300-serie, het DBB en de OWASP LLM Top 10. DV2 verzamelt functionele en niet-functionele requirements via stakeholderinterviews. DV3 doet een vergelijkende analyse van bestaande LLM-integraties om ontwerpprincipes te onderbouwen. DV4 ontwerpt de communicatie tussen IDE en LLM, inclusief trust boundaries. En DV5 evalueert de MVP — zowel statisch als empirisch via een gebruikersacceptatietest met de doelgroep. Rechts zien jullie de omvang van het onderzoek in cijfers: negen ontwerpcriteria, vijftien requirements en vierhonderdnegenennegentig MSTest-cases. Dat zijn de meetpunten waarop ik bij de evaluatie steeds terugkom.*
 
 **Overgang:**
 > *De onderbouwing van die deelvragen begint bij het theoretisch kader.*
@@ -98,7 +98,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** OC Explorer met OC-4 actief — vijf genummerde secties van herkomst, requirements, normen, implementatie en validatie.
 
 **Spreektekst:**
-> *OC-4 luidt: "alle LLM-verwerking gebeurt volledig offline." Ik gebruik dit criterium als voorbeeld omdat het de kern van de Defensiecontext raakt. In de eerste sectie zie je waar het vandaan komt: DV1 leverde dit op, met als theoretische basis Shostack over zero-trust en OWASP LLM06 over information disclosure. In sectie twee zie je hoe ik het heb vertaald naar concrete eisen: de twee harde constraints C-1 en C-2 en de niet-functionele eis NFR-1 voor stabiliteit. Sectie drie verankert het in normen: D/304 en BIO 13.1 voor netwerkscheiding. Sectie vier wijst aan waar het in de code zit: in LlmClientBase, in de IsValidHttpUrl-check die URL-syntaxvalidatie afdwingt. OC-4 is in v0.3 een gedeelde verantwoordelijkheid: de client valideert de URL-syntax, de netwerklaag dwingt endpoint-allow-listing af via JIVC SO&I-LAN-segmentatie. Sectie vijf toont de validatie: 47 URL-validatietestcases in OllamaClientTests, OllamaClientArgumentTests en OpenWebUIClientTests dekken alle varianten. En tot slot: dit criterium mitigeert risico R8 uit het risicoregister. Dit is de bewijs-keten die ik voor elk van de negen OC's kan tonen.*
+> *OC-4 luidt: "alle LLM-verwerking gebeurt volledig offline." Ik gebruik dit criterium als voorbeeld omdat het de kern van de Defensiecontext raakt. In de eerste sectie zie je waar het vandaan komt: DV1 leverde dit op, met als theoretische basis Shostack over zero-trust en OWASP LLM06 over information disclosure. In sectie twee zie je hoe ik het heb vertaald naar concrete eisen: de twee harde constraints C-1 en C-2 en de niet-functionele eis NFR-1 voor stabiliteit. Sectie drie verankert het in normen: D/304 en BIO 13.1 voor netwerkscheiding. Sectie vier wijst aan waar het in de code zit: in LlmClientBase, in de CreateBaseUri-methode die alleen absolute HTTP(S)-URI's accepteert. OC-4 is een gedeelde verantwoordelijkheid: de client valideert de URL-syntaxis, de netwerklaag dwingt endpoint-allow-listing af via JIVC-netwerksegmentatie. Sectie vijf toont de validatie: 63 URL-validatietests in LlmClientBaseTests, OpenAICompatibleClientTests en OpenWebUIClientTests dekken alle varianten. En tot slot: dit criterium mitigeert risico R8 uit het risicoregister. Dit is de bewijs-keten die ik voor elk van de negen OC's kan tonen.*
 
 **Overgang:**
 > *Hoe die criteria zich vertalen naar concrete requirements, laat het volgende beeld zien.*
@@ -112,7 +112,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** traceability graph met de preset *MUST coverage* — alle OC's met hun MUST-prioriteit FR's, NFR's en constraints.
 
 **Spreektekst:**
-> *Wat je hier ziet is welke ontwerpcriteria zich vertaald hebben in MUST-eisen. Voor de MVP-scope heb ik bewust gekozen om alle MUST-eisen volledig te realiseren en SHOULD- en COULD-eisen op basis van toegevoegde waarde af te wegen. In totaal zijn er acht functionele requirements, vijf niet-functionele en twee constraints. Eén niet-functionele eis — NFR-2, de output-responstijd — is op het moment van schrijven nog deels open: de feedback onder de seconde is gerealiseerd, maar de inhoudelijke responstijd is hardware-afhankelijk en wordt in DV5-D5 empirisch gemeten op representatieve hardware. Dat staat ook expliciet als gedeeltelijk in de matrix; ik verberg het niet.*
+> *Wat je hier ziet is welke ontwerpcriteria zich vertaald hebben in MUST-eisen. Voor de MVP-scope heb ik bewust gekozen om alle MUST-eisen volledig te realiseren en SHOULD- en COULD-eisen op basis van toegevoegde waarde af te wegen. In totaal zijn er acht functionele requirements, vijf niet-functionele en twee constraints. NFR-2 — de output-responstijd — is empirisch getoetst in twee omgevingen. In de productieomgeving binnen het LITON haalt de extensie de eis van p95 onder vijf seconden met een gemeten p95 van 4,27 seconden. Op lokale ontwikkelhardware met een zwaarder model wordt de eis niet gehaald — dat is een hardware- en modelafhankelijkheid, geen softwareprobleem. Die nuance staat ook expliciet in de matrix.*
 
 **Overgang:**
 > *De volgende stap is hoe die eisen daadwerkelijk zijn gerealiseerd in code.*
@@ -126,7 +126,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** traceability graph met de preset *OC → MVP* — alle ontwerpcriteria met de MVP-modules waarin ze gerealiseerd zijn.
 
 **Spreektekst:**
-> *De MVP is een Visual Studio-extensie die communiceert met Ollama als lokale LLM-runtime. Zeven kernmodules dragen de negen ontwerpcriteria. AppDefaults centraliseert alle constants — modelparameters, URL's en timeouts — zodat OC-3 over modelstochasticiteit getest kan worden via pinning-tests. OllamaClient is de enige uitgaande netwerkactor in de hele oplossing; het is het enige module waar HTTP-verkeer vandaan komt. PromptOrchestrator beheert de chathistorie in-memory, zonder ooit naar schijf te schrijven. ContextProvider implementeert de context-ceiling — een vier-niveau beperking van wat het LLM mag zien, met SelectionOnly als veilige default. De Core-bibliotheek heeft expliciet geen Visual Studio SDK-references, om de trust boundary tussen Core en VSIX-host hard te maken. Wat ik wil benadrukken: deze architectuur is bewust ontworpen om aantoonbaar te zijn. Voor elke regel code die ertoe doet kan ik terugverwijzen naar het ontwerpcriterium waar hij vandaan komt.*
+> *De MVP is een Visual Studio-extensie die communiceert met een lokale of intern gehoste LLM-runtime. De kernmodules dragen de negen ontwerpcriteria. AppDefaults centraliseert alle constants — modelparameters, URL's en timeouts — zodat OC-3 over modelstochasticiteit getest kan worden via pinning-tests. OpenAICompatibleClient en OpenWebUIClient zijn de twee implementaties van het backend-agnostisch clientcontract ILlmClient. Zij zijn de enige uitgaande netwerkactoren in de hele oplossing. PromptOrchestrator beheert de chathistorie in-memory, zonder ooit naar schijf te schrijven. ContextProvider implementeert de context-ceiling — een vier-niveau beperking van wat het LLM mag zien, met SelectionOnly als veilige default. In versie 0.4 zijn daar streaming-responses via SSE en reasoning-ondersteuning met een inklapbaar denkblok aan toegevoegd. De Core-bibliotheek heeft expliciet geen Visual Studio SDK-references, om de trust boundary tussen Core en VSIX-host hard te maken. Wat ik wil benadrukken: deze architectuur is bewust ontworpen om aantoonbaar te zijn. Voor elke regel code die ertoe doet kan ik terugverwijzen naar het ontwerpcriterium waar hij vandaan komt.*
 
 **Overgang:**
 > *En dan komt de evaluatie: hebben we ook bewezen dat het werkt?*
@@ -135,26 +135,26 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ## Scène 9 — Evaluatie & Validatie: systematische validatie van de MVP
 
-**Spreekdoel:** de commissie ziet dat de MVP niet alleen gebouwd maar ook systematisch gevalideerd is — via code coverage, OC-matrix, STRIDE en een geplande gebruikersacceptatietest.
+**Spreekdoel:** de commissie ziet dat de MVP niet alleen gebouwd maar ook systematisch gevalideerd is — via code coverage, mutatietests, OC-matrix, STRIDE en een afgeronde gebruikersacceptatietest.
 
 **Wat de commissie ziet:** de Evaluatie & Validatie-pagina, tabblad *Technische validatie* — coveragekaarten, progressbars, OC-validatiematrix en STRIDE-tabel.
 
 **Spreektekst:**
-> *De evaluatie loopt langs vijf dimensies. De eerste is de OC-naleving: alle negen ontwerpcriteria zijn in de v0.3-codebase aantoonbaar geïmplementeerd — negen keer "Ja" in de evaluatiematrix. De tweede dimensie is de code coverage: 247 testcases over 20 testklassen. Het project-totaal staat op 38,91% lijn-dekking, maar dat getal vraagt uitleg. De VS2022 Code Coverage engine meetelt ook de View-laag — WPF-controls die architectureel buiten de unit-testscope vallen. De kernscope, de unit-testbare services en viewmodels, haalt circa 74% lijn-dekking. De drie testklassen voor OllamaClient, OllamaClientArguments en OpenWebUIClient staan op 100%. De derde dimensie is de STRIDE-analyse: alle zes bedreigingscategorieën zijn beoordeeld; het hoogste restrisico is "Matig" bij Repudiation — bewust geaccepteerd omdat promptinhoud niet wordt gelogd. De vierde is de risicoregister: R3, R4, R7, R8 en R9 zijn gemitigeerd door de ontwerpkeuzes. R6 over hardware-performance staat bewust open. De vijfde dimensie — de praktijkevaluatie met de gebruikersacceptatietest — is gepland; dat is het tweede tabblad op deze pagina.*
+> *De evaluatie loopt langs vijf dimensies. De eerste is de OC-naleving: alle negen ontwerpcriteria zijn in de v0.4-codebase aantoonbaar geïmplementeerd — negen keer "Ja" in de evaluatiematrix. De tweede dimensie is de code coverage: 499 testcases over 32 testklassen — 29 unit- en 3 integratieklassen. Het project-totaal staat op 62,7% lijn-dekking. Maar dat getal vraagt uitleg. De Coverlet-engine meetelt ook de WPF View-laag — XAML-controls die architectureel buiten de unit-testscope vallen. De kernscope, de unit-testbare services, viewmodels en DTO's, haalt 93,9% lijn-dekking en 85% branch-dekking. Aanvullend zijn acht mutatietests uitgevoerd op de kritiekste ontwerp-invarianten; alle acht mutanten zijn gevangen. De derde dimensie is de STRIDE-analyse: alle zes bedreigingscategorieën zijn beoordeeld; het hoogste restrisico is "Gedeeltelijk" bij Repudiation — bewust geaccepteerd omdat promptinhoud niet wordt gelogd. De vierde is het risicoregister. En de vijfde dimensie — de praktijkevaluatie — is afgerond; dat is het volgende tabblad.*
 
 **Overgang:**
-> *De technische validatie toont negen OC's voldaan. De vijfde dimensie — de praktijkevaluatie — loopt nog; dat is het volgende tabblad.*
+> *De technische validatie toont negen OC's voldaan. De praktijkevaluatie laat zien wat de doelgroep ervan vindt.*
 
 ---
 
 ## Scène 10 — Praktijkevaluatie: gebruikersacceptatietest
 
-**Spreekdoel:** de commissie begrijpt hoe de praktijkvalidatie is opgezet, welke vijf meetpunten nog openstaan en waarom de GAT bewust als afzonderlijke toets is ingepland.
+**Spreekdoel:** de commissie begrijpt dat de praktijkvalidatie is afgerond, kent de belangrijkste uitkomsten en ziet dat de resultaten de ontwerpkeuzes ondersteunen.
 
-**Wat de commissie ziet:** de Evaluatie & Validatie-pagina, tabblad *Praktijkevaluatie (GAT)* — protocolkaarten (7 ontwikkelaars, 2 weken), vragenlijststructuur en de vijf openstaande DV5-meetpunten.
+**Wat de commissie ziet:** de Evaluatie & Validatie-pagina, tabblad *Praktijkevaluatie (GAT)* — live data uit Google Forms met Likert-scores, open feedback, eindcijfer en aanbevelingsscore.
 
 **Spreektekst:**
-> *De technische validatie beantwoordt de vraag of de MVP voldoet aan de gestelde criteria. Maar de vraag "werkt het ook in de praktijk voor de doelgroep?" vereist een andere methode. De gebruikersacceptatietest bestaat uit een periode van twee weken waarbij zeven ontwikkelaars uit de doelgroep — JIVC SO&I — de extensie in vrij gebruik nemen. Na die periode vullen ze een gestructureerde vragenlijst in via Google Forms. Die vragenlijst bevat elf Likert-vragen over bruikbaarheid, context-UX, veiligheid en Defensie-toepasbaarheid, aangevuld met een aanbevelingsscore en een eindcijfer. Maar de GAT is meer dan een tevredenheidsmeting; hij valideert ook vijf specifieke meetpunten. Eén: de empirische responstijdmeting voor NFR-2 op representatieve hardware met codellama:13b-instruct. Twee: de OC-3 herhaalbaarheidstest — drie identieke prompts, cold-start en warm-start, gemeten op Levenshtein-afstand. Drie: observatie van overreliance voor OC-1 en R7 — wanneer worden AI-suggesties gekopieerd zonder review? Vier: hoe ContextMode in de praktijk wordt ervaren. En vijf: een packet capture op het localhost-endpoint gedurende één werkdag om OC-4 empirisch te bevestigen. De resultaten worden na afloop als CSV aan de codebase toegevoegd en hier automatisch getoond.*
+> *De gebruikersacceptatietest is uitgevoerd met vijf ontwikkelaars van JIVC SO&I die de extensie gedurende twee weken in vrij gebruik hebben genomen. Na die periode hebben ze een gestructureerde vragenlijst ingevuld. Het resultaat is een gemiddeld eindcijfer van 7,4 op 10 en een aanbevelingsscore van 8,2 op 10. Het sterkste signaal is de human-in-the-loop-aanpak: die scoort 4,8 op 5. Gebruikers vinden het veilig en beheersbaar dat AI-output een voorstel blijft. Ook de bereidheid om de extensie opnieuw te gebruiken bij doorontwikkeling scoort 4,8 op 5. De potentie binnen Defensie scoort 4,4. Het zwakste punt is het inzicht in welke informatie naar het model wordt verzonden — een 3,2 op 5. Dat nuanceert OC-9: de MVP toont contextinformatie, maar gebruikers begrijpen niet altijd goed welke context bij welke vraag hoort. Dat is een concreet verbeterpunt. Wat de NFR-2 responstijd betreft: in de productieomgeving op het LITON haalt de extensie een p95 van 4,27 seconden — onder de eis van vijf seconden. De feedback-latentie is verwaarloosbaar: onder de drie milliseconden in alle metingen. En versie 0.4 voegt streaming toe, waardoor de subjectief ervaren wachttijd nog verder daalt.*
 
 **Overgang:**
 > *De heatmap laat in één oogopslag zien welke OC's het zwaarst onderbouwd zijn vanuit de deelvragen.*
@@ -182,24 +182,52 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 **Wat de commissie ziet:** traceability graph met de preset *OC mitigeert risico* — alle ontwerpcriteria met de risico's die ze afdekken, via rode mitigates-edges.
 
 **Spreektekst:**
-> *In het risicoregister staan negen risico's. Vijf daarvan zijn aantoonbaar gemitigeerd door ontwerpkeuzes die in de MVP zitten. R3 — het risico dat OC's niet toetsbaar zouden zijn — is gemitigeerd door de pinning-tests in AppDefaults. R4 — beperkingen vanuit de Visual Studio SDK — is gemitigeerd door alleen ondersteunde mechanismen te gebruiken. R7 — het risico dat ontwikkelaars AI-output onkritisch overnemen — is gemitigeerd door OC-1: de banner "AI-generated, human review required" en het ontbreken van auto-apply. R8, het risico op onbedoelde verwerking van gevoelige info, is gemitigeerd door drie OC's tegelijk: contextbegrenzing, IsLocalhost en geen persistente opslag. Eén risico is bewust open gehouden: R6 over hardware-performance kan ik niet in code oplossen; dat vraagt een meting op de doelhardware en die meting is gepland in DV5. Ik verberg dat niet — het staat expliciet als open in de matrix.*
+> *In het risicoregister staan negen risico's. Vijf daarvan zijn aantoonbaar gemitigeerd door ontwerpkeuzes die in de MVP zitten. R3 — het risico dat OC's niet toetsbaar zouden zijn — is gemitigeerd door de pinning-tests in AppDefaults. R4 — beperkingen vanuit de Visual Studio SDK — is gemitigeerd door alleen ondersteunde mechanismen te gebruiken. R7 — het risico dat ontwikkelaars AI-output onkritisch overnemen — is gemitigeerd door OC-1: output wordt nooit automatisch toegepast en de gebruiker moet handmatig kopiëren of Apply bevestigen. De GAT bevestigt dit: human-in-the-loop scoort 4,8 op 5. R8, het risico op onbedoelde verwerking van gevoelige info, is gemitigeerd door drie OC's tegelijk: contextbegrenzing, CreateBaseUri-validatie en geen persistente opslag. Eén risico is bewust open gehouden: R6 over hardware-performance. De NFR-2 meting bevestigt dat: lokaal met een 13B-model wordt de eis niet gehaald, maar in de productieomgeving op het LITON wel. Dat is een infrastructuurkeuze, geen softwaredefect.*
+
+**Overgang:**
+> *De volgende vraag is: hoe heeft de MVP zich ontwikkeld, en waar gaat het heen?*
+
+---
+
+## Scène 13 — Ontwikkelroadmap: van onderzoek naar overdracht
+
+**Spreekdoel:** de commissie ziet dat de MVP niet in één keer is gebouwd maar via een bewust iteratief groeimodel, en dat elke versie een andere validatievraag beantwoordt.
+
+**Wat de commissie ziet:** de roadmap-pagina met de drie fasebanden (Verkenning, Validatie, Verfijning & Overdracht), de versiekaarten v0.1 t/m v1.0, en de scope-grens die de onderzoeksafbakening markeert.
+
+**Spreektekst:**
+> *De roadmap laat zien hoe de MVP zich heeft ontwikkeld van een eerste conceptarchitectuur naar de huidige versie 0.4. Elke versie beantwoordt een andere vraag. Versie 0.1 toonde aan dat de communicatie tussen Visual Studio en Ollama technisch haalbaar is. Versie 0.2 introduceerde de ontwerpcriteria als testbaar kader: ContextMode, AppDefaults en de eerste 138 tests. Versie 0.3 breidde de testsuite uit naar 247 cases en voegde het backend-agnostisch clientcontract toe — ILlmClient met OpenAICompatibleClient en OpenWebUIClient. Versie 0.4, de huidige release, voegt streaming-responses via SSE toe, reasoning-ondersteuning met een inklapbaar denkblok, en een gesplitste systeemprompt. De testsuite staat nu op 499 cases over 32 klassen. De stippellijn markeert de scope-grens: alles links daarvan is onderdeel van dit afstudeeronderzoek; de versies rechts — 0.5 en 1.0 — zijn aanbevelingen voor doorontwikkeling na overdracht.*
+
+**Overgang:**
+> *En die versies staan niet los van de onderzoeksmethode.*
+
+---
+
+## Scène 14 — Koppeling onderzoeksmethodiek: iteratief groeimodel
+
+**Spreekdoel:** de commissie begrijpt dat de versie-indeling aansluit bij de fasen van het ontwerpgericht onderzoek volgens de design cycle van Wieringa.
+
+**Wat de commissie ziet:** de methodologiesectie onder de roadmap met de koppeling versie → onderzoeksfase → validatievraag.
+
+**Spreektekst:**
+> *Dit deel maakt de relatie tussen versies en onderzoeksfasen expliciet. De drie fasebanden — verkenning, validatie, en verfijning & overdracht — corresponderen met de stappen uit de design cycle van Wieringa. Versie 0.1 en 0.2 vallen in de verkenningsfase: kan het technisch, en is het toetsbaar? Versie 0.3 en 0.4 vallen in de validatiefase: voldoet het aan de eisen, en werkt het in de praktijk? De statische evaluatie, de gebruikersacceptatietest en de NFR-2 metingen zijn hier uitgevoerd. Versies 0.5 en 1.0 vallen buiten de onderzoeksscope, maar de aanbevelingen uit DV5 geven concrete richting: betere contexttransparantie, TTFT-metingen voor streaming, en Apply-robuustheid over VS-versies.*
 
 **Overgang:**
 > *Dat brengt mij bij de conclusie.*
 
 ---
 
-## Scène 13 — Conclusie: resultaat in cijfers
+## Scène 15 — Conclusie: resultaat in cijfers
 
-**Spreekdoel:** de commissie houdt drie cijfers en één boodschap over: het kader is compleet, de MVP realiseert het, en alles is herleidbaar.
+**Spreekdoel:** de commissie houdt drie cijfers en één boodschap over: het kader is compleet, de MVP realiseert het, de praktijkvalidatie bevestigt het, en alles is herleidbaar.
 
-**Wat de commissie ziet:** landingspagina met de KPI-tegels — 9 OC, 15 requirements, 247 MSTest-cases, link naar de graph.
+**Wat de commissie ziet:** landingspagina met de KPI-tegels — 9 OC, 15 requirements, 499 MSTest-cases, link naar de graph.
 
 **Spreektekst:**
-> *Drie cijfers vatten het resultaat samen. Negen ontwerpcriteria die het toetsbare kader vormen. Vijftien requirements waarin die criteria geoperationaliseerd zijn. Tweehonderdzevenenveertig MSTest-cases die bewijzen dat de implementatie aan haar verplichtingen voldoet. Alle MUST-eisen zijn gerealiseerd. Eén niet-functionele eis is gedeeltelijk — open en transparant gerapporteerd. Maar belangrijker dan de cijfers is wat dit portfolio laat zien: dat elk van die OC's, requirements en testresultaten herleidbaar is naar een specifieke deelvraag en naar specifieke literatuur. De centrale onderzoeksvraag is daarmee beantwoord, niet alleen met een werkende prototype, maar met een ontwerpkennis-keten die opdrachtgever en commissie kunnen verifiëren. Dat is wat traceability in dit onderzoek concreet betekent.*
+> *Drie cijfers vatten het resultaat samen. Negen ontwerpcriteria die het toetsbare kader vormen — alle negen voldaan. Vijftien requirements waarin die criteria geoperationaliseerd zijn. Vierhonderdnegenennegentig MSTest-cases die bewijzen dat de implementatie aan haar verplichtingen voldoet — met 93,9% lijn-dekking op de kernscope en acht op acht mutanten gevangen. De praktijkvalidatie met vijf ontwikkelaars uit de doelgroep bevestigt het beeld: een eindcijfer van 7,4, een aanbevelingsscore van 8,2 en de uitspraak dat human-in-the-loop veilig en beheersbaar voelt. NFR-2 is in de productieomgeving gehaald. De deelvraag van DV5 is daarmee beantwoord: de MVP voldoet binnen de afgebakende scope aan de belangrijkste eisen voor informatiebeveiliging en beheersbaarheid, en is in de praktijk voldoende bruikbaar en effectief voor ondersteunende ontwikkeltaken. De centrale onderzoeksvraag is beantwoord — niet alleen met een werkend prototype, maar met een ontwerpkennis-keten die opdrachtgever en commissie kunnen verifiëren. Dat is wat traceability in dit onderzoek concreet betekent.*
 
 **Afsluiting:**
-> *Dat was de geleide tour. De rest van het portfolio — de tabellen, de uitvoeringsdiagrammen, het Plan van Aanpak — is beschikbaar om door te klikken bij vragen. Ik ben benieuwd naar jullie vragen.*
+> *Dat was de geleide tour. De rest van het portfolio — de tabellen, de uitvoeringsdiagrammen, het Plan van Aanpak, de roadmap — is beschikbaar om door te klikken bij vragen. Ik ben benieuwd naar jullie vragen.*
 
 ---
 
@@ -219,7 +247,10 @@ Mocht de commissie tijdens de Q&A een specifiek onderdeel willen zien:
 | "Welke norm wordt hier geraakt?" | Tabblad **Normen** in de traceability matrix |
 | "Wat is de code coverage?" | Evaluatie & Validatie → Technische validatie → coverage cards |
 | "Hoe is STRIDE uitgevoerd?" | Evaluatie & Validatie → STRIDE-analyse sectie |
-| "Hoe staat het met de gebruikerstest?" | Evaluatie & Validatie → Praktijkevaluatie (GAT) tabblad |
+| "Wat zeggen de gebruikers?" | Evaluatie & Validatie → Praktijkevaluatie (GAT) tabblad |
+| "NFR-2 responstijd?" | Evaluatie & Validatie → GAT → NFR-2 meetresultaten |
+| "Hoe is de MVP gegroeid?" | Roadmap-pagina → versiekaarten en fasebanden |
+| "Welke aanbevelingen voor doorontwikkeling?" | Roadmap → v0.5/v1.0 kaarten of DV5 §5.8.3 |
 
 ---
 
@@ -232,3 +263,26 @@ Mocht de commissie tijdens de Q&A een specifiek onderdeel willen zien:
 - [ ] Controleer dat de Live Server URL bereikbaar is voor de commissie
 - [ ] Houd dit script open op een tweede scherm of geprint naast je
 - [ ] Adem rustig — de tour drijft het ritme, niet jij
+
+---
+
+## Bijlage — kerngetallen voor de Q&A
+
+| Metriek | Waarde |
+|---|---|
+| MVP-versie | v0.4 |
+| Ontwerpcriteria | 9 (alle voldaan) |
+| Requirements | 15 (8 FR, 5 NFR, 2 C) |
+| MSTest-cases | 499 over 32 klassen (29 unit + 3 integratie) |
+| Project lijn-dekking | 62,7% |
+| Core-scope lijn-dekking | 93,9% |
+| Core-scope branch-dekking | 85% |
+| Mutatietests | 8/8 gevangen |
+| STRIDE hoogste restrisico | Gedeeltelijk (Repudiation) |
+| GAT respondenten | 5 ontwikkelaars JIVC SO&I |
+| Eindcijfer | 7,4 / 10 |
+| Aanbevelingsscore | 8,2 / 10 |
+| Human-in-the-loop score | 4,8 / 5 |
+| NFR-2 p95 productie | 4,27 s (eis: ≤ 5 s) |
+| NFR-2 T_feedback | < 3 ms |
+| Tour-scènes | 15 |

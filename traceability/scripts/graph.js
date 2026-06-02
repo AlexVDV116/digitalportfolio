@@ -214,9 +214,7 @@ export function mountGraph({ host, sideEl }) {
         const W = width();
         const H = height();
         svg.attr("viewBox", `0 0 ${W} ${H}`);
-        svg.transition()
-            .duration(400)
-            .call(zoom.transform, d3.zoomIdentity);
+        svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity);
     }
 
     // ---- Force simulation ----
@@ -422,9 +420,7 @@ export function mountGraph({ host, sideEl }) {
 
     // ---- Visibility / filter ----
     function applyVisibility() {
-        node.style("display", (n) =>
-            activeTypes.has(n.type) ? null : "none"
-        );
+        node.style("display", (n) => (activeTypes.has(n.type) ? null : "none"));
         link.style("display", (l) =>
             activeTypes.has(l.source.type ?? nodeById.get(l.source).type) &&
             activeTypes.has(l.target.type ?? nodeById.get(l.target).type)
@@ -503,14 +499,6 @@ export function mountGraph({ host, sideEl }) {
                     <b>Sleep</b> = node verplaatsen •
                     <b>Dubbelklik</b> = node loslaten.</p>
                 </div>
-            </div>
-            <div class="card card--compact">
-                <h2 class="card__heading">Tip voor verdediging</h2>
-                <div class="card__desc">
-                    Gebruik een <b>preset</b> om alleen de relevante laag te tonen
-                    (bijv. <em>OC → MVP</em> bij vragen over realisatie). De URL
-                    bewaart focus + filter, dus je kunt links voorbereiden.
-                </div>
             </div>`;
     }
 
@@ -519,7 +507,9 @@ export function mountGraph({ host, sideEl }) {
         const status = STATUS_LABEL[n.status] ?? "";
         const statusClass = STATUS_BADGE[n.status] ?? "";
         const prioPill = n.priority
-            ? `<span class="badge badge--${n.priority.toLowerCase()}">${n.priority}</span>`
+            ? `<span class="badge badge--${n.priority.toLowerCase()}">${
+                  n.priority
+              }</span>`
             : "";
 
         const incoming = links
@@ -557,7 +547,9 @@ export function mountGraph({ host, sideEl }) {
                 const items = g.items
                     .map(
                         (o) =>
-                            `<li><a href="#" data-jump="${o.id}"><strong>${o.label}</strong> — ${escape(o.name)}</a></li>`
+                            `<li><a href="#" data-jump="${o.id}"><strong>${
+                                o.label
+                            }</strong> — ${escape(o.name)}</a></li>`
                     )
                     .join("");
                 return `<p style="margin:8px 0 4px"><b>${verb}</b></p><ul class="sideDetail__list">${items}</ul>`;
@@ -567,20 +559,37 @@ export function mountGraph({ host, sideEl }) {
         sideEl.innerHTML = `
             <div class="card">
                 <div class="card__title">
-                    <span class="badge badge--id" style="color:${t.color};border-color:${t.color}">${escape(n.label)}</span>
+                    <span class="badge badge--id" style="color:${
+                        t.color
+                    };border-color:${t.color}">${escape(n.label)}</span>
                     ${prioPill}
-                    ${status ? `<span class="badge ${statusClass}" style="margin-left:6px">${status}</span>` : ""}
+                    ${
+                        status
+                            ? `<span class="badge ${statusClass}" style="margin-left:6px">${status}</span>`
+                            : ""
+                    }
                 </div>
                 <div class="sideDetail__row" style="margin-top:6px">
-                    <span style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px">${t.label}</span>
+                    <span style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px">${
+                        t.label
+                    }</span>
                 </div>
                 <div class="card__desc">
-                    <p style="font-weight:600;color:var(--ink)">${escape(n.name)}</p>
+                    <p style="font-weight:600;color:var(--ink)">${escape(
+                        n.name
+                    )}</p>
                     ${n.desc ? `<p>${escape(n.desc)}</p>` : ""}
                 </div>
-                ${relationsHtml || `<div class="sideDetail__meta">Geen uitgaande/inkomende relaties.</div>`}
+                ${
+                    relationsHtml ||
+                    `<div class="sideDetail__meta">Geen uitgaande/inkomende relaties.</div>`
+                }
                 <div class="sideDetail__meta">
-                    ${isHover ? "💡 klik om vast te zetten" : `📌 vastgezet — klik elders om los te laten`}
+                    ${
+                        isHover
+                            ? "💡 klik om vast te zetten"
+                            : `📌 vastgezet — klik elders om los te laten`
+                    }
                 </div>
             </div>`;
 
@@ -613,7 +622,7 @@ export function mountGraph({ host, sideEl }) {
                     ">": "&gt;",
                     '"': "&quot;",
                     "'": "&#039;",
-                })[m]
+                }[m])
         );
     }
 

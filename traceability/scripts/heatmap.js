@@ -184,14 +184,6 @@ export function mountHeatmap({ host, sideEl, onSelect }) {
                 hij wordt mogelijk via theorie/normen of andere deelvragen onderbouwd.
                 Open de <b>Graph</b>-tab voor het volledige beeld.</p>
             </div>
-        </div>
-        <div class="card card--compact">
-            <h2 class="card__heading">Tip!</h2>
-            <div class="card__desc">
-                Gebruik deze heatmap als opening: <em>"elk ontwerpcriterium is herleidbaar
-                naar tenminste één deelvraag, en de zwaarst gedekte criteria (OC-2, OC-4)
-                weerspiegelen de kern van het probleem."</em>
-            </div>
         </div>`;
 
     return {

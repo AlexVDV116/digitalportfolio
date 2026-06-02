@@ -220,10 +220,12 @@
                             <li><strong>Ja/Nee:</strong> hergebruiksintentie · Defensie-haalbaarheid</li>
                         </ul>
                         <div class="gatMeetpunten">
-                            <h4 class="evalSubtitle" style="margin-top:16px">Openstaande meetpunten (DV5)</h4>
+                            <h4 class="evalSubtitle" style="margin-top:16px">Meetpunten DV5 — status</h4>
                             <ul class="evalList">
-                                <li><strong>NFR-2:</strong> empirische responstijdmeting op representatieve hardware
-                                    (codellama:13b-instruct) — p50/p95 over 3 ronden van 5 prompts</li>
+                                <li><strong>NFR-2 ✓</strong> Uitgevoerd — productieomgeving (LITON, Land_IT):
+                                    p50 = 2,39 s · p95 = 4,27 s · T_feedback &lt; 3 ms.
+                                    Eis (p95 ≤ 5 s) gehaald. Lokale omgeving (codellama:13b) haalt eis niet
+                                    (hardware- en modelafhankelijk).</li>
                                 <li><strong>OC-3:</strong> herhaalbaarheidstest — 3× identieke prompt (cold-start +
                                     warm-start), vergelijking op Levenshtein-afstand</li>
                                 <li><strong>OC-1/R7:</strong> observatie overreliance — wanneer worden AI-suggesties
@@ -242,8 +244,7 @@
             <section class="evalSection" aria-label="GAT resultaten">
                 <h2 class="evalSection__title">GAT-resultaten</h2>
                 <p class="evalSection__sub">
-                    Resultaten worden live opgehaald uit het gepubliceerde Google Forms-spreadsheet — zodra deelnemers
-                    het formulier invullen, verschijnen de scores hier automatisch.
+                    Afgerond met 5 respondenten · JIVC SO&amp;I ontwikkelaars · resultaten live opgehaald uit Google Forms-spreadsheet
                 </p>
 
                 <div id="gatResults" hidden>
@@ -262,13 +263,11 @@
 
                 <div class="gatEmpty" id="gatEmpty">
                     <div class="gatEmpty__icon">📊</div>
-                    <p class="gatEmpty__title">Testperiode nog actief</p>
-                    <p>De gebruikersacceptatietest loopt gedurende een periode van 2 weken met 7 ontwikkelaars uit de
-                        doelgroep (JIVC SO&amp;I). Na de testperiode vullen de deelnemers het Google Forms-formulier in.
-                    </p>
-                    <p>Zodra deelnemers het Google Forms-formulier invullen, worden de scores automatisch opgehaald uit
-                        het gepubliceerde spreadsheet en hier weergegeven — zonder dat de codebase hoeft te worden
-                        bijgewerkt.</p>
+                    <p class="gatEmpty__title">Resultaten laden…</p>
+                    <p>De GAT is afgerond met 5 respondenten (JIVC SO&amp;I). De scores worden automatisch opgehaald
+                        uit het gepubliceerde Google Forms-spreadsheet en hier weergegeven.</p>
+                    <p>Als de scores niet zichtbaar zijn, controleer dan de netwerkverbinding of open de pagina
+                        opnieuw.</p>
                 </div>
             </section>
 

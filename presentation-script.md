@@ -157,7 +157,7 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 **Spreektekst:**
 
-> _De evaluatie loopt langs vijf dimensies. De eerste is de OC-naleving: alle negen ontwerpcriteria zijn in de v0.4-codebase aantoonbaar geïmplementeerd — negen keer "Ja" in de evaluatiematrix. De tweede dimensie is de code coverage: 499 testcases over 32 testklassen — 29 unit- en 3 integratieklassen. Het project-totaal staat op 62,7% lijn-dekking. Maar dat getal vraagt uitleg. De Coverlet-engine meetelt ook de WPF View-laag — XAML-controls die architectureel buiten de unit-testscope vallen. De kernscope, de unit-testbare services, viewmodels en DTO's, haalt 93,9% lijn-dekking en 85% branch-dekking. Aanvullend zijn acht mutatietests uitgevoerd op de kritiekste ontwerp-invarianten; alle acht mutanten zijn gevangen. De derde dimensie is de STRIDE-analyse: alle zes bedreigingscategorieën zijn beoordeeld; het hoogste restrisico is "Gedeeltelijk" bij Repudiation — bewust geaccepteerd omdat promptinhoud niet wordt gelogd. De vierde is het risicoregister. En de vijfde dimensie — de praktijkevaluatie — is afgerond; dat is het volgende tabblad._
+> _De evaluatie loopt langs vijf dimensies. De eerste is de OC-naleving: alle negen ontwerpcriteria zijn in de v0.4-codebase aantoonbaar geïmplementeerd — negen keer "Ja" in de evaluatiematrix. De tweede dimensie is de code coverage: 499 testcases over 32 testklassen — 29 unit- en 3 integratieklassen. Het project-totaal staat op 72,3% lijn-dekking en 73,4% branch-dekking. Maar dat getal vraagt uitleg. De Coverlet-engine meetelt ook de WPF View-laag — XAML-controls die architectureel buiten de unit-testscope vallen. De kernscope, de unit-testbare services, viewmodels en DTO's, haalt circa 93,9% lijn-dekking. Aanvullend zijn acht mutatietests uitgevoerd op de kritiekste ontwerp-invarianten; alle acht mutanten zijn gevangen. De derde dimensie is de STRIDE-analyse: alle zes bedreigingscategorieën zijn beoordeeld; het hoogste restrisico is "Gedeeltelijk" bij Repudiation — bewust geaccepteerd omdat promptinhoud niet wordt gelogd. De vierde is het risicoregister. En de vijfde dimensie — de praktijkevaluatie — is afgerond; dat is het volgende tabblad._
 
 **Overgang:**
 
@@ -304,9 +304,9 @@ Mocht de commissie tijdens de Q&A een specifiek onderdeel willen zien:
 | Ontwerpcriteria           | 9 (alle voldaan)                             |
 | Requirements              | 15 (8 FR, 5 NFR, 2 C)                        |
 | MSTest-cases              | 499 over 32 klassen (29 unit + 3 integratie) |
-| Project lijn-dekking      | 62,7%                                        |
-| Core-scope lijn-dekking   | 93,9%                                        |
-| Core-scope branch-dekking | 85%                                          |
+| Project lijn-dekking      | 72,3%                                        |
+| Project branch-dekking    | 73,4%                                        |
+| Core-scope lijn-dekking   | ~93,9%                                       |
 | Mutatietests              | 8/8 gevangen                                 |
 | STRIDE hoogste restrisico | Gedeeltelijk (Repudiation)                   |
 | GAT respondenten          | 5 ontwikkelaars JIVC SO&I                    |

@@ -54,10 +54,10 @@ export const STORY_SCENES = [
     {
         id: "oc-detail",
         chapter: "Ontwerpcriteria",
-        title: "Bewijs-keten OC-4 (Volledig offline)",
+        title: "Bewijs-keten OC-2 (Contextbeperking)",
         narration:
-            "Vanuit DV1 + BIO 13.1 + OWASP LLM06 → C-1/C-2/NFR-1 → LlmClientBase.CreateBaseUri + netwerklaag-segmentatie → 63 URL-tests → mitigeert R8.",
-        path: "oc/?id=OC-4",
+            "Vanuit DV2 + BIO 10.1 (need-to-know) → FR-4/FR-7/FR-8 → ContextMode-ceiling (Off/SelectionOnly/IncludeMethod/IncludeFile) + 500-regelcap → 26 tests → mitigeert R8.",
+        path: "oc/?id=OC-2",
     },
     {
         id: "requirements",

@@ -91,14 +91,14 @@ De rode draad door alle scènes is dezelfde keten die het portfolio centraal ste
 
 ---
 
-## Scène 6 — Bewijs-keten OC-4 (Volledig offline)
+## Scène 6 — Bewijs-keten OC-2 (Contextbeperking)
 
 **Spreekdoel:** de commissie ziet één complete bewijs-keten van begin tot eind, en begrijpt dat dezelfde structuur voor elk van de negen criteria beschikbaar is.
 
-**Wat de commissie ziet:** OC Explorer met OC-4 actief — vijf genummerde secties van herkomst, requirements, normen, implementatie en validatie.
+**Wat de commissie ziet:** OC Explorer met OC-2 actief — vijf genummerde secties van herkomst, requirements, normen, implementatie en validatie.
 
 **Spreektekst:**
-> *OC-4 luidt: "alle LLM-verwerking gebeurt volledig offline." Ik gebruik dit criterium als voorbeeld omdat het de kern van de Defensiecontext raakt. In de eerste sectie zie je waar het vandaan komt: DV1 leverde dit op, met als theoretische basis Shostack over zero-trust en OWASP LLM06 over information disclosure. In sectie twee zie je hoe ik het heb vertaald naar concrete eisen: de twee harde constraints C-1 en C-2 en de niet-functionele eis NFR-1 voor stabiliteit. Sectie drie verankert het in normen: D/304 en BIO 13.1 voor netwerkscheiding. Sectie vier wijst aan waar het in de code zit: in LlmClientBase, in de CreateBaseUri-methode die alleen absolute HTTP(S)-URI's accepteert. OC-4 is een gedeelde verantwoordelijkheid: de client valideert de URL-syntaxis, de netwerklaag dwingt endpoint-allow-listing af via JIVC-netwerksegmentatie. Sectie vijf toont de validatie: 63 URL-validatietests in LlmClientBaseTests, OpenAICompatibleClientTests en OpenWebUIClientTests dekken alle varianten. En tot slot: dit criterium mitigeert risico R8 uit het risicoregister. Dit is de bewijs-keten die ik voor elk van de negen OC's kan tonen.*
+> *OC-2 luidt: "contextdeling met het LLM vindt uitsluitend plaats via expliciete keuze van de ontwikkelaar." Ik gebruik dit criterium als voorbeeld omdat het precies het spanningsveld tussen veiligheid en effectiviteit raakt dat centraal staat in dit onderzoek. In de eerste sectie zie je waar het vandaan komt: DV2 leverde dit op — stakeholders benoemden al vroeg het risico dat ontwikkelaars onbedoeld gevoelige code naar een model sturen. De theoretische basis is Grounded generation en het BIO 10.1 need-to-know principe. In sectie twee zie je hoe ik het heb vertaald naar concrete eisen: FR-4 voor contextgebonden interactie, FR-7 voor inzicht in verzonden informatie, en FR-8 voor configuratie van het contextgebruik. Sectie drie verankert het in normen: BIO 10.1. Sectie vier wijst aan waar het in de code zit: de ContextMode-enum in ContextProvider met vier niveaus — Off, SelectionOnly, IncludeMethod en IncludeFile. SelectionOnly is de standaard: alleen wat de ontwikkelaar expliciet heeft geselecteerd. Methode- en bestandscontext vereisen expliciet opt-in. Een 500-regelcap begrenst de maximale payload. Sectie vijf toont de validatie: 26 testcases in ContextSelectionTests en InMemoryContextSettingsTests valideren factory-isolatie, mode-roundtrip en ceiling-logica. En tot slot: dit criterium mitigeert risico R8 — onbedoelde verwerking van gevoelige informatie — samen met OC-4 en OC-5. Dit is de bewijs-keten die ik voor elk van de negen OC's kan tonen.*
 
 **Overgang:**
 > *Hoe die criteria zich vertalen naar concrete requirements, laat het volgende beeld zien.*

@@ -4111,3 +4111,125 @@ body.is-presenting .storyOverlay {
         padding: var(--sp-5) var(--sp-4) var(--sp-10);
     }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   CONCLUSIE — antwoord, onderzoeksbijdrage & grenzen
+   ══════════════════════════════════════════════════════════════════════ */
+
+.conclQuestion {
+    margin-bottom: var(--sp-4);
+}
+
+.conclQuestion__text {
+    font-size: var(--text-lg);
+    line-height: 1.55;
+    font-style: italic;
+    color: var(--ink);
+    border-left: 3px solid var(--line-strong, var(--line));
+    padding-left: var(--sp-4);
+    margin: var(--sp-2) 0 0;
+}
+
+.conclLead {
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 var(--sp-5);
+    max-width: 80ch;
+}
+
+.statusNote {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: var(--sp-4) var(--sp-5);
+    margin-bottom: var(--sp-5);
+}
+
+.statusNote p {
+    margin: var(--sp-1) 0 0;
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+/* Bijdrage-tabel: 2 kolommen, presenteerbaar */
+.contribTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-md);
+    margin-bottom: var(--sp-5);
+}
+
+.contribTable th,
+.contribTable td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--line);
+    line-height: 1.5;
+}
+
+.contribTable thead th {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 700;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line-strong, var(--line));
+}
+
+.contribTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.contribTable td:first-child {
+    width: 42%;
+    color: var(--ink);
+}
+
+.contribTable td:last-child {
+    color: var(--muted);
+}
+
+.contribTable strong {
+    color: var(--accent);
+}
+
+/* Grenzen: drie kaarten naast elkaar */
+.grensGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-5);
+}
+
+.grensCard {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: var(--sp-4) var(--sp-5);
+}
+
+.grensCard__title {
+    font-size: var(--text-md);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 var(--sp-2);
+}
+
+.grensCard p {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+@media (max-width: 900px) {
+    .grensGrid {
+        grid-template-columns: 1fr;
+    }
+    .contribTable td:first-child {
+        width: 50%;
+    }
+}

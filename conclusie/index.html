@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conclusie — antwoord, bijdrage &amp; grenzen</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../styles/main.css" />
+    <script>/* Prevent flash */
+        (function () { var t = localStorage.getItem("theme"); if (!t) t = "light"; document.documentElement.setAttribute("data-theme", t) })();
+    </script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__wrap">
+            <div>
+                <h1 class="topbar__title">Conclusie — antwoord, bijdrage &amp; grenzen</h1>
+                <p class="topbar__subtitle">
+                    Het antwoord op de hoofdvraag, de overdraagbare kennisbijdrage en de grenzen van het onderzoek.
+                </p>
+            </div>
+
+            <div class="topbar__actions">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                    <span class="themeToggle__moon" aria-hidden="true">🌙</span>
+                    <span class="themeToggle__sun" aria-hidden="true">☀️</span>
+                </button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">
+                    <img src="../assets/icons/iteration.png" alt="" class="btn__icon" aria-hidden="true">
+                    <span>Proces</span>
+                </button>
+                <div class="nav" id="nav">
+                    <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                        aria-controls="navMenu" title="Menu">
+                        <span class="nav__icon" aria-hidden="true"></span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+
+                    <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                        <div class="nav__sectionTitle">Pagina’s</div>
+
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio" data-nav-close>
+                            Project overview
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/pva/" data-nav-close>
+                            Plan van aanpak
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/execution/" data-nav-close>
+                            Uitvoering
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/deelvragen/" data-nav-close>
+                            Deelvragen
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/timeline/" data-nav-close>
+                            Planning
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
+                            Master Traceability Matrix
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
+                            Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
+                            OC Explorer
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/realisatie/" data-nav-close>
+                            Realisatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/evaluation/" data-nav-close>
+                            Evaluatie &amp; Validatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
+                            Metacognitieve cyclus
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/roadmap/" data-nav-close>
+                            Roadmap
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/conclusie/" data-nav-close>
+                            Conclusie
+                        </a>
+
+                        <div class="nav__divider"></div>
+                        <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Projectstatusrapport ↗
+                        </a>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Wekelijkse zelfreflecties ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dvPage">
+
+        <!-- ════════════════ 1 · ANTWOORD ════════════════ -->
+        <section class="dvBlock dvBlock--accent" id="antwoord">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">1</span>
+                <h2 class="dvBlock__title">Antwoord op de hoofdvraag</h2>
+            </div>
+
+            <div class="conclQuestion">
+                <span class="dvBlock__label">Centrale onderzoeksvraag</span>
+                <p class="conclQuestion__text">
+                    Hoe kan een lokaal gehost LLM veilig en beheersbaar worden geïntegreerd in Visual Studio 2022 binnen
+                    een gesloten defensieomgeving, zodat ontwikkelaars AI-ondersteuning kunnen benutten zonder de
+                    geldende beveiligingskaders te schenden?
+                </p>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Antwoord</span>
+                <p>Binnen de onderzochte MVP-scope kan een lokaal of intern gehost LLM veilig en beheersbaar worden
+                    geïntegreerd in Visual Studio 2022. De extensie functioneert als gecontroleerde client: zij verzamelt
+                    begrensde context, verwerkt deze via een intern LLM-endpoint, toont modeloutput als voorstel en laat
+                    de toepassing aan de ontwikkelaar. Het antwoord is positief, maar afgebakend: dit geldt zolang
+                    context, opslag, communicatie en toepassing van output expliciet worden begrensd.</p>
+            </div>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Onderbouwd door:</span>
+                <span class="chip chip--c">9 ontwerpcriteria voldaan</span>
+                <span class="chip chip--c">499 MSTest-cases</span>
+                <span class="chip chip--c">rapportcijfer 7,4 · aanbeveling 8,2</span>
+                <span class="chip chip--c">NFR-2 prod p95 4,27 s</span>
+            </div>
+        </section>
+
+        <!-- ════════════════ 2 · ONDERZOEKSBIJDRAGE ════════════════ -->
+        <section class="dvBlock" id="bijdrage">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">2</span>
+                <h2 class="dvBlock__title">Onderzoeksbijdrage</h2>
+            </div>
+
+            <p class="conclLead">
+                De negen ontwerpcriteria zijn in dit onderzoek toegepast op één specifieke omgeving, maar de principes
+                die eraan ten grondslag liggen zijn breder overdraagbaar. Elke organisatie die AI-functionaliteit wil
+                integreren in een ontwikkelomgeving met strenge eisen rond informatiebeveiliging, gegevenssoevereiniteit
+                of beheersbaarheid, staat voor dezelfde afwegingen: welke context mag het model zien, wie houdt regie
+                over de output, hoe wordt modelcommunicatie afgeschermd en hoe wordt voorkomen dat AI een autonome actor
+                wordt in een beveiligd systeem. De negen ontwerpcriteria laten zich daarmee generaliseren tot evenzoveel
+                overdraagbare ontwerpprincipes.
+            </p>
+
+            <div class="statusNote">
+                <span class="dvBlock__label">Status van de bijdrage</span>
+                <p>Deze principes zijn <strong>afgeleid uit de literatuur</strong>, <strong>toegepast binnen deze
+                    casus</strong>, <strong>gevalideerd binnen de defensiecontext</strong> en
+                    <strong>plausibel overdraagbaar</strong> naar vergelijkbare organisaties. Zij worden uitdrukkelijk
+                    niet als universeel bewezen gepresenteerd: de waarde ligt in de afwegingen die ze zichtbaar maken,
+                    niet in de specifieke implementatiekeuzes van deze MVP.</p>
+            </div>
+
+            <table class="contribTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Overdraagbaar ontwerpprincipe</th>
+                        <th scope="col">Toepasbaarheid buiten de defensiecontext</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Menselijke regie over AI-output</strong><br>AI-output wordt als voorstel aangeboden;
+                            toepassing vereist een expliciete gebruikershandeling.</td>
+                        <td>Elke omgeving met directe impact op productiebestanden, broncode of configuratie — verplicht
+                            wanneer foutieve output niet eenvoudig te herstellen is.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expliciete contextafbakening</strong><br>De gebruiker bepaalt welke context naar het
+                            model gaat; er is geen automatische projectbrede verzameling.</td>
+                        <td>Omgevingen met vertrouwelijke code, persoonsgegevens of geclassificeerde informatie; ook voor
+                            auditbaarheid en reproduceerbaarheid van modelinteracties.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Verwerking binnen beheerde infrastructuur</strong><br>Prompts, context en output
+                            blijven binnen de organisatie-infrastructuur; externe AI-diensten worden niet gebruikt.</td>
+                        <td>Overheid, zorg, financiële en industriële omgevingen met data-soevereiniteit of
+                            compliance-verplichtingen (AVG, NIS2, BIR).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Configureerbare modelkoppeling</strong><br>Het endpoint is configureerbaar en de
+                            architectuur backend-agnostisch; niet gebonden aan één modelruntime.</td>
+                        <td>Omgevingen waar modelkeuze of infrastructuur kan wijzigen, of waar meerdere teams
+                            verschillende modellen willen evalueren.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Terughoudende en tijdelijke opslag</strong><br>Gevoelige conversatie-inhoud wordt niet
+                            persistent opgeslagen; alleen niet-gevoelige configuratie wordt bewaard.</td>
+                        <td>Alle omgevingen waar broncode, bedrijfsgevoelige queries of persoonsgegevens in prompts kunnen
+                            verschijnen — vermindert risico op data-at-rest en logexfiltratie.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scheiding van verantwoordelijkheden</strong><br>Hostlaag, contextopbouw,
+                            promptconstructie, modelcommunicatie en interface zijn gescheiden componenten.</td>
+                        <td>Elk softwareproject met eisen aan testbaarheid, onderhoudbaarheid en uitwisselbaarheid van
+                            componenten.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Controleerbare communicatie</strong><br>Modelcommunicatie verloopt via een expliciete,
+                            foutbestendige API-laag met gedefinieerde foutscenario's.</td>
+                        <td>Productieomgevingen waar beschikbaarheid en foutafhandeling van externe servicekoppelingen op
+                            applicatieniveau geborgd moeten zijn.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend-agnostisch clientcontract</strong><br>Een abstract clientcontract maakt
+                            meerdere modelruntimes uitwisselbaar zonder wijziging aan UI of applicatielogica.</td>
+                        <td>Omgevingen met meerdere potentiële LLM-backends, of waar vendor lock-in op modelinfrastructuur
+                            onwenselijk is.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gecontroleerde apply-pipeline</strong><br>Codewijzigende output wordt via een
+                            diff-weergave voor expliciete beoordeling aangeboden; automatische toepassing vindt niet
+                            plaats.</td>
+                        <td>Elke IDE-integratie waarbij AI-gegenereerde code in een codebase kan worden geplaatst —
+                            verplicht bij kwaliteits- of beveiligingsvereisten rond codewijzigingen.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Toepasbaar binnen:</span>
+                <span class="chip chip--dv">Overheid</span>
+                <span class="chip chip--dv">Defensie</span>
+                <span class="chip chip--dv">Zorg</span>
+                <span class="chip chip--dv">Financiële sector</span>
+                <span class="chip chip--dv">Industrie</span>
+            </div>
+        </section>
+
+        <!-- ════════════════ 3 · GRENZEN ════════════════ -->
+        <section class="dvBlock" id="grenzen">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">3</span>
+                <h2 class="dvBlock__title">Grenzen van het onderzoek</h2>
+            </div>
+
+            <p class="conclLead">
+                De conclusies zijn gebaseerd op een afgebakend onderzoek en kennen drie beperkingen die de reikwijdte
+                ervan begrenzen. Deze worden hier expliciet benoemd: zij verminderen de waarde van het onderzoek niet,
+                maar kaderen de conclusies correct in.
+            </p>
+
+            <div class="grensGrid">
+                <div class="grensCard">
+                    <h3 class="grensCard__title">Beperkte gebruikersgroep</h3>
+                    <p>De gebruikersacceptatietest is uitgevoerd met vijf respondenten op MVP-versie v0.3. Deze omvang is
+                        te beperkt voor statistische generalisatie naar de bredere ontwikkelaarspopulatie. Binnen de
+                        ontwerpgerichte benadering is dit aanvaardbaar — de test diende als praktijkindicatie, niet als
+                        representatieve gebruikersstudie. Een stabiele v1.0-release vraagt om een grotere en meer diverse
+                        groep.</p>
+                </div>
+                <div class="grensCard">
+                    <h3 class="grensCard__title">Context-afhankelijke responstijd</h3>
+                    <p>NFR-2 is gemeten in twee omgevingen. In de productieomgeving (LITON, Land_IT) is de p95-grens van
+                        vijf seconden gehaald (4,27 s); in de lokale ontwikkelomgeving (codellama:13b-instruct) niet
+                        (24,25 s). De conclusie dat de MVP aan NFR-2 voldoet geldt daarom voor de productieomgeving
+                        waarvoor zij is ontworpen, niet als algemene uitspraak over alle hardware- en
+                        modelconfiguraties.</p>
+                </div>
+                <div class="grensCard">
+                    <h3 class="grensCard__title">Enkelvoudig organisatieonderzoek</h3>
+                    <p>Het onderzoek is uitgevoerd binnen één organisatiecontext met een unieke combinatie van
+                        infrastructuur, beveiligingseisen en werkwijzen. De specifieke drempelwaarden, testresultaten en
+                        evaluatiebewijzen gelden voor die context. De geformuleerde ontwerpprincipes zijn breder
+                        toepasbaar, maar de concrete resultaten zijn niet zonder meer overdraagbaar.</p>
+                </div>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Reikwijdte</span>
+                <p>De MVP toont aan dat veilige en beheersbare LLM-integratie technisch uitvoerbaar is binnen de
+                    onderzochte defensiecontext. De beperkingen geven aan welke aanvullende stappen — een bredere
+                    gebruikersevaluatie, uitgebreidere prestatiemetingen en validatie in andere organisaties — nodig zijn
+                    voor generaliseerbare uitspraken en productiewaardige inzet op grotere schaal.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initHamburgerNav } from "../scripts/shared/nav.js";
+        import { initStoryMode } from "../scripts/shared/storyMode.js";
+        import { initThemeToggle } from "../scripts/shared/themeToggle.js";
+
+        initHamburgerNav();
+        initThemeToggle();
+        initStoryMode();
+    </script>
+</body>
+
+</html>

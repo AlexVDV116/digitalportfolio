@@ -120,9 +120,10 @@ Dit zijn **presentator-cues** — geen voorleestekst. Per scène: doel, 3–6 st
 ## 15 · Roadmap — vooruitblik
 `roadmap/` · ⏱ ~40 s
 **Doel:** van onderzoek naar overdracht.
-- v0.1 → v0.4 → overdracht; scopegrens markeren
-- Rechts = aanbevelingen uit het verslag (A.1–A.11)
-- Contextmodel · releaseborging (SBOM) · langere praktijkevaluatie
+- DV5-evaluatie formeel uitgevoerd op **v0.4**; huidige stand is **v0.5**
+- v0.5 verwerkt de gebruikersfeedback uit de GAT (UX, contexttransparantie, Apply)
+- Stippellijn = scopegrens; v1.0 = afdelingsrelease na overdracht
+- Aanbevelingen A.1–A.11 uit het verslag geven richting aan verdere iteraties
 
 ## 16 · Roadmap — koppeling onderzoeksmethodiek
 `roadmap/#methodSection` · ⏱ ~30 s
@@ -144,7 +145,7 @@ Dit zijn **presentator-cues** — geen voorleestekst. Per scène: doel, 3–6 st
 
 | Metriek | Waarde |
 |---|---|
-| MVP-versie | v0.4 |
+| MVP-versie | v0.5 (evaluatie op v0.4) |
 | Ontwerpcriteria | 9 (alle voldaan) |
 | Requirements | 15 (8 FR · 5 NFR · 2 C) |
 | MSTest-cases | 499 / 32 klassen · 0 failures |

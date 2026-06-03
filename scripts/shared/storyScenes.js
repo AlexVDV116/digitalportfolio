@@ -1,130 +1,151 @@
 import { METRICS } from "./researchMetrics.js";
 
 /**
- * Geleide verdedigings-flow door het portfolio.
+ * Geleide verdedigings-flow door het portfolio (herontwerp o.b.v. eindverslag v5).
  *
- * Volgorde: probleem → theorie → synthese → ontwerpcriteria → requirements
- *   → architectuur → evaluatie & validatie → heatmap → risico's → conclusie.
+ * Onderzoekslijn: Context → Hoofdvraag → DV1 … DV5 → Theorie → Ontwerpcriteria
+ *   → Realisatie → Validatie → Roadmap → Beantwoording hoofdvraag.
+ *
+ * De `narration` is een PRESENTATOR-CUE, geen beschrijving van het scherm:
+ * korte spreekpunten die de verteller begeleiden.
  *
  * Paden zijn relatief aan de portfolio-root.
- * Op productie (GitHub Pages): `/digitalportfolio/<path>`.
- * Lokaal (python -m http.server): `/<path>`.
+ * Productie (GitHub Pages): `/digitalportfolio/<path>` · Lokaal: `/<path>`.
  */
 export const STORY_SCENES = [
     {
-        id: "intro",
+        id: "context",
         chapter: "Probleem",
-        title: "Welkom — centrale onderzoeksvraag",
+        title: "Context & probleemstelling",
         narration:
-            "Lokaal LLM-gebruik in een gesloten Defensieomgeving — veilig en beheersbaar maken zonder verlies aan ontwikkelaars-productiviteit.",
+            "Open met het dilemma: Defensie ontwikkelt in een air-gapped netwerk, dus geen cloud-AI zoals Copilot. Schets de spanning tussen productiviteitswinst en beveiligingskaders — nog niet de oplossing.",
         path: "",
     },
     {
-        id: "deelvragen",
-        chapter: "Probleem",
-        title: "Deelvragen & omvang van het onderzoek",
+        id: "onderzoeksvraag",
+        chapter: "Onderzoeksvraag",
+        title: "Centrale onderzoeksvraag & deelvragen",
         narration:
-            "De vijf deelvragen werken de centrale vraag stap voor stap uit: van beveiliging en contextgebruik tot ontwerp, bouw en evaluatie van de MVP.",
+            "Lees de centrale vraag voor: veilig én beheersbaar. Benoem dat vijf deelvragen de vraag stap voor stap uitwerken en dat elke deelvraag een eigen, aantoonbare uitkomst heeft.",
         path: "#glance",
     },
     {
-        id: "theorie-domeinen",
-        chapter: "Theorie",
-        title: "Drie theoretische domeinen — spanningsvelden",
+        id: "dv1",
+        chapter: "Deelvragen",
+        title: "DV1 — Beveiligings- & architectuureisen",
         narration:
-            "De theorie laat zien waar LLM-gedrag, beveiliging en IDE-integratie elkaar raken. Uit die overlap zijn de ontwerpprincipes afgeleid.",
+            "Documentanalyse (BIO, D/300). Kernpunt: lokale hosting alléén is niet genoeg — veilig vraagt óók contextbeperking, geen persistente opslag en gescheiden rollen. Dit draagt het woord ‘veilig’.",
+        path: "deelvragen/#dv1",
+    },
+    {
+        id: "dv2",
+        chapter: "Deelvragen",
+        title: "DV2 — Functionele & niet-functionele eisen",
+        narration:
+            "Interviews met ontwikkelaars. Kernpunt: waarde komt van aansluiting op de Visual Studio-workflow; de gebruiker houdt regie over in- en output. Hieruit volgen FR, NFR en de human-in-the-loop-eis.",
+        path: "deelvragen/#dv2",
+    },
+    {
+        id: "dv3",
+        chapter: "Deelvragen",
+        title: "DV3 — Ontwerpprincipes uit bestaande integraties",
+        narration:
+            "Vergelijkende analyse (Continue, BroPilot, LocalStudio). Kernpunt: principes niet één-op-één overnemen, maar filteren op de gesloten omgeving — expliciete context, aparte clientlaag, output als voorstel.",
+        path: "deelvragen/#dv3",
+    },
+    {
+        id: "dv4",
+        chapter: "Deelvragen",
+        title: "DV4 — Communicatiearchitectuur",
+        narration:
+            "Ontwerp + proof-of-concept. Kernpunt: de extensie is een gecontroleerde client; het model krijgt geen toegang tot de codebase. Dit draagt het woord ‘beheersbaar’ en leidt naar de architectuur.",
+        path: "deelvragen/#dv4",
+    },
+    {
+        id: "dv5",
+        chapter: "Deelvragen",
+        title: "DV5 — Evaluatie & validatie",
+        narration:
+            "Houd kort: de MVP is statisch én empirisch getoetst en voldoet binnen scope. De harde cijfers volgen zo bij de validatie — hier alleen de brug leggen.",
+        path: "deelvragen/#dv5",
+    },
+    {
+        id: "theorie",
+        chapter: "Theorie",
+        title: "Theoretisch kader — drie domeinen",
+        narration:
+            "Leg uit dat modelgedrag, beveiliging en IDE-integratie samenkomen; de overlap levert de spanningsvelden. Maak het punt: context is tegelijk een kwaliteits- én een privacykwestie.",
         path: "theory/",
     },
     {
         id: "synthese",
-        chapter: "Synthese",
-        title: "Van literatuur naar ontwerpcriterium",
+        chapter: "Theorie",
+        title: "Synthese — van literatuur naar 9 ontwerpcriteria",
         narration:
-            "Methodische herleidbaarheid: elk OC volgt uit een synthese-inzicht, dat volgt uit een cluster, dat volgt uit literatuur.",
+            "Loop niet elke lijn na. Maak het punt: elk ontwerpcriterium is herleidbaar van literatuur via een synthese-inzicht. Dit consolideert DV1–DV4 tot de negen ontwerpcriteria.",
         path: "theory/#sankey",
     },
     {
-        id: "oc-overzicht",
+        id: "ontwerpcriteria",
         chapter: "Ontwerpcriteria",
-        title: "9 ontwerpcriteria — overkoepelend",
+        title: "Ontwerpcriteria — het ontwerpkompas",
         narration:
-            "OC-1 t/m OC-9 vormen het kader waarop het ontwerp en de evaluatie zijn gebaseerd.",
-        path: "traceability/?preset=dv-oc",
-    },
-    {
-        id: "oc-detail",
-        chapter: "Ontwerpcriteria",
-        title: "Bewijs-keten OC-2 (Contextbeperking)",
-        narration:
-            "Vanuit DV2 + BIO 10.1 (need-to-know) → FR-4/FR-7/FR-8 → ContextMode-ceiling (Off/SelectionOnly/IncludeMethod/IncludeFile) + 500-regelcap → 26 tests → mitigeert R8.",
+            "Benadruk: negen OC vormen het toetsbare kompas. Gebruik OC-2 als voorbeeld van een volledige bewijs-keten — van eis via implementatie naar test. Elk OC heeft zo'n keten.",
         path: "oc/?id=OC-2",
     },
     {
-        id: "requirements",
-        chapter: "Requirements",
-        title: "OC vertaald naar requirements",
-        narration: "Elke OC produceert een set FR/NFR/Constraints.",
-        path: "traceability/?preset=must",
-    },
-    {
-        id: "architectuur",
-        chapter: "Architectuur & MVP",
-        title: "Realisatie — OC's gerealiseerd in code",
+        id: "realisatie",
+        chapter: "Realisatie",
+        title: "Realisatie — architectuur & MVP",
         narration:
-            "In de architectuur is te zien hoe de ontwerpcriteria terugkomen in de belangrijkste modules van de extensie.",
-        path: "traceability/?preset=oc-mvp",
+            "Wijs op de twee diagrammen: gelaagde componenten en trust boundaries. Kernpunt: Core zonder VS-SDK, één gecontroleerd egress-pad, model geen toegang tot de codebase. Koppel modules terug aan OC's.",
+        path: "realisatie/",
     },
     {
-        id: "evaluatie-validatie",
-        chapter: "Evaluatie & Validatie",
-        title: "Systematische validatie van de MVP",
-        narration: `${METRICS.tests.total} MSTest-cases over ${METRICS.tests.totalTestClasses} testklassen · Core-scope ~${METRICS.tests.coreLine}% lijn-dekking · ${METRICS.tests.mutationsKilled}/${METRICS.tests.mutationsTotal} mutaties gevangen · alle 9 OC's aantoonbaar voldaan.`,
+        id: "validatie-technisch",
+        chapter: "Validatie",
+        title: "Validatie — technisch & beveiliging",
+        narration: `Noem de harde cijfers: alle 9 OC voldaan, ${METRICS.tests.total} tests / 0 failures, kernscope ~${METRICS.tests.coreLine}% dekking. Geen kritieke STRIDE/OWASP-bevindingen; restrisico's: prompt injection en overreliance.`,
         path: "evaluation/?tab=technical",
     },
     {
-        id: "evaluatie-gat",
-        chapter: "Evaluatie & Validatie",
-        title: "Praktijkevaluatie — gebruikersacceptatietest",
+        id: "validatie-gat",
+        chapter: "Validatie",
+        title: "Validatie — praktijkevaluatie (GAT)",
         narration:
-            `7 JIVC SO&I-ontwikkelaars testen de MVP gedurende 2 weken in vrij gebruik. Meetpunten: NFR-2 responstijd · OC-3 herhaalbaarheid · OC-1/R7 overreliance · OC-4 packet capture.`,
+            "Praktijk: 5 ontwikkelaars, v0.3. Rapportcijfer 7,4 · aanbeveling 8,2 · human-in-the-loop 4,8. Benoem eerlijk het zwakste punt — contexttransparantie. NFR-2 in productie gehaald: p95 4,27 s.",
         path: "evaluation/?tab=gat",
     },
     {
-        id: "evaluatie-heatmap",
-        chapter: "Evaluatie & Validatie",
+        id: "heatmap",
+        chapter: "Validatie",
         title: "Dekking in één oogopslag — heatmap",
         narration:
-            "De heatmap laat per ontwerpcriterium zien vanuit welke deelvragen en evaluaties er dekking is.",
+            "Kort: geen enkel ontwerpcriterium heeft een lege kolom — alles is herleidbaar naar de deelvragen. Wijs op de zwaarst onderbouwde criteria.",
         path: "traceability/?tab=heatmap",
     },
     {
-        id: "validatie",
-        chapter: "Validatie",
-        title: "Risico's afgedekt door ontwerpcriteria",
-        narration: "De ontwerpcriteria beperken de belangrijkste risico's.",
-        path: "traceability/?preset=oc-risk",
-    },
-    {
-        id: "roadmap-overzicht",
-        chapter: "Toekomstvisie",
-        title: "Ontwikkelroadmap — van onderzoek naar overdracht",
+        id: "roadmap",
+        chapter: "Toekomst",
+        title: "Roadmap — vooruitblik",
         narration:
-            "De roadmap laat zien hoe de MVP zich ontwikkeld heeft van conceptarchitectuur (v0.1) via evaluatie (v0.4) naar overdracht. Elke versie beantwoordt een andere validatievraag uit de design cycle van Wieringa.",
+            "Vooruitblik: v0.1 → v0.4 → overdracht. Huidige staat is v0.4; rechts van de scopegrens staan de aanbevelingen uit het verslag: contextmodel, releaseborging en langere praktijkevaluatie.",
         path: "roadmap/",
     },
     {
         id: "roadmap-methodologie",
-        chapter: "Toekomstvisie",
-        title: "Koppeling onderzoeksmethodiek — iteratief groeimodel",
+        chapter: "Toekomst",
+        title: "Roadmap — koppeling onderzoeksmethodiek",
         narration:
-            "Het iteratieve groeimodel maakt de relatie tussen versies en onderzoeksfasen expliciet: vroege versies richten zich op haalbaarheid, middenversies op validatie, en latere versies op verfijning en overdracht.",
+            "Kort: koppel de versies aan de design cycle van Wieringa — vroege versies op haalbaarheid, midden op validatie, later op verfijning en overdracht.",
         path: "roadmap/#methodSection",
     },
     {
-        id: "afsluiting",
+        id: "conclusie",
         chapter: "Conclusie",
-        title: "Resultaat in cijfers",
-        narration: `${METRICS.research.oc} ontwerpcriteria · ${METRICS.research.requirements} requirements · ${METRICS.tests.total} MSTest-cases · alle OC's voldoen aan hun acceptatievoorwaarden.`,
+        title: "Beantwoording van de hoofdvraag",
+        narration:
+            "Sluit af op het antwoord: binnen scope kan een lokaal gehost LLM veilig én beheersbaar, mits context, opslag, communicatie en toepassing expliciet begrensd zijn. Rapportcijfer 7,4. Traceability is de rode draad.",
         path: "#glance",
     },
 ];

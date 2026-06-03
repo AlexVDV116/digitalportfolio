@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Realisatie — architectuur &amp; MVP</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../styles/main.css" />
+    <script>/* Prevent flash */
+        (function () { var t = localStorage.getItem("theme"); if (!t) t = "light"; document.documentElement.setAttribute("data-theme", t) })();
+    </script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__wrap">
+            <div>
+                <h1 class="topbar__title">Realisatie — architectuur &amp; MVP</h1>
+                <p class="topbar__subtitle">
+                    Hoe de ontwerpcriteria zijn vertaald naar een gelaagde Visual Studio-extensie met expliciete trust
+                    boundaries.
+                </p>
+            </div>
+
+            <div class="topbar__actions">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                    <span class="themeToggle__moon" aria-hidden="true">🌙</span>
+                    <span class="themeToggle__sun" aria-hidden="true">☀️</span>
+                </button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">
+                    <img src="../assets/icons/iteration.png" alt="" class="btn__icon" aria-hidden="true">
+                    <span>Proces</span>
+                </button>
+                <div class="nav" id="nav">
+                    <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                        aria-controls="navMenu" title="Menu">
+                        <span class="nav__icon" aria-hidden="true"></span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+
+                    <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                        <div class="nav__sectionTitle">Pagina’s</div>
+
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio" data-nav-close>
+                            Project overview
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/pva/" data-nav-close>
+                            Plan van aanpak
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/execution/" data-nav-close>
+                            Uitvoering
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/deelvragen/" data-nav-close>
+                            Deelvragen
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/timeline/" data-nav-close>
+                            Planning
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
+                            Master Traceability Matrix
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
+                            Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
+                            OC Explorer
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/realisatie/" data-nav-close>
+                            Realisatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/evaluation/" data-nav-close>
+                            Evaluatie &amp; Validatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
+                            Metacognitieve cyclus
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/roadmap/" data-nav-close>
+                            Roadmap
+                        </a>
+
+                        <div class="nav__divider"></div>
+                        <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Projectstatusrapport ↗
+                        </a>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Wekelijkse zelfreflecties ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dvPage">
+        <section class="dvIntro">
+            <p class="dvIntro__lead">
+                De MVP is een Visual Studio 2022-extensie die als gecontroleerde client communiceert met een lokaal of
+                intern gehost LLM. De architectuur is gelaagd opgezet — Core, VSIX en Tests — zodat de kernlogica los van
+                de Visual Studio-host testbaar blijft (OC-6). Twee visualisaties staan centraal: het componentdiagram
+                (verantwoordelijkheden per laag) en de trust boundaries (waar de beveiligingsgrenzen lopen).
+            </p>
+        </section>
+
+        <!-- Component diagram -->
+        <section class="evalSection" aria-label="Componentdiagram">
+            <h2 class="evalSection__title">Componentdiagram — gelaagde verantwoordelijkheden</h2>
+            <p class="evalSection__sub">
+                Domain · VSIX · Presentation · UI · Application (LLM Clients) · External Systems. De Core-laag heeft geen
+                Visual Studio SDK-afhankelijkheden, waardoor de kernlogica buiten het VS-proces toetsbaar is.
+            </p>
+            <figure class="figureCard">
+                <img src="../assets/images/component_diagram_v0.4.png"
+                    alt="Componentdiagram van de LocalLLM-extensie met domain-, VSIX-, presentation-, UI- en application-laag." />
+            </figure>
+        </section>
+
+        <!-- Trust boundaries -->
+        <section class="evalSection" aria-label="Trust boundaries">
+            <h2 class="evalSection__title">Trust boundaries — scheiding van verantwoordelijkheden</h2>
+            <p class="evalSection__sub">
+                Drie geneste grenzen binnen het air-gapped LITON-netwerk: de Visual Studio-host (in-process), de
+                geïsoleerde developer-VM en de server-side LLM-inferentie zonder toegang tot clientcontext.
+            </p>
+            <figure class="figureCard">
+                <img src="../assets/images/trust_boundaries.png"
+                    alt="Trust boundaries van de MVP: Visual Studio Host, Developer VM en Ollama/LLM-server binnen het LITON-netwerk." />
+            </figure>
+        </section>
+
+        <!-- Belangrijkste ontwerpbeslissingen -->
+        <section class="evalSection" aria-label="Ontwerpbeslissingen">
+            <h2 class="evalSection__title">Belangrijkste ontwerpbeslissingen</h2>
+            <p class="evalSection__sub">
+                Vier kernkeuzes uit het eindverslag (§6.5), elk herleidbaar naar een ontwerpcriterium.
+            </p>
+
+            <div class="dvBlock__body">
+                <div class="dvBlock__findings">
+                    <ul class="dvList">
+                        <li><strong>Afbakening netwerkcommunicatie</strong> — geen externe AI-dienst; communicatie met
+                            een lokaal of intern endpoint. De applicatie valideert het endpoint syntactisch; de feitelijke
+                            netwerkbeperking ligt in de infrastructuurlaag. <span class="chip chip--c">OC-4</span></li>
+                        <li><strong>Context &amp; opslag</strong> — context-mode ceiling (Off / SelectionOnly /
+                            IncludeMethod / IncludeFile). Chatgeschiedenis blijft in geheugen; alleen niet-gevoelige
+                            configuratie wordt bewaard. <span class="chip chip--c">OC-2</span>
+                            <span class="chip chip--c">OC-5</span></li>
+                    </ul>
+                </div>
+                <div class="dvBlock__findings">
+                    <ul class="dvList">
+                        <li><strong>Scheiding van verantwoordelijkheden</strong> — Core, VSIX en Tests. LLM-communicatie
+                            via providerabstractie (Ollama, OpenWebUI, LM Studio via één clientpad).
+                            <span class="chip chip--c">OC-6</span> <span class="chip chip--c">OC-8</span></li>
+                        <li><strong>Gebruikersregie</strong> — output als voorstel, nooit automatisch toegepast. Apply via
+                            inline diff of fallback-preview. Streaming en reasoning (v0.4) blijven binnen deze afbakening.
+                            <span class="chip chip--c">OC-1</span> <span class="chip chip--c">OC-9</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- OC → module -->
+        <section class="evalSection" aria-label="OC naar module">
+            <h2 class="evalSection__title">Ontwerpcriteria zichtbaar in de code</h2>
+            <p class="evalSection__sub">
+                De componentstructuur is een directe vertaling van de geconsolideerde ontwerpset (eindverslag §6.3).
+            </p>
+            <ul class="evalList">
+                <li><strong>Human-in-the-loop (OC-1)</strong> — output als voorstel in <em>ChatWindowViewModel</em> /
+                    <em>CodeApplier</em>; geen auto-apply.</li>
+                <li><strong>Contextbeperking (OC-2)</strong> — <em>ContextProvider</em> met context-mode ceiling, default
+                    SelectionOnly.</li>
+                <li><strong>Modelstochasticiteit (OC-3)</strong> — vaste parameters in <em>AppDefaults</em>.</li>
+                <li><strong>Lokale verwerking (OC-4)</strong> — één gecontroleerd egress-pad via
+                    <em>LlmClientBase</em>.</li>
+                <li><strong>Geen opslag (OC-5)</strong> — <em>PromptOrchestrator</em> houdt historie in-memory.</li>
+                <li><strong>Scheiding (OC-6)</strong> — Core zonder VS-SDK-referenties; VSIX als dunne adapter.</li>
+                <li><strong>Foutbestendige communicatie (OC-8)</strong> — <em>OpenAICompatibleClient</em> /
+                    <em>OpenWebUIClient</em> via <em>LlmClientSelector</em>, met time-outs en foutafhandeling.</li>
+            </ul>
+            <p class="evalSection__sub" style="margin-top:14px">
+                <a class="chip chip--c" href="../oc/">→ Bekijk de volledige bewijs-keten per OC in de OC Explorer</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initHamburgerNav } from "../scripts/shared/nav.js";
+        import { initStoryMode } from "../scripts/shared/storyMode.js";
+        import { initThemeToggle } from "../scripts/shared/themeToggle.js";
+
+        initHamburgerNav();
+        initThemeToggle();
+        initStoryMode();
+    </script>
+</body>
+
+</html>

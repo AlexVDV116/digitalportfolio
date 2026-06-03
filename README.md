@@ -23,9 +23,12 @@ Live: <https://alexvdv116.github.io/digitalportfolio/>
 
 Een statisch (HTML / CSS / vanilla JS) interactief portfolio dat het volledige ontwerpgerichte onderzoek rond de **LocalLLM** VS2022-extensie documenteert. Het portfolio combineert:
 
+- **Onderzoekslijn** — de vijf deelvragen, elk met methode, kernbevindingen en gevalideerde deelconclusie uit het eindverslag.
 - **Traceability** — een interactieve force-directed graph die ontwerpcriteria, requirements, risico's, constraints en todo's aan elkaar koppelt.
+- **Realisatie** — architectuur & MVP met componentdiagram en trust boundaries.
 - **Evaluatie & validatie** — live coverage-statistieken, teststrategie, OC-naleving, STRIDE-analyse en heatmaps.
-- **Story Mode** — een begeleide tour door het hele portfolio met narration en automatisch scrollen.
+- **Conclusie** — antwoord op de hoofdvraag, de onderzoeksbijdrage (negen overdraagbare ontwerpprincipes) en de grenzen van het onderzoek.
+- **Story Mode (Tour)** — een begeleide walkthrough van 19 scènes langs de volledige onderzoekslijn, bedienbaar met toetsenbord of presentatieklikker.
 - **Roadmap** — data-driven ontwikkelroadmap van conceptarchitectuur tot afdelingsrelease, met interactieve versiekaarten en methodologiekoppeling.
 - **Theorie, uitvoering, tijdlijn, metacognitie, PvA** — afzonderlijke secties voor elk onderzoeksonderdeel.
 
@@ -37,26 +40,32 @@ Er is geen backend, geen build-stap, en geen framework. Alle data wordt geladen 
 
 | Pagina | Pad | Beschrijving |
 |---|---|---|
-| **Landing** | `index.html` | Dashboard met KPI-tegels, OC-statusoverzicht, navigatie en Story Mode-knop. |
+| **Landing** | `index.html` | Dashboard met KPI-tegels, OC-statusoverzicht, navigatie en Tour-knop. |
+| **Deelvragen** | `deelvragen/index.html` | De vijf deelvragen, elk met onderzoeksvraag, methode, kernbevindingen en gevalideerde deelconclusie uit het eindverslag. Ankersecties `#dv1`–`#dv5`. |
 | **OC Explorer** | `oc/index.html` | Bewijs-keten per ontwerpcriterium (OC-1 t/m OC-9). Per OC een kaart met status, beschrijving, implementatielocaties en bewijs. |
+| **Realisatie** | `realisatie/index.html` | Architectuur & MVP — componentdiagram en trust-boundaries-diagram, belangrijkste ontwerpbeslissingen en OC→module-koppeling. |
 | **Evaluatie & Validatie** | `evaluation/index.html` | Coverage-balk, coverkaarten, teststrategie met per-klasse tabel (auto-parsed uit CoverageReport), OC-evaluatiekaarten, STRIDE-heatmap, risico-heatmap. |
 | **Traceability** | `traceability/index.html` | Interactieve force-directed graph (D3.js) met OC's, FR's, NFR's, constraints, risico's, beveiligingsnormen, todo's en changelog als nodes. CSV-tabbladen, zoekfunctie, filters. |
 | **Theoretisch kader** | `theory/index.html` | Literatuur & synthese — theoretische onderbouwing van het onderzoek. |
 | **Uitvoering** | `execution/index.html` | Interactief procesdiagram van de ontwikkelcyclus. |
 | **Tijdlijn** | `timeline/index.html` | Planning en tijdlijn van het project. |
 | **Metacognitie** | `metacognition/index.html` | Metacognitieve cyclus — reflectie op het onderzoeksproces. |
-| **Roadmap** | `roadmap/index.html` | Interactieve ontwikkelroadmap (v0.1-v1.0) met fasebanden, versiekaarten, statusfilters, detail-paneel en methodologiekoppelingstabel. |
+| **Roadmap** | `roadmap/index.html` | Interactieve ontwikkelroadmap (v0.1-v1.0) met fasebanden, versiekaarten, statusfilters, detail-paneel en methodologiekoppelingstabel. Huidige positie: v0.5. |
+| **Conclusie** | `conclusie/index.html` | Afsluitende sectie: antwoord op de hoofdvraag (`#antwoord`), onderzoeksbijdrage als negen overdraagbare ontwerpprincipes (`#bijdrage`) en grenzen van het onderzoek (`#grenzen`). |
 | **PvA** | `pva/index.html` | Plan van Aanpak — interactief procesdiagram. |
 
 ### Story Mode (Tour)
 
-De landing-pagina bevat een **"Start Tour"**-knop die een begeleide walkthrough start. Story Mode:
-- Navigeert automatisch naar elke sectie.
-- Toont narration-teksten die de context uitleggen.
-- Scrollt naar de relevante elementen op de pagina.
-- Kan op elk moment worden gepauzeerd of gestopt.
+Elke pagina bevat in de topbar een **Proces**-knop die een begeleide walkthrough start. De Tour bestaat uit **19 scènes** en volgt de onderzoekslijn:
 
-De scenes worden gedefinieerd in `scripts/shared/storyScenes.js`.
+> Context → Hoofdvraag → DV1–DV5 → Theorie → Ontwerpcriteria → Realisatie → Validatie → Roadmap → Conclusie (antwoord · bijdrage · grenzen)
+
+Story Mode:
+- Navigeert automatisch naar de juiste pagina en het juiste anker per scène.
+- Toont per scène een **neutrale inhoudssamenvatting** in de overlay — bewust geschikt om door beoordelaars meegelezen te worden (geen presentator-instructies).
+- **Bediening:** `→` / spatie / `Enter` of de presentatieklikker (`PageDown`) vooruit; `←` of `PageUp` terug; `Esc` sluit. De klikker-toetsen onderdrukken de standaard pagina-scroll; muis en touch blijven gewoon scrollen.
+
+De scènes staan in `scripts/shared/storyScenes.js`. De bijbehorende **gesproken oefen-spreektekst** staat in `presentation-script.md` — dat is een privé repetitiehulp en geen onderdeel van de gepubliceerde site.
 
 ---
 
@@ -117,7 +126,11 @@ Het portfolio wordt automatisch gehost via **GitHub Pages** op `https://alexvdv1
 digitalportfolio/
 ├── index.html                          # Landing-pagina
 ├── README.md                           # Dit bestand
+├── presentation-script.md              # Gesproken oefenscript voor de Tour (privé repetitiehulp)
 ├── assets/                             # Iconen, favicon, afbeeldingen
+│   └── images/
+│       ├── component_diagram_v0.4.png  # Componentdiagram (Realisatie-pagina)
+│       └── trust_boundaries.png        # Trust-boundaries-diagram (Realisatie-pagina)
 ├── styles/
 │   └── main.css                        # Enkele stylesheet voor alles
 ├── scripts/
@@ -165,6 +178,12 @@ digitalportfolio/
 │   │   └── roadmap.js                  # Roadmap rendering logic
 │   └── data/
 │       └── roadmapData.js              # ★ Centrale roadmap configuratie
+├── deelvragen/                         # Deelvragen DV1–DV5 (onderzoekslijn)
+│   └── index.html
+├── realisatie/                         # Architectuur & MVP (component + trust boundaries)
+│   └── index.html
+├── conclusie/                          # Antwoord, onderzoeksbijdrage & grenzen
+│   └── index.html
 ├── theory/                             # Theoretisch kader
 ├── execution/                          # Uitvoering procesdiagram
 ├── timeline/                           # Tijdlijn & planning
@@ -320,8 +339,12 @@ GitHub Pages publiceert automatisch.
 | STRIDE-analyse | `researchMetrics.js` → `stride[]` | Handmatig uit evaluatierapport |
 | Risicoregister | `researchMetrics.js` → `risks[]` + `traceability/data/Risicoregister.csv` | Beide bijwerken |
 | MTM-tabbladen | `traceability/data/*.csv` | CSV-export uit MTM-spreadsheet |
-| Roadmap-versies | `roadmap/data/roadmapData.js` | Nieuwe versie: voeg object toe aan `VERSIONS[]`; verplaats `current: true` |
-| Story Mode teksten | `scripts/shared/storyScenes.js` | Handmatig narration bijwerken |
+| Roadmap-versies | `roadmap/data/roadmapData.js` | Nieuwe versie: voeg object toe aan `VERSIONS[]`; verplaats `current: true` (nu v0.5) |
+| Deelvragen-inhoud | `deelvragen/index.html` | Statische inhoud uit het eindverslag (vraag, methode, bevindingen, deelconclusie) |
+| Realisatie-diagrammen | `realisatie/index.html` + `assets/images/` | Vervang de PNG's en/of de toelichtende tekst |
+| Conclusie-inhoud | `conclusie/index.html` | Antwoord (§8.5), bijdrage (§8.6) en grenzen (§8.7) uit het eindverslag |
+| Story Mode teksten | `scripts/shared/storyScenes.js` | Handmatig narration bijwerken (on-screen, neutraal) |
+| Oefenscript | `presentation-script.md` | Gesproken tekst per scène — bijwerken bij scène-wijziging |
 | Thema / styling | `styles/main.css` | Enkel CSS-bestand |
 
 ---

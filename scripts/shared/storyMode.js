@@ -49,10 +49,12 @@ function bindKeys() {
 
         if (!isActive()) return;
 
-        if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
+        // Next: →  Space  Enter  PageDown  (presentation clicker)
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter" || e.key === "PageDown") {
             e.preventDefault();
             next();
-        } else if (e.key === "ArrowLeft") {
+        // Prev: ←  PageUp  (presentation clicker)
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
             e.preventDefault();
             prev();
         } else if (e.key === "Escape") {

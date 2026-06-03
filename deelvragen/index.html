@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deelvragen — onderzoekslijn</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../styles/main.css" />
+    <script>/* Prevent flash */
+        (function () { var t = localStorage.getItem("theme"); if (!t) t = "light"; document.documentElement.setAttribute("data-theme", t) })();
+    </script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__wrap">
+            <div>
+                <h1 class="topbar__title">Deelvragen — de onderzoekslijn</h1>
+                <p class="topbar__subtitle">
+                    Vijf deelvragen, elk met methode, kernbevindingen en gevalideerde deelconclusie uit het eindverslag.
+                </p>
+            </div>
+
+            <div class="topbar__actions">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                    <span class="themeToggle__moon" aria-hidden="true">🌙</span>
+                    <span class="themeToggle__sun" aria-hidden="true">☀️</span>
+                </button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">
+                    <img src="../assets/icons/iteration.png" alt="" class="btn__icon" aria-hidden="true">
+                    <span>Proces</span>
+                </button>
+                <div class="nav" id="nav">
+                    <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
+                        aria-controls="navMenu" title="Menu">
+                        <span class="nav__icon" aria-hidden="true"></span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+
+                    <div class="nav__menu" id="navMenu" role="menu" aria-label="Navigatie">
+                        <div class="nav__sectionTitle">Pagina’s</div>
+
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio" data-nav-close>
+                            Project overview
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/pva/" data-nav-close>
+                            Plan van aanpak
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/execution/" data-nav-close>
+                            Uitvoering
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/deelvragen/" data-nav-close>
+                            Deelvragen
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/timeline/" data-nav-close>
+                            Planning
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/traceability/" data-nav-close>
+                            Master Traceability Matrix
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/theory/" data-nav-close>
+                            Theoretisch kader
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/oc/" data-nav-close>
+                            OC Explorer
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/realisatie/" data-nav-close>
+                            Realisatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/evaluation/" data-nav-close>
+                            Evaluatie &amp; Validatie
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/metacognition/" data-nav-close>
+                            Metacognitieve cyclus
+                        </a>
+                        <a role="menuitem" class="nav__item" href="/digitalportfolio/roadmap/" data-nav-close>
+                            Roadmap
+                        </a>
+
+                        <div class="nav__divider"></div>
+                        <div class="nav__sectionTitle">Externe koppelingen</div>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Projectstatusrapportages?csf=1&web=1&e=rwkweP"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Projectstatusrapport ↗
+                        </a>
+
+                        <a role="menuitem" class="nav__item"
+                            href="https://avans-my.sharepoint.com/:f:/r/personal/a_vandervelden3_student_avans_nl/Documents/Jaar%204/Afstuderen/Zelfreflecties?csf=1&web=1&e=CIjF7s"
+                            target="_blank" rel="noopener noreferrer" data-nav-close>
+                            Wekelijkse zelfreflecties ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dvPage">
+        <section class="dvIntro">
+            <p class="dvIntro__lead">
+                De centrale vraag is opgesplitst in vijf deelvragen die de logica van het ontwerpgerichte onderzoek
+                volgen: eerst de beveiligings- en gebruikerskaders, dan ontwerpprincipes en architectuur, en tot slot
+                de evaluatie van de gerealiseerde MVP. Elke deelvraag is hieronder samengevat met de gebruikte methode,
+                de belangrijkste bevindingen en de gevalideerde deelconclusie uit het eindverslag.
+            </p>
+        </section>
+
+        <!-- ════════════════ DV1 ════════════════ -->
+        <section class="dvBlock" id="dv1">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">DV1</span>
+                <h2 class="dvBlock__title">Beveiligings- &amp; architectuureisen</h2>
+                <span class="badge badge--id dvBlock__method">Documentanalyse</span>
+            </div>
+
+            <div class="dvBlock__body">
+                <div class="dvBlock__question">
+                    <h3 class="dvBlock__label">Onderzoeksvraag</h3>
+                    <p>Welke beveiligings- en architectuureisen gelden voor softwaretoepassingen binnen een air-gapped
+                        defensieomgeving, en wat betekenen deze concreet voor een IDE-extensie met LLM-functionaliteit?</p>
+                    <h3 class="dvBlock__label">Methode &amp; bronnen</h3>
+                    <p>Documentanalyse van het Defensie Beveiligingsbeleid, de D/300-serie en de BIO — geschikt om
+                        formele kaders te vertalen naar concrete ontwerpvoorwaarden.</p>
+                </div>
+
+                <div class="dvBlock__findings">
+                    <h3 class="dvBlock__label">Kernbevindingen</h3>
+                    <ul class="dvList">
+                        <li>De extensie moet binnen het bestaande beveiligingsmodel blijven — geen zelfstandig
+                            informatiesysteem, maar een gecontroleerde Visual Studio-extensie.</li>
+                        <li>Modelinteractie blijft binnen de lokale of interne infrastructuur; contextoverdracht is
+                            begrensd; het LLM krijgt geen directe toegang tot bestanden, projectstructuren of IDE.</li>
+                        <li>Lokale modelhosting alléén is onvoldoende: veilige integratie vraagt óók dataminimalisatie,
+                            gescheiden verantwoordelijkheden en minimale rechten.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Deelconclusie</span>
+                <p>Een IDE-extensie met LLM-functionaliteit is alleen verantwoord wanneer zij binnen het bestaande
+                    beveiligingsmodel blijft: geen externe AI-diensten, geen extra toegangsrechten, geen persistente
+                    opslag van gevoelige conversatie-inhoud, expliciete contextbeperking en controleerbare communicatie.</p>
+            </div>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Levert op:</span>
+                <a class="chip chip--c" href="../oc/?id=OC-4">OC-4 Lokale verwerking</a>
+                <a class="chip chip--c" href="../oc/?id=OC-5">OC-5 Geen opslag</a>
+                <a class="chip chip--c" href="../oc/?id=OC-6">OC-6 Scheiding</a>
+            </div>
+        </section>
+
+        <!-- ════════════════ DV2 ════════════════ -->
+        <section class="dvBlock" id="dv2">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">DV2</span>
+                <h2 class="dvBlock__title">Functionele &amp; niet-functionele eisen</h2>
+                <span class="badge badge--id dvBlock__method">Semigestructureerde interviews</span>
+            </div>
+
+            <div class="dvBlock__body">
+                <div class="dvBlock__question">
+                    <h3 class="dvBlock__label">Onderzoeksvraag</h3>
+                    <p>Welke functionele en niet-functionele eisen moet een LLM-extensie voor Visual Studio 2022
+                        vervullen om bruikbaar, beheersbaar en veilig te zijn?</p>
+                    <h3 class="dvBlock__label">Methode &amp; bronnen</h3>
+                    <p>Semigestructureerde interviews met ontwikkelaars uit de doelgroep — geschikt om behoeften,
+                        verwachtingen en kwaliteitscriteria uit de ontwikkelpraktijk op te halen.</p>
+                </div>
+
+                <div class="dvBlock__findings">
+                    <h3 class="dvBlock__label">Kernbevindingen</h3>
+                    <ul class="dvList">
+                        <li>Waarde ontstaat bij directe aansluiting op Visual Studio: code-uitleg, refactoring,
+                            testvoorbereiding en interactie met geselecteerde codecontext. Een losse chatfunctie heeft
+                            minder waarde.</li>
+                        <li>Ontwikkelaars willen controle over input én output: zichtbaar maken welke context wordt
+                            gebruikt, en gegenereerde code niet automatisch toepassen.</li>
+                        <li>Niet-functionele eisen rond stabiliteit, responstijd, zichtbare feedback en foutafhandeling.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Deelconclusie</span>
+                <p>Bruikbaarheid ontstaat vooral wanneer LLM-functionaliteit aansluit op het werkproces in Visual Studio.
+                    De interviews leidden tot functionele eisen voor codegerichte interactie, contextgebruik en output
+                    als voorstel, aangevuld met niet-functionele eisen rond stabiliteit, responstijd, foutafhandeling en
+                    transparantie.</p>
+            </div>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Levert op:</span>
+                <a class="chip chip--c" href="../oc/?id=OC-1">OC-1 Human-in-the-loop</a>
+                <a class="chip chip--c" href="../oc/?id=OC-2">OC-2 Contextbeperking</a>
+                <a class="chip chip--c" href="../oc/?id=OC-9">OC-9 Transparantie</a>
+                <a class="chip chip--fr" href="../traceability/?tab=fr">8 FR · 5 NFR · 2 C</a>
+            </div>
+        </section>
+
+        <!-- ════════════════ DV3 ════════════════ -->
+        <section class="dvBlock" id="dv3">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">DV3</span>
+                <h2 class="dvBlock__title">Ontwerpprincipes uit bestaande integraties</h2>
+                <span class="badge badge--id dvBlock__method">Vergelijkende analyse</span>
+            </div>
+
+            <div class="dvBlock__body">
+                <div class="dvBlock__question">
+                    <h3 class="dvBlock__label">Onderzoeksvraag</h3>
+                    <p>Welke ontwerpprincipes uit bestaande lokale LLM-integraties zijn toepasbaar binnen een gesloten
+                        ontwikkelomgeving?</p>
+                    <h3 class="dvBlock__label">Methode &amp; bronnen</h3>
+                    <p>Vergelijkende analyse van bestaande lokale LLM-integraties (Continue, BroPilot, LocalStudio) om
+                        herbruikbare architectuur- en interactiepatronen te identificeren.</p>
+                </div>
+
+                <div class="dvBlock__findings">
+                    <h3 class="dvBlock__label">Kernbevindingen</h3>
+                    <ul class="dvList">
+                        <li>Relevant gebleken: expliciete contextselectie, een aparte clientlaag voor modelcommunicatie,
+                            duidelijke UI-feedback en handmatige toepassing van output.</li>
+                        <li>Bestaande tools zijn vaak breed en feature-gericht; de MVP moet juist worden begrensd door
+                            beveiliging en beheersbaarheid.</li>
+                        <li>Principes zijn daarom niet één-op-één overgenomen, maar gefilterd op toepasbaarheid binnen het
+                            gesloten ontwikkelnetwerk.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Deelconclusie</span>
+                <p>Bestaande lokale LLM-integraties bieden bruikbare ontwerpprincipes, maar deze kunnen niet één-op-één
+                    worden overgenomen. Voor de doelomgeving zijn vooral scheiding tussen IDE en modelproces, expliciet
+                    contextbeheer, lokale of interne API-communicatie en output als voorstel relevant.</p>
+            </div>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Onderbouwt:</span>
+                <a class="chip chip--c" href="../oc/?id=OC-2">OC-2 Contextbeperking</a>
+                <a class="chip chip--c" href="../oc/?id=OC-3">OC-3 Modelstochasticiteit</a>
+                <a class="chip chip--c" href="../oc/?id=OC-7">OC-7 Extensiemechanismen</a>
+            </div>
+        </section>
+
+        <!-- ════════════════ DV4 ════════════════ -->
+        <section class="dvBlock" id="dv4">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">DV4</span>
+                <h2 class="dvBlock__title">Communicatiearchitectuur IDE ↔ LLM</h2>
+                <span class="badge badge--id dvBlock__method">Ontwerp &amp; proof-of-concept</span>
+            </div>
+
+            <div class="dvBlock__body">
+                <div class="dvBlock__question">
+                    <h3 class="dvBlock__label">Onderzoeksvraag</h3>
+                    <p>Hoe kan een stabiele communicatiearchitectuur worden ontworpen tussen Visual Studio 2022 en een
+                        lokaal gehost LLM binnen een air-gapped defensieomgeving?</p>
+                    <h3 class="dvBlock__label">Methode &amp; bronnen</h3>
+                    <p>Ontwerp en proof-of-concept — de eerdere inzichten vertaald naar een communicatiearchitectuur en
+                        technisch gevalideerd via de MVP.</p>
+                </div>
+
+                <div class="dvBlock__findings">
+                    <h3 class="dvBlock__label">Kernbevindingen</h3>
+                    <ul class="dvList">
+                        <li>De extensie treedt op als gecontroleerde client tussen de IDE en het interne LLM-endpoint:
+                            verzamelt begrensde context, bouwt het request op, handelt fouten af en toont de output.</li>
+                        <li>Het modelproces krijgt geen zelfstandige toegang tot Visual Studio of de codebase.</li>
+                        <li>Verantwoordelijkheden zijn gescheiden tussen VSIX-laag, core-services en LLM-client;
+                            requestopbouw, time-outs en foutafhandeling lopen via een expliciete clientlaag.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Deelconclusie</span>
+                <p>De inzichten zijn vertaald naar een communicatiearchitectuur waarin Visual Studio, contextopbouw,
+                    promptopbouw en modelcommunicatie gescheiden verantwoordelijkheden hebben. Het LLM wordt via een
+                    intern endpoint benaderd en krijgt geen directe toegang tot bestanden, projectstructuren of
+                    IDE-functionaliteit buiten de aangeboden context.</p>
+            </div>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Levert op:</span>
+                <a class="chip chip--c" href="../oc/?id=OC-6">OC-6 Scheiding</a>
+                <a class="chip chip--c" href="../oc/?id=OC-8">OC-8 Foutbestendige communicatie</a>
+                <a class="chip chip--c" href="../realisatie/">→ Realisatie &amp; architectuur</a>
+            </div>
+        </section>
+
+        <!-- ════════════════ DV5 ════════════════ -->
+        <section class="dvBlock dvBlock--accent" id="dv5">
+            <div class="dvBlock__head">
+                <span class="dvBlock__id">DV5</span>
+                <h2 class="dvBlock__title">Evaluatie &amp; validatie van de MVP</h2>
+                <span class="badge badge--id dvBlock__method">Evaluatieve aanpak</span>
+            </div>
+
+            <div class="dvBlock__body">
+                <div class="dvBlock__question">
+                    <h3 class="dvBlock__label">Onderzoeksvraag</h3>
+                    <p>In hoeverre voldoet de ontwikkelde extensie aan de gestelde eisen op het gebied van bruikbaarheid,
+                        effectiviteit en informatiebeveiliging?</p>
+                    <h3 class="dvBlock__label">Methode &amp; bronnen</h3>
+                    <p>Evaluatieve aanpak: statische code- en architectuurevaluatie, STRIDE en OWASP LLM Top 10, een
+                        gebruikersacceptatietest en NFR-2-responstijdmetingen.</p>
+                </div>
+
+                <div class="dvBlock__findings">
+                    <h3 class="dvBlock__label">Kernbevindingen</h3>
+                    <ul class="dvList">
+                        <li>Alle negen ontwerpcriteria zijn voldaan; 499 MSTest-cases met 0 failures onderbouwen de
+                            stabiliteit.</li>
+                        <li>Geen kritieke beveiligingsbevindingen (STRIDE/OWASP); prompt injection en overreliance
+                            blijven restrisico's.</li>
+                        <li>Gebruikersacceptatietest (v0.3, 5 respondenten): rapportcijfer 7,4 · aanbeveling 8,2 ·
+                            human-in-the-loop 4,8/5. NFR-2 in productie gehaald (p95 4,27 s).</li>
+                        <li>Aandachtspunten: contexttransparantie (OC-9), UX-details en de volwassenheid van Apply.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dvBlock__concl">
+                <span class="dvBlock__conclTag">Deelconclusie</span>
+                <p>De MVP voldoet binnen de onderzochte scope grotendeels aan de eisen voor bruikbaarheid, effectiviteit
+                    en informatiebeveiliging. De statische evaluatie toont aan dat de ontwerpcriteria, requirements,
+                    constraints en architectuurkeuzes zijn gerealiseerd en toetsbaar zijn; de praktijkevaluatie bevestigt
+                    dat de MVP bruikbaar en kansrijk wordt beoordeeld; NFR-2 is in de productieomgeving gehaald.</p>
+            </div>
+
+            <div class="chipRow dvBlock__oc">
+                <span class="dvBlock__ocLabel">Verdieping:</span>
+                <a class="chip chip--c" href="../evaluation/?tab=technical">→ Technische validatie</a>
+                <a class="chip chip--c" href="../evaluation/?tab=gat">→ Praktijkevaluatie (GAT)</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__copy">
+                <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek - Avans Hogeschool</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="OneDrive">
+                    <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
+                </a>
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Jira">
+                    <img src="../assets/icons/jira.svg" alt="Jira" />
+                </a>
+                <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="../assets/icons/github.svg" alt="GitHub" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initHamburgerNav } from "../scripts/shared/nav.js";
+        import { initStoryMode } from "../scripts/shared/storyMode.js";
+        import { initThemeToggle } from "../scripts/shared/themeToggle.js";
+
+        initHamburgerNav();
+        initThemeToggle();
+        initStoryMode();
+    </script>
+</body>
+
+</html>

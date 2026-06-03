@@ -3947,3 +3947,167 @@ body.is-presenting .storyOverlay {
     .rm-filterBtn { font-size: 10px; padding: 2px var(--sp-2); }
     .rm-card__version { font-size: var(--text-lg); }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   DEELVRAGEN & REALISATIE — presenteerbare onderzoekslijn-pagina's
+   ══════════════════════════════════════════════════════════════════════ */
+
+.dvPage {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-6) var(--sp-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+}
+
+.dvIntro__lead {
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 70ch;
+    margin: 0;
+}
+
+.dvBlock {
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+    box-shadow: var(--shadow-sm);
+    scroll-margin-top: 90px;
+}
+
+.dvBlock--accent {
+    border-left: 4px solid var(--accent);
+}
+
+.dvBlock__head {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+    padding-bottom: var(--sp-4);
+    border-bottom: 1px solid var(--line-subtle, var(--line));
+    margin-bottom: var(--sp-5);
+}
+
+.dvBlock__id {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    flex: 0 0 auto;
+}
+
+.dvBlock__title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+    flex: 1 1 auto;
+}
+
+.dvBlock__method {
+    flex: 0 0 auto;
+}
+
+.dvBlock__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-6);
+}
+
+.dvBlock__label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+    margin: 0 0 var(--sp-2);
+}
+
+.dvBlock__question p {
+    margin: 0 0 var(--sp-4);
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+.dvList {
+    margin: 0;
+    padding-left: var(--sp-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.dvList li {
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+.dvBlock__concl {
+    margin-top: var(--sp-5);
+    background: var(--accent-soft, var(--surface-2));
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: var(--sp-4) var(--sp-5);
+}
+
+.dvBlock__conclTag {
+    display: inline-block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: var(--sp-2);
+}
+
+.dvBlock__concl p {
+    margin: 0;
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+.dvBlock__oc {
+    margin-top: var(--sp-5);
+    align-items: center;
+}
+
+.dvBlock__ocLabel {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 700;
+    margin-right: var(--sp-1);
+}
+
+/* Diagram-figuren (realisatie) */
+.figureCard {
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: var(--sp-4);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.figureCard img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .dvBlock__body {
+        grid-template-columns: 1fr;
+        gap: var(--sp-4);
+    }
+    .dvPage {
+        padding: var(--sp-5) var(--sp-4) var(--sp-10);
+    }
+}

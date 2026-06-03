@@ -144,7 +144,23 @@ export const STORY_SCENES = [
         id: "conclusie",
         chapter: "Conclusie",
         title: "Beantwoording van de hoofdvraag",
-        narration: `De centrale onderzoeksvraag kan positief worden beantwoord, maar afgebakend: een lokaal of intern gehost LLM kan veilig en beheersbaar worden geïntegreerd in Visual Studio 2022 binnen het gesloten Defensienetwerk, mits context, opslag, communicatie en toepassing van output expliciet worden begrensd. De evaluatie bevestigt dit: ${METRICS.research.oc} ontwerpcriteria voldaan · ${METRICS.tests.total} MSTest-cases · rapportcijfer 7,4.`,
-        path: "#glance",
+        narration: `De centrale onderzoeksvraag kan positief worden beantwoord, maar afgebakend: een lokaal of intern gehost LLM kan veilig en beheersbaar worden geïntegreerd in Visual Studio 2022 binnen het gesloten Defensienetwerk, mits context, opslag, communicatie en toepassing van output expliciet worden begrensd. De evaluatie onderbouwt dit met ${METRICS.research.oc} voldane ontwerpcriteria, ${METRICS.tests.total} MSTest-cases en een rapportcijfer van 7,4.`,
+        path: "conclusie/#antwoord",
+    },
+    {
+        id: "bijdrage",
+        chapter: "Conclusie",
+        title: "Onderzoeksbijdrage",
+        narration:
+            "De negen ontwerpcriteria zijn toegepast op één omgeving, maar de onderliggende principes zijn breder overdraagbaar. Zij vormen negen ontwerpprincipes voor veilige AI-integratie in gesloten of gereguleerde omgevingen — afgeleid uit de literatuur, toegepast en gevalideerd binnen deze casus, en plausibel toepasbaar binnen sectoren als overheid, zorg, de financiële sector en de industrie. De principes zijn niet als universeel bewezen gepresenteerd; hun waarde ligt in de afwegingen die zij zichtbaar maken.",
+        path: "conclusie/#bijdrage",
+    },
+    {
+        id: "grenzen",
+        chapter: "Conclusie",
+        title: "Grenzen van het onderzoek",
+        narration:
+            "Het onderzoek kent drie expliciete beperkingen: een beperkte gebruikersgroep (vijf respondenten op v0.3, als praktijkindicatie), een context-afhankelijke responstijd (NFR-2 gehaald in productie, niet op lokale hardware) en een enkelvoudige organisatiecontext die de externe geldigheid begrenst. Deze beperkingen verminderen de waarde van het onderzoek niet, maar kaderen de conclusies correct in en geven richting aan vervolgstappen.",
+        path: "conclusie/#grenzen",
     },
 ];

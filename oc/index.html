@@ -7,7 +7,7 @@
     <title>OC Explorer — Bewijs-keten per ontwerpcriterium</title>
     <link rel="stylesheet" href="../styles/main.css" />
     <script>/* Prevent flash */
-    (function(){var t=localStorage.getItem("theme");if(!t)t="light";document.documentElement.setAttribute("data-theme",t)})();
+        (function () { var t = localStorage.getItem("theme"); if (!t) t = "light"; document.documentElement.setAttribute("data-theme", t) })();
     </script>
 </head>
 
@@ -21,13 +21,18 @@
                 </p>
             </div>
             <div class="topbar__actions">
-                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema"
+                    title="Midnight Scholar">
                     <span class="themeToggle__moon" aria-hidden="true">🌙</span>
                     <span class="themeToggle__sun" aria-hidden="true">☀️</span>
                 </button>
                 <a class="btn" href="../traceability/">Open graph</a>
-                <button id="btnPresent" class="btn btn--present" type="button" title="Presentatie-modus (P)">▶ Presentatie</button>
-                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">🎓 Tour</button>
+                <button id="btnPresent" class="btn btn--present" type="button" title="Presentatie-modus (P)">▶
+                    Presentatie</button>
+                <button id="btnStory" class="btn btn--story" type="button" title="Verdedigings-tour (geleide flow)">
+                    <img src="../assets/icons/iteration.png" alt="" class="btn__icon" aria-hidden="true">
+                    <span>Proces</span>
+                </button>
                 <div class="nav" id="nav">
                     <button class="nav__btn" id="navBtn" type="button" aria-haspopup="menu" aria-expanded="false"
                         aria-controls="navMenu" title="Menu">
@@ -116,10 +121,12 @@
                 <p>© 2026 Alex van der Velden<br>Ontwerpgericht Onderzoek — Avans Hogeschool</p>
             </div>
             <div class="footer__links">
-                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer" aria-label="OneDrive">
+                <a href="https://avans-my.sharepoint.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="OneDrive">
                     <img src="../assets/icons/onedrive.svg" alt="OneDrive" />
                 </a>
-                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer" aria-label="Jira">
+                <a href="https://battlebuddy.atlassian.net/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Jira">
                     <img src="../assets/icons/jira.svg" alt="Jira" />
                 </a>
                 <a href="https://github.com/AlexVDV116" target="_blank" rel="noopener noreferrer" aria-label="GitHub">

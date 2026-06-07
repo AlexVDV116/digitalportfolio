@@ -23,7 +23,8 @@
             </div>
 
             <div class="topbar__actions">
-                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema" title="Midnight Scholar">
+                <button class="themeToggle" type="button" aria-label="Schakel naar donker thema"
+                    title="Midnight Scholar">
                     <span class="themeToggle__moon" aria-hidden="true">🌙</span>
                     <span class="themeToggle__sun" aria-hidden="true">☀️</span>
                 </button>
@@ -122,7 +123,8 @@
             <div class="dvBlock__concl">
                 <span class="dvBlock__conclTag">Antwoord</span>
                 <p>Binnen de onderzochte MVP-scope kan een lokaal of intern gehost LLM veilig en beheersbaar worden
-                    geïntegreerd in Visual Studio 2022. De extensie functioneert als gecontroleerde client: zij verzamelt
+                    geïntegreerd in Visual Studio 2022. De extensie functioneert als gecontroleerde client: zij
+                    verzamelt
                     begrensde context, verwerkt deze via een intern LLM-endpoint, toont modeloutput als voorstel en laat
                     de toepassing aan de ontwikkelaar. Het antwoord is positief, maar afgebakend: dit geldt zolang
                     context, opslag, communicatie en toepassing van output expliciet worden begrensd.</p>
@@ -157,10 +159,11 @@
             <div class="statusNote">
                 <span class="dvBlock__label">Status van de bijdrage</span>
                 <p>Deze principes zijn <strong>afgeleid uit de literatuur</strong>, <strong>toegepast binnen deze
-                    casus</strong>, <strong>gevalideerd binnen de defensiecontext</strong> en
+                        casus</strong>, <strong>gevalideerd binnen de defensiecontext</strong> en
                     <strong>plausibel overdraagbaar</strong> naar vergelijkbare organisaties. Zij worden uitdrukkelijk
                     niet als universeel bewezen gepresenteerd: de waarde ligt in de afwegingen die ze zichtbaar maken,
-                    niet in de specifieke implementatiekeuzes van deze MVP.</p>
+                    niet in de specifieke implementatiekeuzes van deze MVP.
+                </p>
             </div>
 
             <table class="contribTable">
@@ -180,7 +183,8 @@
                     <tr>
                         <td><strong>Expliciete contextafbakening</strong><br>De gebruiker bepaalt welke context naar het
                             model gaat; er is geen automatische projectbrede verzameling.</td>
-                        <td>Omgevingen met vertrouwelijke code, persoonsgegevens of geclassificeerde informatie; ook voor
+                        <td>Omgevingen met vertrouwelijke code, persoonsgegevens of geclassificeerde informatie; ook
+                            voor
                             auditbaarheid en reproduceerbaarheid van modelinteracties.</td>
                     </tr>
                     <tr>
@@ -196,9 +200,11 @@
                             verschillende modellen willen evalueren.</td>
                     </tr>
                     <tr>
-                        <td><strong>Terughoudende en tijdelijke opslag</strong><br>Gevoelige conversatie-inhoud wordt niet
+                        <td><strong>Terughoudende en tijdelijke opslag</strong><br>Gevoelige conversatie-inhoud wordt
+                            niet
                             persistent opgeslagen; alleen niet-gevoelige configuratie wordt bewaard.</td>
-                        <td>Alle omgevingen waar broncode, bedrijfsgevoelige queries of persoonsgegevens in prompts kunnen
+                        <td>Alle omgevingen waar broncode, bedrijfsgevoelige queries of persoonsgegevens in prompts
+                            kunnen
                             verschijnen — vermindert risico op data-at-rest en logexfiltratie.</td>
                     </tr>
                     <tr>
@@ -208,22 +214,25 @@
                             componenten.</td>
                     </tr>
                     <tr>
-                        <td><strong>Controleerbare communicatie</strong><br>Modelcommunicatie verloopt via een expliciete,
+                        <td><strong>Controleerbare communicatie</strong><br>Modelcommunicatie verloopt via een
+                            expliciete,
                             foutbestendige API-laag met gedefinieerde foutscenario's.</td>
-                        <td>Productieomgevingen waar beschikbaarheid en foutafhandeling van externe servicekoppelingen op
+                        <td>Productieomgevingen waar beschikbaarheid en foutafhandeling van externe servicekoppelingen
+                            op
                             applicatieniveau geborgd moeten zijn.</td>
                     </tr>
                     <tr>
                         <td><strong>Backend-agnostisch clientcontract</strong><br>Een abstract clientcontract maakt
                             meerdere modelruntimes uitwisselbaar zonder wijziging aan UI of applicatielogica.</td>
-                        <td>Omgevingen met meerdere potentiële LLM-backends, of waar vendor lock-in op modelinfrastructuur
+                        <td>Omgevingen met meerdere potentiële LLM-backends, of waar vendor lock-in op
+                            modelinfrastructuur
                             onwenselijk is.</td>
                     </tr>
                     <tr>
                         <td><strong>Gecontroleerde apply-pipeline</strong><br>Codewijzigende output wordt via een
                             diff-weergave voor expliciete beoordeling aangeboden; automatische toepassing vindt niet
                             plaats.</td>
-                        <td>Elke IDE-integratie waarbij AI-gegenereerde code in een codebase kan worden geplaatst —
+                        <td>Elke IDE-integratie waarbij AI-gegenereerde code in een codebase kan worden geplaatst,
                             verplicht bij kwaliteits- of beveiligingsvereisten rond codewijzigingen.</td>
                     </tr>
                 </tbody>
@@ -255,10 +264,12 @@
             <div class="grensGrid">
                 <div class="grensCard">
                     <h3 class="grensCard__title">Beperkte gebruikersgroep</h3>
-                    <p>De gebruikersacceptatietest is uitgevoerd met vijf respondenten op MVP-versie v0.3. Deze omvang is
+                    <p>De gebruikersacceptatietest is uitgevoerd met vijf respondenten op MVP-versie v0.3. Deze omvang
+                        is
                         te beperkt voor statistische generalisatie naar de bredere ontwikkelaarspopulatie. Binnen de
                         ontwerpgerichte benadering is dit aanvaardbaar — de test diende als praktijkindicatie, niet als
-                        representatieve gebruikersstudie. Een stabiele v1.0-release vraagt om een grotere en meer diverse
+                        representatieve gebruikersstudie. Een stabiele v1.0-release vraagt om een grotere en meer
+                        diverse
                         groep.</p>
                 </div>
                 <div class="grensCard">
@@ -281,8 +292,8 @@
             <div class="dvBlock__concl">
                 <span class="dvBlock__conclTag">Reikwijdte</span>
                 <p>De MVP toont aan dat veilige en beheersbare LLM-integratie technisch uitvoerbaar is binnen de
-                    onderzochte defensiecontext. De beperkingen geven aan welke aanvullende stappen — een bredere
-                    gebruikersevaluatie, uitgebreidere prestatiemetingen en validatie in andere organisaties — nodig zijn
+                    onderzochte defensiecontext. De beperkingen geven aan welke aanvullende stappen, zoals een bredere
+                    gebruikersevaluatie, uitgebreidere prestatiemetingen en validatie in andere organisaties nodig zijn
                     voor generaliseerbare uitspraken en productiewaardige inzet op grotere schaal.</p>
             </div>
         </section>

@@ -137,7 +137,7 @@ export const STORY_SCENES = [
         chapter: "Toekomst",
         title: "Koppeling aan de onderzoeksmethodiek",
         narration:
-            "Elke versie in de roadmap correspondeert met een fase in de design cycle van Wieringa: vroege versies richten zich op haalbaarheid (DV4), middenversies op evaluatie (DV5), en latere versies op verfijning en overdracht. Dit maakt de relatie tussen de versie-iteraties en de onderzoeksfasen expliciet.",
+            "Het eindverslag koppelt de roadmap aan de design cycle van Wieringa, vertaald naar vier fasen: verkennen (DV1), ontwerpen (DV2 t/m DV4), realiseren en evalueren. De versies v0.1 t/m v0.3 vormen de realisatie; v0.4 en v0.5 horen bij de evaluatie — de evaluatiebasis en de verwerking van de praktijkfeedback. De uitrol en veldevaluatie binnen de afdeling (v1.0) vallen buiten de onderzoeksscope.",
         path: "roadmap/#methodSection",
     },
     {

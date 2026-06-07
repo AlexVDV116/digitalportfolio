@@ -13,27 +13,27 @@
 export const PHASES = [
     {
         id: "research",
-        label: "Fase 1 · Onderzoeksfase",
-        tag: "DV4 — haalbaarheid en architectuurvalidatie",
+        label: "Realiseren",
+        tag: "Design cycle — realisatie van de MVP",
         color: "phase1",
         description:
-            "Technische haalbaarheid en architectuurvalidatie. Iteraties leveren een werkbare extensie op met provider-neutrale LLM-communicatie.",
+            "Het bouwen van de LocalLLM-MVP conform de geconsolideerde ontwerpset. Volgt op de verkennings- en ontwerpfase (DV1–DV4) en levert een werkend, toetsbaar artefact.",
     },
     {
         id: "evaluation",
-        label: "Fase 2 · Evaluatie en verfijning",
-        tag: "DV5 — evaluatie en feedbackverwerking",
+        label: "Evalueren",
+        tag: "Design cycle — evaluatie (DV5)",
         color: "phase2",
         description:
-            "Codeanalyse, beveiligingstoetsing en gebruikersfeedback. De ontwerpcriteria OC-1 t/m OC-9 worden empirisch beproefd.",
+            "Statische analyse, beveiligingstoetsing en gebruikersfeedback. De MVP wordt getoetst aan de ontwerpcriteria, requirements en het praktijkgebruik (DV5).",
     },
     {
         id: "transfer",
-        label: "Fase 3 · Overdracht",
-        tag: "buiten onderzoeksscope",
+        label: "Overdracht",
+        tag: "Buiten onderzoeksscope",
         color: "phase3",
         description:
-            "Verschuiving van validatie naar beheerbaarheid en schaalbaarheid binnen de afdeling.",
+            "Uitrol en veldevaluatie binnen de afdeling. Valt buiten de design cycle van dit onderzoek en vormt de basis voor doorontwikkeling.",
     },
 ];
 
@@ -48,7 +48,7 @@ export const VERSIONS = [
         focus: "Conceptarchitectuur",
         validationGoal: "Haalbaarheid VSIX + lokale LLM-communicatie",
         researchQuestion: "Is VSIX + lokale LLM-communicatie technisch haalbaar?",
-        researchPhase: "DV4 — conceptarchitectuur",
+        researchPhase: "Realiseren — conceptarchitectuur",
         highlights: [
             "VSIX-opzet, OllamaClient, DialogPage",
             "ContextMode, Options-integratie",
@@ -69,7 +69,7 @@ export const VERSIONS = [
         focus: "Functionele MVP",
         validationGoal: "FR-1 t/m FR-8 realiseerbaar binnen OC-kader",
         researchQuestion: "Zijn de use cases realiseerbaar binnen het OC-kader?",
-        researchPhase: "DV4 → evaluatie",
+        researchPhase: "Realiseren — functionele MVP",
         highlights: [
             "LlmClientBase, OpenWebUI-backend",
             "Inline Apply (Suggestions API)",
@@ -90,7 +90,7 @@ export const VERSIONS = [
         focus: "Praktijkvalidatie",
         validationGoal: "Eerste praktijktoets in LITON-omgeving",
         researchQuestion: "Werkt de MVP in de doelomgeving en welke OC's moeten worden aangescherpt?",
-        researchPhase: "Praktijkvalidatie",
+        researchPhase: "Realiseren — eerste praktijktoets",
         highlights: [
             "DPAPI-fix, tokenpersistentie",
             "Documentatieaudit, README/licentie",
@@ -111,7 +111,7 @@ export const VERSIONS = [
         focus: "Evaluatiebasis DV5",
         validationGoal: "Statische analyse, STRIDE, OWASP LLM Top 10",
         researchQuestion: "Voldoet de MVP aan de ontwerpcriteria, beveiligingsnormen en gebruikersverwachtingen?",
-        researchPhase: "DV5 — evaluatie",
+        researchPhase: "Evalueren — evaluatiebasis (DV5)",
         highlights: [
             "SSE-streaming, reasoning mode",
             "FixedProtocolPrompt + AdditionalInstruction",
@@ -133,7 +133,7 @@ export const VERSIONS = [
         focus: "Feedbackverwerking",
         validationGoal: "Laatste onderzoeksiteratie voor overdracht",
         researchQuestion: "Houden de OC's stand na verwerking van praktijkfeedback?",
-        researchPhase: "Feedbackverwerking",
+        researchPhase: "Evalueren — feedbackverwerking (DV5)",
         highlights: [
             "UX-verfijning, contexttransparantie",
             "Apply-volwassenheid",
@@ -154,7 +154,7 @@ export const VERSIONS = [
         focus: "Afdelingsrelease",
         validationGoal: "Stabiele interne release na overdracht",
         researchQuestion: "Kan de MVP beheerbaar en onderhoudbaar worden overgedragen aan de afdeling?",
-        researchPhase: "Overdracht",
+        researchPhase: "Overdracht — buiten onderzoeksscope",
         highlights: [
             "Beheerbaarheid, onderhoudbaarheid",
             "Security-hardening",
@@ -178,10 +178,10 @@ export const SCOPE_BOUNDARY = { afterVersion: "v05", beforeVersion: "v10" };
  * Displayed as a reference below the timeline.
  */
 export const METHODOLOGY_TABLE = [
-    { version: "v0.1", phase: "DV4 — conceptarchitectuur",     question: "Is VSIX + lokale LLM-communicatie technisch haalbaar?" },
-    { version: "v0.2", phase: "DV4 → evaluatie",               question: "Zijn de use cases realiseerbaar binnen het OC-kader?" },
-    { version: "v0.3", phase: "Praktijkvalidatie",              question: "Werkt de MVP in de doelomgeving?" },
-    { version: "v0.4", phase: "DV5 — evaluatie",               question: "Voldoet de MVP aan OC's, beveiligingsnormen en gebruikersverwachtingen?" },
-    { version: "v0.5", phase: "Feedbackverwerking",             question: "Houden de OC's stand na verwerking van praktijkfeedback?" },
-    { version: "v1.0", phase: "Overdracht",                     question: "Kan de MVP beheerbaar worden overgedragen aan de afdeling?" },
+    { version: "v0.1", phase: "Realiseren",                question: "Is VSIX + lokale LLM-communicatie technisch haalbaar?" },
+    { version: "v0.2", phase: "Realiseren",                question: "Zijn de use cases realiseerbaar binnen het OC-kader?" },
+    { version: "v0.3", phase: "Realiseren",                question: "Werkt de MVP in de doelomgeving?" },
+    { version: "v0.4", phase: "Evalueren (DV5)",           question: "Voldoet de MVP aan OC's, beveiligingsnormen en gebruikersverwachtingen?" },
+    { version: "v0.5", phase: "Evalueren (DV5)",           question: "Houden de OC's stand na verwerking van praktijkfeedback?" },
+    { version: "v1.0", phase: "Overdracht (buiten scope)", question: "Kan de MVP beheerbaar worden overgedragen aan de afdeling?" },
 ];

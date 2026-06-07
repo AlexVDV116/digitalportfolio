@@ -92,9 +92,11 @@
 > *Even de ontwikkeling in perspectief. De extensie is iteratief gegroeid: van een conceptarchitectuur in v0.1, via v0.4 — de versie waarop ik formeel heb geëvalueerd — naar de huidige versie v0.5, waarin ik de feedback uit de gebruikerstest heb verwerkt. De stippellijn is de grens van mijn onderzoeksscope; versie 1.0 valt daarbuiten en is een eventuele afdelingsrelease na overdracht.*
 
 ## 16 · Koppeling aan de onderzoeksmethodiek
-`roadmap/#methodSection` · ~30 s
+`roadmap/#methodSection` · ~35 s
 
-> *En die versies staan niet los van de methode. Elke versie hoort bij een fase in de design cycle van Wieringa: de vroege versies draaien om haalbaarheid, de middenversies om validatie, en de latere om verfijning en overdracht. Zo loopt de software-ontwikkeling synchroon met het onderzoek.*
+> *En die versies staan niet los van de methode. Het onderzoek volgt de design cycle van Wieringa, die ik heb vertaald naar vier fasen: verkennen — dat is deelvraag 1 — ontwerpen in deelvraag 2 tot en met 4, daarna realiseren, en tot slot evalueren in deelvraag 5. De verkennings- en ontwerpfase zitten in de deelvragen; de versies die je hier ziet vormen de realisatie — v0.1 tot en met v0.3 — en de evaluatie, v0.4 en v0.5. De daadwerkelijke uitrol binnen de afdeling, v1.0, valt buiten mijn onderzoeksscope.*
+
+> **Bij doorvragen (Wieringa):** mijn onderzoek dekt de design cycle — probleemonderzoek, treatment design en treatment validation. Mijn DV5-evaluatie is treatment validation: ik toets de MVP, ik rol 'm nog niet uit. De laatste twee stappen van de engineering cycle — treatment implementation en implementation evaluation in de praktijk — zijn de vervolgstappen, en die vallen samen met v1.0.
 
 ## 17 · Antwoord op de hoofdvraag
 `conclusie/#antwoord` · ~50 s

@@ -32,7 +32,7 @@ export const STORY_SCENES = [
     {
         id: "dv1",
         chapter: "Deelvraag 1",
-        title: "DV1 — Beveiligings- en architectuureisen",
+        title: "DV1: Beveiligings- en architectuureisen",
         narration:
             "Documentanalyse van het Defensie Beveiligingsbeleid, de D/300-serie en de BIO bracht de beveiligings- en architectuureisen voor de extensie in kaart. De centrale conclusie: lokale modelhosting alléén is niet voldoende. Veilige integratie vereist ook dataminimalisatie, geen persistente opslag van gevoelige gegevens, expliciete contextbeperking en gescheiden verantwoordelijkheden.",
         path: "deelvragen/#dv1",
@@ -40,7 +40,7 @@ export const STORY_SCENES = [
     {
         id: "dv2",
         chapter: "Deelvraag 2",
-        title: "DV2 — Functionele en niet-functionele eisen",
+        title: "DV2: Functionele en niet-functionele eisen",
         narration:
             "Semigestructureerde interviews met ontwikkelaars leverden de functionele en niet-functionele eisen op. De extensie heeft de meeste waarde als zij direct aansluit op de Visual Studio-workflow: code uitleggen, refactoring en testvoorbereiding. Gebruikers willen zicht op de context die wordt meegestuurd en de mogelijkheid om modeloutput handmatig te beoordelen voordat deze wordt toegepast.",
         path: "deelvragen/#dv2",
@@ -48,7 +48,7 @@ export const STORY_SCENES = [
     {
         id: "dv3",
         chapter: "Deelvraag 3",
-        title: "DV3 — Ontwerpprincipes uit bestaande integraties",
+        title: "DV3: Ontwerpprincipes uit bestaande integraties",
         narration:
             "Een vergelijkende analyse van Continue, BroPilot en LocalStudio identificeerde bruikbare ontwerpprincipes voor IDE-integratie. Bestaande tools zijn breed van opzet; voor de defensieomgeving zijn juist beperkte, controleerbare varianten relevant. De meest toepasbare principes zijn expliciete contextselectie, een aparte clientlaag voor modelcommunicatie en het aanbieden van output als voorstel.",
         path: "deelvragen/#dv3",
@@ -56,7 +56,7 @@ export const STORY_SCENES = [
     {
         id: "dv4",
         chapter: "Deelvraag 4",
-        title: "DV4 — Communicatiearchitectuur",
+        title: "DV4: Communicatiearchitectuur",
         narration:
             "De ontwerpcriteria en eisen zijn vertaald naar een communicatiearchitectuur. De extensie fungeert als een gecontroleerde client tussen de IDE en het interne LLM-endpoint. Context wordt begrensd samengesteld, het request via een expliciete clientlaag verstuurd en fouten afgehandeld zonder dat de IDE instabiel wordt. Het LLM krijgt geen directe toegang tot bestanden, projectstructuren of IDE-functionaliteit.",
         path: "deelvragen/#dv4",
@@ -64,7 +64,7 @@ export const STORY_SCENES = [
     {
         id: "dv5",
         chapter: "Deelvraag 5",
-        title: "DV5 — Evaluatie en validatie",
+        title: "DV5: Evaluatie en validatie",
         narration:
             "De evaluatie combineert statische code- en architectuuranalyse, een beveiligingsevaluatie via STRIDE en OWASP LLM Top 10, en een praktijkvalidatie met gebruikers. De MVP voldoet binnen de onderzochte scope aan de gestelde eisen voor informatiebeveiliging, bruikbaarheid en effectiviteit. De uitgewerkte resultaten zijn te vinden op de evaluatiepagina.",
         path: "deelvragen/#dv5",
@@ -72,9 +72,9 @@ export const STORY_SCENES = [
     {
         id: "theorie",
         chapter: "Theoretisch kader",
-        title: "Theoretisch kader — drie domeinen",
+        title: "Theoretisch kader: drie domeinen",
         narration:
-            "Het theoretisch kader is opgebouwd rond drie domeinen: LLM-gedrag en outputkwaliteit, informatiebeveiliging in gesloten omgevingen, en IDE-integratie en extensiearchitectuur. De overlap tussen deze domeinen levert de spanningsvelden op die het ontwerp sturen — met name de spanning tussen contextkwaliteit en dataminimalisatie.",
+            "Het theoretisch kader is opgebouwd rond drie domeinen: LLM-gedrag en outputkwaliteit, informatiebeveiliging in gesloten omgevingen, en IDE-integratie en extensiearchitectuur. De overlap tussen deze domeinen levert de spanningsvelden op die het ontwerp sture, met name de spanning tussen contextkwaliteit en dataminimalisatie.",
         path: "theory/",
     },
     {
@@ -111,7 +111,7 @@ export const STORY_SCENES = [
     {
         id: "validatie-gat",
         chapter: "Evaluatie",
-        title: "Praktijkevaluatie — gebruikersacceptatietest",
+        title: "Praktijkevaluatie: gebruikersacceptatietest",
         narration:
             "De gebruikersacceptatietest is uitgevoerd met vijf ontwikkelaars uit de doelgroep (JIVC SO&I) op MVP-versie v0.3, gedurende twee weken vrij gebruik. Het gemiddelde rapportcijfer is 7,4 op 10; de aanbevelingsscore 8,2. De human-in-the-loop-aanpak scoort het sterkst (4,8/5). De NFR-2 responstijdeis is in de productieomgeving gehaald: p95 = 4,27 s.",
         path: "evaluation/?tab=gat",
@@ -137,7 +137,7 @@ export const STORY_SCENES = [
         chapter: "Toekomst",
         title: "Koppeling aan de onderzoeksmethodiek",
         narration:
-            "Het eindverslag koppelt de roadmap aan de design cycle van Wieringa, vertaald naar vier fasen: verkennen (DV1), ontwerpen (DV2 t/m DV4), realiseren en evalueren. De versies v0.1 t/m v0.3 vormen de realisatie; v0.4 en v0.5 horen bij de evaluatie — de evaluatiebasis en de verwerking van de praktijkfeedback. De uitrol en veldevaluatie binnen de afdeling (v1.0) vallen buiten de onderzoeksscope.",
+            "Het eindverslag koppelt de roadmap aan de design cycle van Wieringa, vertaald naar vier fasen: verkennen (DV1), ontwerpen (DV2 t/m DV4), realiseren en evalueren. De versies v0.1 t/m v0.3 vormen de realisatie; v0.4 en v0.5 horen bij de evaluatie, de evaluatiebasis en de verwerking van de praktijkfeedback. De uitrol en veldevaluatie binnen de afdeling (v1.0) vallen buiten de onderzoeksscope.",
         path: "roadmap/#methodSection",
     },
     {
@@ -152,7 +152,7 @@ export const STORY_SCENES = [
         chapter: "Conclusie",
         title: "Onderzoeksbijdrage",
         narration:
-            "De negen ontwerpcriteria zijn toegepast op één omgeving, maar de onderliggende principes zijn breder overdraagbaar. Zij vormen negen ontwerpprincipes voor veilige AI-integratie in gesloten of gereguleerde omgevingen — afgeleid uit de literatuur, toegepast en gevalideerd binnen deze casus, en plausibel toepasbaar binnen sectoren als overheid, zorg, de financiële sector en de industrie. De principes zijn niet als universeel bewezen gepresenteerd; hun waarde ligt in de afwegingen die zij zichtbaar maken.",
+            "De negen ontwerpcriteria zijn toegepast op één omgeving, maar de onderliggende principes zijn breder overdraagbaar. Zij vormen negen ontwerpprincipes voor veilige AI-integratie in gesloten of gereguleerde omgevingen, afgeleid uit de literatuur, toegepast en gevalideerd binnen deze casus, en plausibel toepasbaar binnen sectoren als overheid, zorg, de financiële sector en de industrie. De principes zijn niet als universeel bewezen gepresenteerd; hun waarde ligt in de afwegingen die zij zichtbaar maken.",
         path: "conclusie/#bijdrage",
     },
     {
